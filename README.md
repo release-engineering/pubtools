@@ -50,7 +50,7 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-[Manual]: https://rohanpm.github.io/pubtools/
+[Manual]: https://release-engineering.github.io/pubtools/
 [pubtools-pulp]: https://github.com/release-engineering/pubtools-pulp
 [Pulp]: https://pulpproject.org/
 [pubtools-iib]: https://github.com/release-engineering/pubtools-iib
