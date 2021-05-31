@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Developer Guide &#8212; pubtools  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Project Overview" href="projects.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="developer-guide">
+<span id="devguide"></span><h1>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h1>
+<p>This document is a reference for developers of projects within the <code class="docutils literal notranslate"><span class="pre">pubtools</span></code>
+family.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#project-setup" id="id2">Project setup</a></p>
+<ul>
+<li><p><a class="reference internal" href="#naming" id="id3">Naming</a></p></li>
+<li><p><a class="reference internal" href="#target-platforms" id="id4">Target platforms</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#understanding-tasks" id="id5">Understanding tasks</a></p>
+<ul>
+<li><p><a class="reference internal" href="#task-interface" id="id6">Task interface</a></p></li>
+<li><p><a class="reference internal" href="#standalone-vs-hosted" id="id7">Standalone vs Hosted</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#argument-conventions" id="id8">Argument conventions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#arguments-with-multiple-values" id="id9">Arguments with multiple values</a></p></li>
+<li><p><a class="reference internal" href="#debug-enable-debug-logging" id="id10"><code class="docutils literal notranslate"><span class="pre">--debug</span></code>: enable debug logging</a></p></li>
+<li><p><a class="reference internal" href="#skip-step-execute-subset-of-task" id="id11"><code class="docutils literal notranslate"><span class="pre">--skip</span></code>, <code class="docutils literal notranslate"><span class="pre">--step</span></code>: execute subset of task</a></p></li>
+<li><p><a class="reference internal" href="#source-obtain-content-via-pushsource" id="id12"><code class="docutils literal notranslate"><span class="pre">--source</span></code>: obtain content via <code class="docutils literal notranslate"><span class="pre">pushsource</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#logging" id="id13">Logging</a></p>
+<ul>
+<li><p><a class="reference internal" href="#use-loggers-as-primary-output-mechanism" id="id14">Use loggers as primary output mechanism</a></p></li>
+<li><p><a class="reference internal" href="#avoid-changing-logger-configuration" id="id15">Avoid changing logger configuration</a></p></li>
+<li><p><a class="reference internal" href="#name-loggers-after-your-project" id="id16">Name loggers after your project</a></p></li>
+<li><p><a class="reference internal" href="#use-appropriate-log-levels" id="id17">Use appropriate log levels</a></p></li>
+<li><p><a class="reference internal" href="#structured-logging-via-extra" id="id18">Structured logging via <code class="docutils literal notranslate"><span class="pre">extra</span></code></a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="project-setup">
+<h2><a class="toc-backref" href="#id2">Project setup</a><a class="headerlink" href="#project-setup" title="Permalink to this headline">¶</a></h2>
+<section id="naming">
+<h3><a class="toc-backref" href="#id3">Naming</a><a class="headerlink" href="#naming" title="Permalink to this headline">¶</a></h3>
+<p>If you are introducing a new <code class="docutils literal notranslate"><span class="pre">pubtools</span></code> project, please follow these conventions:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>For task libraries</strong>:</dt><dd><ul>
+<li><p>Name the project <code class="docutils literal notranslate"><span class="pre">pubtools-&lt;foo&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">foo</span></code> identifies the most relevant target
+system. (example: <code class="docutils literal notranslate"><span class="pre">pubtools-pulp</span></code> is for pushing content to Pulp.)</p></li>
+<li><p>Put all Python code under the “pubtools” namespace.</p></li>
+<li><p>(“Task library” means the scope of the project is to provide <code class="docutils literal notranslate"><span class="pre">console_scripts</span></code>-based
+tasks, as described in <a class="reference internal" href="#task"><span class="std std-ref">a later section</span></a>.)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>For any other kind of project</strong>:</dt><dd><ul>
+<li><p>If you are developing a project associated with <code class="docutils literal notranslate"><span class="pre">pubtools</span></code> but not a task library, there is no specific convention.
+Give the project any sensible name.</p></li>
+<li><p>If the project can be of general use, you do not have to name it with a <code class="docutils literal notranslate"><span class="pre">pubtools-</span></code>
+prefix.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="target-platforms">
+<h3><a class="toc-backref" href="#id4">Target platforms</a><a class="headerlink" href="#target-platforms" title="Permalink to this headline">¶</a></h3>
+<p>Projects should aim to be compatible with the following environments:</p>
+<ul class="simple">
+<li><p>Python 2.6 (yes, really)</p></li>
+<li><p>Python 3.8 and later</p></li>
+<li><p>Red Hat flavored operating systems (RHEL, CentOS, Fedora)</p></li>
+</ul>
+<p>The requirement to support Python 2 is likely to be dropped during 2022.</p>
+</section>
+</section>
+<section id="understanding-tasks">
+<span id="task"></span><h2><a class="toc-backref" href="#id5">Understanding tasks</a><a class="headerlink" href="#understanding-tasks" title="Permalink to this headline">¶</a></h2>
+<section id="task-interface">
+<h3><a class="toc-backref" href="#id6">Task interface</a><a class="headerlink" href="#task-interface" title="Permalink to this headline">¶</a></h3>
+<p>The interface to any <code class="docutils literal notranslate"><span class="pre">pubtools</span></code> task is a standard <code class="docutils literal notranslate"><span class="pre">console_scripts</span></code>
+entry point. See <a class="reference external" href="https://setuptools.readthedocs.io/en/latest/userguide/entry_point.html#console-scripts">the setuptools manual</a> for information on these.</p>
+<p>Entry points by convention are named as <code class="docutils literal notranslate"><span class="pre">&lt;project_name&gt;-&lt;task_name&gt;</span></code>.
+For example, the <code class="docutils literal notranslate"><span class="pre">pubtools-pulp</span></code> project has a <code class="docutils literal notranslate"><span class="pre">publish</span></code> task which is
+defined in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+  <span class="s2">&quot;console_scripts&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;pubtools-pulp-publish = pubtools._pulp.tasks.publish:entry_point&quot;</span><span class="p">,</span>
+  <span class="p">]</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<section id="inputs">
+<h4>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h4>
+<p>Tasks should accept all necessary inputs to perform their work via:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>command-line arguments</dt><dd><ul>
+<li><p>read from <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> using any preferred method (e.g. <a class="reference external" href="https://docs.python.org/3/library/argparse.html#module-argparse" title="(in Python v3.9)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">argparse</span></code></a>)</p></li>
+<li><p><strong>do not use for secrets</strong></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>environment variables</dt><dd><ul>
+<li><p>read from <code class="docutils literal notranslate"><span class="pre">os.environ</span></code> as usual</p></li>
+<li><p>recommended method of passing secrets</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Note that reading data from local files is not recommended. This is because it
+breaks or at least complicates the <a class="reference internal" href="#hosted"><span class="std std-ref">Standalone vs Hosted</span></a> paradigm:
+if you read inputs or configuration from files, you must somehow arrange for those
+files to be deployed onto the hosted environment and cleaned up when no longer needed.</p>
+<p>There’s a notable exception to this: if you need to process very large amounts of
+data, you may find that the argument list becomes too long to launch a new process
+(see <a class="reference external" href="https://web.archive.org/web/20210425060951/https://www.in-ulm.de/~mascheck/various/argmax/">argmax</a>).</p>
+<p>This is not a problem within the hosted environment, since that doesn’t
+launch new processes for new tasks. However, argument limits may interfere with
+local development and testing. You may therefore wish to add some optional
+functionality to read from local files as a workaround to the limit, to be used
+primarily during development.</p>
+</section>
+<section id="outputs">
+<h4>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h4>
+<p>Tasks should use the following approaches to produce output.
+(Note we refer to logging-style outputs here, not the primary side-effects a task
+aims to implement).</p>
+<ul class="simple">
+<li><p>use the <a class="reference internal" href="#logging"><span class="std std-ref">Logging</span></a> system to log messages</p></li>
+<li><dl class="simple">
+<dt>use the <a class="reference external" href="https://release-engineering.github.io/pushcollector/">pushcollector</a> library to save additional (small) files and push item metadata</dt><dd><ul>
+<li><p>example: save a snapshot in JSON format of some remote resource prior to updating, to
+ensure an audit trail exists</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="standalone-vs-hosted">
+<span id="hosted"></span><h3><a class="toc-backref" href="#id7">Standalone vs Hosted</a><a class="headerlink" href="#standalone-vs-hosted" title="Permalink to this headline">¶</a></h3>
+<p>Tasks provided by <code class="docutils literal notranslate"><span class="pre">pubtools</span></code> libraries are designed to work within two different
+contexts, with significant differences between them. These are:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Invoked directly as command-line interface tools</dt><dd><ul>
+<li><p>We refer to this as <strong>Standalone</strong> execution.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Invoked from within a Python-based service using the “entry points” system</dt><dd><ul>
+<li><p>We refer to this as <strong>Hosted</strong> execution.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The following table summarizes the major differences between these contexts:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 40%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Standalone</p></th>
+<th class="head"><p>Hosted</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>usage scenario</p></td>
+<td><p>development, testing, emergencies</p></td>
+<td><p>production</p></td>
+</tr>
+<tr class="row-odd"><td><p>inputs</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> populated by command-line arguments</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> populated by the hosting service</p></td>
+</tr>
+<tr class="row-even"><td><p>secrets</p></td>
+<td><p>environment variables set by caller</p></td>
+<td><p>environment variables set by the hosting service</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code></p></td>
+<td><p>connected to standard output</p></td>
+<td><p>redirected to logger</p></td>
+</tr>
+<tr class="row-even"><td><p>logging</p></td>
+<td><p>logging subsystem uses default (empty) configuration</p></td>
+<td><p>loggers are configured prior to task execution</p></td>
+</tr>
+<tr class="row-odd"><td><p>pushsource</p></td>
+<td><p>pushsource library uses default (generic) configuration</p></td>
+<td><p>pushsource library is bound to specific environments</p></td>
+</tr>
+<tr class="row-even"><td><p>pushcollector</p></td>
+<td><p>pushcollector library uses default <code class="docutils literal notranslate"><span class="pre">local</span></code> backend</p></td>
+<td><p>pushcollector library uses a backend specific to the hosting service</p></td>
+</tr>
+</tbody>
+</table>
+<p>In principle, the <code class="docutils literal notranslate"><span class="pre">pubtools</span></code> family of projects are able to be integrated
+with any number of services. In practice, tasks are almost always hosted in
+one specific system known as <strong>Pub</strong>.</p>
+</section>
+</section>
+<section id="argument-conventions">
+<h2><a class="toc-backref" href="#id8">Argument conventions</a><a class="headerlink" href="#argument-conventions" title="Permalink to this headline">¶</a></h2>
+<p>In this section we document some common arguments supported across multiple
+task libraries.</p>
+<p>If you need to support any of the functionality below, it is best to follow
+these conventions. Using consistent arguments across the projects helps to
+avoid errors while integrating tasks into Pub or other task hosting
+environments.</p>
+<section id="arguments-with-multiple-values">
+<span id="arglist"></span><h3><a class="toc-backref" href="#id9">Arguments with multiple values</a><a class="headerlink" href="#arguments-with-multiple-values" title="Permalink to this headline">¶</a></h3>
+<p>For cases where you want to accept multiple values as a list, it’s recommended
+to support <em>both</em> the following argument styles simultaneously:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--key</span> <span class="pre">val1</span> <span class="pre">--key</span> <span class="pre">val2</span> <span class="pre">--key</span> <span class="pre">val3</span></code></dt><dd><p>This style tends to be simpler for programmatic usage.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--key</span> <span class="pre">val1,val2,val3</span></code></dt><dd><p>This style is more user-friendly for humans.</p>
+<p>(Of course, you may not accept this style if you need values which
+themselves contain the <code class="docutils literal notranslate"><span class="pre">,</span></code> character.)</p>
+</dd>
+</dl>
+</section>
+<section id="debug-enable-debug-logging">
+<span id="debug"></span><h3><a class="toc-backref" href="#id10"><code class="docutils literal notranslate"><span class="pre">--debug</span></code>: enable debug logging</a><a class="headerlink" href="#debug-enable-debug-logging" title="Permalink to this headline">¶</a></h3>
+<p>As explained at <a class="reference internal" href="#logconfig"><span class="std std-ref">Avoid changing logger configuration</span></a>, task libraries in general should refrain
+from configuring loggers; in production scenarios, this is the responsibility of
+the task hosting environment.</p>
+<p>However, while locally developing and testing task libraries, there will commonly
+arise the need to enable verbose logging. If you want to enable this, it’s suggested
+to provide a <code class="docutils literal notranslate"><span class="pre">--debug</span></code> option with semantics:</p>
+<dl class="simple">
+<dt>no <code class="docutils literal notranslate"><span class="pre">--debug</span></code></dt><dd><p>Enable root logger at <code class="docutils literal notranslate"><span class="pre">INFO</span></code> level.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug</span></code></dt><dd><p>Enable root logger at <code class="docutils literal notranslate"><span class="pre">INFO</span></code> level and this project’s logger at <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> level.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug</span></code> more than once</dt><dd><p>Enable even more loggers at <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> level, perhaps even the root logger, depending on
+how may times the argument is used.</p>
+</dd>
+</dl>
+<p>Keep in mind that this option is intended for local development or testing purposes only.
+The option should never be used when the task runs in a hosted environment.</p>
+</section>
+<section id="skip-step-execute-subset-of-task">
+<h3><a class="toc-backref" href="#id11"><code class="docutils literal notranslate"><span class="pre">--skip</span></code>, <code class="docutils literal notranslate"><span class="pre">--step</span></code>: execute subset of task</a><a class="headerlink" href="#skip-step-execute-subset-of-task" title="Permalink to this headline">¶</a></h3>
+<p>Some tasks might be made up of several discrete steps, and you may want to allow
+callers to skip some of them in certain cases.</p>
+<p>If so, it’s suggested to enable this via the following arguments:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--skip</span> <span class="pre">a,b,c</span></code></dt><dd><p>Don’t execute steps <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;b&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;c&quot;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--step</span> <span class="pre">a,b,c</span></code></dt><dd><p>Execute only steps <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;b&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;c&quot;</span></code>.</p>
+</dd>
+</dl>
+<p>Here are some implementation guidelines for these arguments:</p>
+<ul class="simple">
+<li><p>Follow the advice in <a class="reference internal" href="#arglist"><span class="std std-ref">Arguments with multiple values</span></a>.</p></li>
+<li><dl class="simple">
+<dt>Don’t validate step names.</dt><dd><ul>
+<li><p>If passed any unknown steps, simply ignore them.</p></li>
+<li><p>Validating the step names would make the interface more brittle (e.g. removing a step is
+a backwards-incompatible interface change).</p></li>
+<li><p>If you’re familiar with ansible - compare with <a class="reference external" href="http://web.archive.org/web/20210503191336/https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook">ansible tags</a>, where it’s not an error
+to specify a tag matching zero tasks.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The target audience includes developers and power users.</dt><dd><ul>
+<li><p>By default, a task should do the right thing without having to be passed any <code class="docutils literal notranslate"><span class="pre">--step</span></code> or
+<code class="docutils literal notranslate"><span class="pre">--skip</span></code>.</p></li>
+<li><p>It may be used during development to focus only on relevant parts of code.</p></li>
+<li><p>It may be used in production as an emergency workaround to skip failing but non-critical
+portions of a task.</p></li>
+<li><p>It’s not expected that all possible combinations of steps will work or shall be
+tested.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="source-obtain-content-via-pushsource">
+<h3><a class="toc-backref" href="#id12"><code class="docutils literal notranslate"><span class="pre">--source</span></code>: obtain content via <code class="docutils literal notranslate"><span class="pre">pushsource</span></code></a><a class="headerlink" href="#source-obtain-content-via-pushsource" title="Permalink to this headline">¶</a></h3>
+<p>If your task consumes content via the <a class="reference external" href="https://release-engineering.github.io/pushsource/">pushsource</a> library, it’s strongly recommended to
+use the URL-based configuration mechanism from the library, and accept the URL via a
+<code class="docutils literal notranslate"><span class="pre">--source</span></code> argument:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--source</span> <span class="pre">&lt;some-pushsource-url&gt;</span></code></dt><dd><p>Use content from the specified source.</p>
+</dd>
+</dl>
+<p>Accepting other arguments to configure the <code class="docutils literal notranslate"><span class="pre">pushsource</span></code> library is discouraged.  Strictly
+using URLs for configuration will ensure that your task is forwards-compatible with new features
+and improvements in future versions of that library.</p>
+</section>
+</section>
+<section id="logging">
+<span id="id1"></span><h2><a class="toc-backref" href="#id13">Logging</a><a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<p>Libraries can make use of the standard <a class="reference external" href="https://docs.python.org/3/library/logging.html#module-logging" title="(in Python v3.9)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">logging</span></code></a> module.
+Following the guidelines below will help ensure that your logging works effectively
+in both the <a class="reference internal" href="#hosted"><span class="std std-ref">standalone and hosted execution modes</span></a>.</p>
+<section id="use-loggers-as-primary-output-mechanism">
+<h3><a class="toc-backref" href="#id14">Use loggers as primary output mechanism</a><a class="headerlink" href="#use-loggers-as-primary-output-mechanism" title="Permalink to this headline">¶</a></h3>
+<p>Use standard <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a> objects for user-oriented output
+from your task. Don’t write to stdout or stderr.</p>
+<p>(Note: although it’s mentioned earlier that stdout will be redirected to a logger
+within the hosted environment, this is intended as a last resort to avoid losing
+valuable information while debugging; relying on it is bad practice.)</p>
+</section>
+<section id="avoid-changing-logger-configuration">
+<span id="logconfig"></span><h3><a class="toc-backref" href="#id15">Avoid changing logger configuration</a><a class="headerlink" href="#avoid-changing-logger-configuration" title="Permalink to this headline">¶</a></h3>
+<p>When invoked in the hosted environment, loggers will already be configured by the
+time your task’s entry point is called. In this case, you <strong>must not</strong> adjust or
+overwrite the configuration of the loggers (particularly the root logger).
+Logger configuration is considered to be the responsibility of the hosting service;
+tasks should avoid interfering with it.</p>
+<p>Note that the standard <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.basicConfig" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">logging.basicConfig()</span></code></a> function implements useful behavior:
+it installs basic log configuration writing to <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> if and only if the root
+logger is not already configured.</p>
+<p>Therefore, a simple and recommended way to set up loggers correctly for both the
+standalone and hosted case is to insert a call to <cite>basicConfig</cite> near the top of your
+task’s entry point, such as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="name-loggers-after-your-project">
+<h3><a class="toc-backref" href="#id16">Name loggers after your project</a><a class="headerlink" href="#name-loggers-after-your-project" title="Permalink to this headline">¶</a></h3>
+<p>If your project is named <code class="docutils literal notranslate"><span class="pre">pubtools-foo</span></code>, you should use loggers under the <code class="docutils literal notranslate"><span class="pre">pubtools.foo</span></code>
+hierarchy. This ensures there is a simple and predictable way to control the logging for
+each project.</p>
+</section>
+<section id="use-appropriate-log-levels">
+<h3><a class="toc-backref" href="#id17">Use appropriate log levels</a><a class="headerlink" href="#use-appropriate-log-levels" title="Permalink to this headline">¶</a></h3>
+<p>Log levels within the <code class="docutils literal notranslate"><span class="pre">pubtools</span></code> projects are typically used as follows:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></dt><dd><p>Messages of interest to developers.</p>
+<p>Hidden by default, only enabled when debugging problems.
+Log anything you may find useful while debugging.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">INFO</span></code></dt><dd><p>Messages of interest to end-users.</p>
+<p>This level and all later levels are enabled by default for <code class="docutils literal notranslate"><span class="pre">pubtools.*</span></code>
+loggers when executing in a hosted environment.</p>
+<p>Should be verbose enough to understand any major side-effects of a task
+(e.g. writing data to a remote system), but not so verbose as to cause
+performance issues or make the log unreasonably noisy.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">WARNING</span></code></dt><dd><p>Messages indicating a potential but non-fatal issue, or adding information
+which may explain the root cause of an error encountered elsewhere.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ERROR</span></code></dt><dd><p>Messages indicating that something has certainly gone wrong and some action
+is likely needed.</p>
+<p>Refrain from using these levels for any recoverable errors (e.g. if task
+retries an operation, only use <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> after all retries are exhausted).</p>
+<p>Note that users will sometimes be concerned or confused by <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> logs
+even if a task ultimately ends up succeeding.  A useful rule of thumb is
+to ask yourself: when this code path is reached, do I want users to file a
+ticket/bug for me?  If the answer is “No”, then <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> may be too
+severe.</p>
+</dd>
+</dl>
+</section>
+<section id="structured-logging-via-extra">
+<h3><a class="toc-backref" href="#id18">Structured logging via <code class="docutils literal notranslate"><span class="pre">extra</span></code></a><a class="headerlink" href="#structured-logging-via-extra" title="Permalink to this headline">¶</a></h3>
+<p>The logging system supports adding structured metadata onto log events via
+the optional <code class="docutils literal notranslate"><span class="pre">extra</span></code> argument, which is a dict of arbitrary key-value pairs.</p>
+<p>Within the <code class="docutils literal notranslate"><span class="pre">pubtools</span></code> family of projects we have the convention of an
+<code class="docutils literal notranslate"><span class="pre">event</span></code> attribute, of the following form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;foo-happened&quot;</span><span class="p">,</span>  <span class="c1"># brief string identifying what just happened</span>
+    <span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">,</span>        <span class="c1"># &amp; then any arbitrary fields relating to</span>
+    <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">,</span>        <span class="c1"># this event (don&#39;t add timestamp, it&#39;s implied)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If your project creates logging events using this structure, these may be
+collected by the hosting environment and used in various interesting ways
+(e.g. recorded into metrics-collecting systems).</p>
+<p>It’s recommended to make use of this whenever a logged event might be interesting
+in order to programmatically monitor the performance or health of a service.</p>
+<p>Here is an example from <code class="docutils literal notranslate"><span class="pre">pubtools-pulplib</span></code>, logging metadata on the Pulp task
+queue.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+  <span class="s2">&quot;Still waiting on Pulp, load: </span><span class="si">%s</span><span class="s2"> running, </span><span class="si">%s</span><span class="s2"> waiting&quot;</span><span class="p">,</span>
+  <span class="n">running_count</span><span class="p">,</span>
+  <span class="n">waiting_count</span><span class="p">,</span>
+  <span class="n">extra</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;awaiting-pulp&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;running-tasks&quot;</span><span class="p">:</span> <span class="n">running_count</span><span class="p">,</span>
+      <span class="s2">&quot;waiting-tasks&quot;</span><span class="p">:</span> <span class="n">waiting_count</span><span class="p">,</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Any string may be used as an event type, though a few conventions exist:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">event.type</span></code></p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;x&gt;-start</span></code></p></td>
+<td><p>The current task has started a step named <code class="docutils literal notranslate"><span class="pre">&lt;x&gt;</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;x&gt;-end</span></code></p></td>
+<td><p>Step <code class="docutils literal notranslate"><span class="pre">&lt;x&gt;</span></code> completed normally.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;x&gt;-error</span></code></p></td>
+<td><p>Step <code class="docutils literal notranslate"><span class="pre">&lt;x&gt;</span></code> returned early due to a fatal error.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pubtools</a></h1>
+
+
+
+<p class="blurb">Publishing tools project family</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="projects.html">Project Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-setup">Project setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#understanding-tasks">Understanding tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#argument-conventions">Argument conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/release-engineering/pubtools">Source</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/pubtools">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="genindex.html">Index</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="projects.html" title="previous chapter">Project Overview</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Red Hat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/devguide.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/release-engineering/pubtools" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
