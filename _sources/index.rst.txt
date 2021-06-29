@@ -10,6 +10,7 @@ Publishing tools project family.
 
    projects
    devguide
+   hooks
 
 Introduction
 ------------

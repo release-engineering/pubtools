@@ -15,6 +15,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hooks" href="hooks.html" />
     <link rel="prev" title="Project Overview" href="projects.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -231,11 +232,15 @@ contexts, with significant differences between them. These are:</p>
 <td><p>logging subsystem uses default (empty) configuration</p></td>
 <td><p>loggers are configured prior to task execution</p></td>
 </tr>
-<tr class="row-odd"><td><p>pushsource</p></td>
+<tr class="row-odd"><td><p>hooks</p></td>
+<td><p><a class="reference internal" href="hooks.html#hooks"><span class="std std-ref">Hooks</span></a> are available</p></td>
+<td><p>hooks are available, hosting service may provide some <code class="docutils literal notranslate"><span class="pre">&#64;hookimpls</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>pushsource</p></td>
 <td><p>pushsource library uses default (generic) configuration</p></td>
 <td><p>pushsource library is bound to specific environments</p></td>
 </tr>
-<tr class="row-even"><td><p>pushcollector</p></td>
+<tr class="row-odd"><td><p>pushcollector</p></td>
 <td><p>pushcollector library uses default <code class="docutils literal notranslate"><span class="pre">local</span></code> backend</p></td>
 <td><p>pushcollector library uses a backend specific to the hosting service</p></td>
 </tr>
@@ -500,6 +505,7 @@ queue.</p>
 <li class="toctree-l2"><a class="reference internal" href="#logging">Logging</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Hooks</a></li>
 </ul>
 
 
@@ -518,6 +524,7 @@ queue.</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="projects.html" title="previous chapter">Project Overview</a></li>
+      <li>Next: <a href="hooks.html" title="next chapter">Hooks</a></li>
   </ul></li>
 </ul>
 </div>
