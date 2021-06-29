@@ -1,0 +1,149 @@
+#!/usr/bin/env python
+#
+# A helper invoked during doc build to generate an index of all hooks
+# into hooks.rst.
+#
+import os
+import textwrap
+import inspect
+
+from pubtools.pluggy import pm
+
+BUILD_DIR = os.path.join(os.path.dirname(__file__), "_build")
+HOOKS_OUTPUT = os.path.join(BUILD_DIR, "hooks")
+
+# Every module which may add hookspecs ought to be listed here.
+# This has effects:
+#
+# - causes the module to be imported (and hence any import-time hookspecs
+#   will be added)
+#
+# - defines the order in which hooks are documented
+#
+MODULES = {
+    "pubtools": 0,
+    # Not available yet (chicken-egg problem).
+    # Try uncommenting this after initial hook/event support is released in pubtools
+    # and a pubtools-pulplib version defining an event has been released.
+    # "pubtools.pulplib": 10,
+}
+
+
+def dedent(docstr):
+    # dedent a doc string to prepare it for embedding in the output.
+    #
+    # For example, if a hookspec is documented like this:
+    #
+    #   @hookspec
+    #   def emit_frobnitz():
+    #       """First line.
+    #
+    #       And here are some more details."""
+    #
+    # __doc__ will be "First line.\n\n    And here are some more details."
+    #
+    # So, the first line may have a different amount of leading whitespace than
+    # all other lines which makes it awkward to handle and standard
+    # 'textwrap.dedent' will not remove all the leading whitespace.
+    #
+    # This is a wrapper around textwrap.dedent which can handle this by first
+    # ensuring that the first line has the same amount of leading whitespace as
+    # the rest.
+
+    try:
+
+        if not docstr.startswith("\n") and not docstr.startswith(" "):
+            idx = docstr.index("\n ") + 1
+
+            space_count = 0
+            while docstr[idx] == " ":
+                space_count += 1
+                idx += 1
+
+            docstr = " " * space_count + docstr
+
+    except ValueError:
+        pass
+    except IndexError:
+        pass
+
+    return textwrap.dedent(docstr)
+
+
+class SpecWrapper:
+    # a wrapper around a hookspec adding some utilities
+
+    def __init__(self, hookspec):
+        self.hookspec = hookspec
+
+    @property
+    def module(self):
+        # Public name of the module which provides this hook, e.g.
+        # 'pubtools', 'pubtools.quay', etc.
+        raw_name = self.hookspec.namespace.__name__
+        public_name = raw_name.split("._")[0]
+        return public_name
+
+    @property
+    def sort_index(self):
+        # Returns a number used when sorting all the hooks.
+        #
+        # We try to keep hooks in a sensible order in the docs, which means:
+        # - put all hooks from the same module together
+        # - order the modules according to predefined values (e.g. "pubtools"
+        #   should always come first)
+        # - then order the hooks by location in the source code (assume that
+        #   developer has arranged them in some logical order within a module)
+        #
+        func = self.hookspec.function
+        code = func.__code__
+        return (
+            MODULES.get(self.module, 9999),
+            code.co_filename,
+            code.co_firstlineno,
+        )
+
+    @property
+    def doc(self):
+        # Returns a rst-format doc string documenting this hookspec.
+        func = self.hookspec.function
+        sig = inspect.signature(func)
+
+        out = []
+        out.append(f".. py:function:: {func.__name__}{sig}")
+        out.append("")
+
+        function_lines = dedent(func.__doc__).splitlines()
+        function_lines = ["  " + line for line in function_lines]
+
+        out.extend(function_lines)
+        out.extend(["", ""])
+
+        return "\n".join(out)
+
+
+def all_hookspecs():
+    hooknames = [name for name in dir(pm.hook) if not name.startswith("_")]
+    hookspecs = []
+
+    for hookname in hooknames:
+        relay = getattr(pm.hook, hookname)
+        spec = getattr(relay, "spec", None)
+        if spec:
+            hookspecs.append(SpecWrapper(spec))
+
+    return sorted(hookspecs, key=lambda spec: spec.sort_index)
+
+
+def main():
+    hookspecs = all_hookspecs()
+
+    os.makedirs(BUILD_DIR, exist_ok=True)
+
+    with open(HOOKS_OUTPUT, "wt") as out:
+        for spec in hookspecs:
+            out.write(spec.doc)
+
+
+if __name__ == "__main__":
+    main()

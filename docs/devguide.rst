@@ -140,6 +140,9 @@ The following table summarizes the major differences between these contexts:
    * - logging
      - logging subsystem uses default (empty) configuration
      - loggers are configured prior to task execution
+   * - hooks
+     - :ref:`hooks` are available
+     - hooks are available, hosting service may provide some ``@hookimpls``
    * - pushsource
      - pushsource library uses default (generic) configuration
      - pushsource library is bound to specific environments

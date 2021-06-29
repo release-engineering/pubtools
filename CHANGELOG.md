@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- n/a
+- Introduced hooks/event system in `pubtools.pluggy`. See documentation for more info.
 
 ## 0.2.0 - 2021-06-01
 
