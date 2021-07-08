@@ -1,0 +1,10 @@
+# This constraints file is used to ensure old package versions
+# are covered by at least one test configuration.
+
+# This is the pluggy version we expect to use in py2.6 environments.
+pluggy==0.5.2
+
+# Need to set ancient versions for these packages to get versions which
+# will work with the above.
+pytest<3.7
+pytest-cov<2
