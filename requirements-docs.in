@@ -1,2 +1,15 @@
 sphinx
 alabaster
+
+# RPM bindings are needed below but this is not directly in the
+# dependency tree.
+rpm-py-installer
+
+# Here we depend on any project which defines (or may in the future)
+# any hooks in pubtools namespace. This enables the hooks to appear in the
+# reference at:
+# https://release-engineering.github.io/pubtools/hooks.html#hook-reference,
+pubtools-pulp
+pubtools-quay
+pubtools-pyxis
+pubtools-iib
