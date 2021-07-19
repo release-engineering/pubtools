@@ -60,7 +60,7 @@ some functions with ``@hookspec`` decorator.
         """Called after a kettle has been turned off."""
 
     # Add these hookspecs onto the plugin manager.
-    pm.add_hookspecs(sys.module['__name__'])
+    pm.add_hookspecs(sys.modules[__name__])
 
 Be aware that:
 
@@ -85,13 +85,13 @@ invoke them via ``pm.hook``.
        kettle.fill_water()
 
        # notify anyone interested that we're turning the kettle on
-       pm.hook.kettle_on(kettle)
+       pm.hook.kettle_on(kettle=kettle)
 
        kettle.start_boil()
        kettle.wait_boil()
 
        # notify again
-       pm.hook.kettle_off(kettle)
+       pm.hook.kettle_off(kettle=kettle)
 
        # Proceed as normal
        cup.fill_water(source=kettle)

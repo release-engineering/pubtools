@@ -94,7 +94,7 @@ some functions with <code class="docutils literal notranslate"><span class="pre"
     <span class="sd">&quot;&quot;&quot;Called after a kettle has been turned off.&quot;&quot;&quot;</span>
 
 <span class="c1"># Add these hookspecs onto the plugin manager.</span>
-<span class="n">pm</span><span class="o">.</span><span class="n">add_hookspecs</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">module</span><span class="p">[</span><span class="s1">&#39;__name__&#39;</span><span class="p">])</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">add_hookspecs</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Be aware that:</p>
@@ -115,13 +115,13 @@ invoke them via <code class="docutils literal notranslate"><span class="pre">pm.
    <span class="n">kettle</span><span class="o">.</span><span class="n">fill_water</span><span class="p">()</span>
 
    <span class="c1"># notify anyone interested that we&#39;re turning the kettle on</span>
-   <span class="n">pm</span><span class="o">.</span><span class="n">hook</span><span class="o">.</span><span class="n">kettle_on</span><span class="p">(</span><span class="n">kettle</span><span class="p">)</span>
+   <span class="n">pm</span><span class="o">.</span><span class="n">hook</span><span class="o">.</span><span class="n">kettle_on</span><span class="p">(</span><span class="n">kettle</span><span class="o">=</span><span class="n">kettle</span><span class="p">)</span>
 
    <span class="n">kettle</span><span class="o">.</span><span class="n">start_boil</span><span class="p">()</span>
    <span class="n">kettle</span><span class="o">.</span><span class="n">wait_boil</span><span class="p">()</span>
 
    <span class="c1"># notify again</span>
-   <span class="n">pm</span><span class="o">.</span><span class="n">hook</span><span class="o">.</span><span class="n">kettle_off</span><span class="p">(</span><span class="n">kettle</span><span class="p">)</span>
+   <span class="n">pm</span><span class="o">.</span><span class="n">hook</span><span class="o">.</span><span class="n">kettle_off</span><span class="p">(</span><span class="n">kettle</span><span class="o">=</span><span class="n">kettle</span><span class="p">)</span>
 
    <span class="c1"># Proceed as normal</span>
    <span class="n">cup</span><span class="o">.</span><span class="n">fill_water</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">kettle</span><span class="p">)</span>
