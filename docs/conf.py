@@ -133,4 +133,8 @@ autodoc_inherit_docstrings = False
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "pluggy": ("https://pluggy.readthedocs.io/en/latest/", None),
+    "pubtools-pulplib": (
+        "https://release-engineering.github.io/pubtools-pulplib/",
+        None,
+    ),
 }

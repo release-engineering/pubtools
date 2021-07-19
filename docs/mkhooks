@@ -6,26 +6,21 @@
 import os
 import textwrap
 import inspect
+import pkg_resources
 
 from pubtools.pluggy import pm
 
 BUILD_DIR = os.path.join(os.path.dirname(__file__), "_build")
 HOOKS_OUTPUT = os.path.join(BUILD_DIR, "hooks")
 
-# Every module which may add hookspecs ought to be listed here.
-# This has effects:
-#
-# - causes the module to be imported (and hence any import-time hookspecs
-#   will be added)
-#
-# - defines the order in which hooks are documented
+# Modules may be listed here to influence the order in which hooks show
+# up in the docs. For example, pubtools built-in hooks should always
+# come first. Anything not explicitly listed here will appear towards
+# the end of the docs.
 #
 MODULES = {
     "pubtools": 0,
-    # Not available yet (chicken-egg problem).
-    # Try uncommenting this after initial hook/event support is released in pubtools
-    # and a pubtools-pulplib version defining an event has been released.
-    # "pubtools.pulplib": 10,
+    "pubtools.pulplib": 10,
 }
 
 
@@ -81,7 +76,24 @@ class SpecWrapper:
         # Public name of the module which provides this hook, e.g.
         # 'pubtools', 'pubtools.quay', etc.
         raw_name = self.hookspec.namespace.__name__
+
+        # For a task library, such as pubtools-quay, a convention is
+        # to name the python modules like 'pubtools._quay' to indicate
+        # it's not a public API. Problem is that leaves this code with
+        # no obvious way how to differentiate "it's pubtools" or "it's
+        # a task library" and group them separately.
+        #
+        # To fix that, we are going to just assume that any 'pubtools._foo'
+        # we find (other than the pubtools._impl in *this* repo) can be
+        # treated as 'pubtools.foo' for documentation purposes.
+        #
+        if raw_name.startswith("pubtools._") and not raw_name.startswith(
+            "pubtools._impl"
+        ):
+            raw_name = raw_name.replace("_", "", 1)
+
         public_name = raw_name.split("._")[0]
+
         return public_name
 
     @property
@@ -123,6 +135,11 @@ class SpecWrapper:
 
 
 def all_hookspecs():
+    # Eagerly load all entry points, forcing everything installed to be imported.
+    # This ensures any import-time hookspecs are registered.
+    for ep in pkg_resources.iter_entry_points("console_scripts"):
+        ep.resolve()
+
     hooknames = [name for name in dir(pm.hook) if not name.startswith("_")]
     hookspecs = []
 
