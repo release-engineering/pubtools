@@ -16,7 +16,7 @@ jobs:
          python-version: 3.8
 
      - name: Install system dependencies
-       run: sudo apt-get install -y tox 
+       run: sudo apt-get install -y tox libkrb5-dev
 
      - name: pip-compile
        uses: technote-space/create-pr-action@v2
