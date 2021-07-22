@@ -12,8 +12,7 @@ jobs:
      - name: Setup Python
        uses: actions/setup-python@v2
        with:
-         # TODO: multi-version support
-         python-version: 3.8
+         python-version: "3.9"
 
      - name: Install system dependencies
        run: sudo apt-get install -y tox libkrb5-dev
