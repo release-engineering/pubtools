@@ -9,3 +9,14 @@ repos:
     rev: 5.6.4
     hooks:
     - id: isort
+
+-   repo: https://github.com/frnmst/md-toc
+    rev: 8.0.0
+    hooks:
+    - id: md-toc
+
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
