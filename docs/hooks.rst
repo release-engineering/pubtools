@@ -138,7 +138,7 @@ names and signatures should match exactly the names of the corresponding hookspe
         powerbank.disable()
 
     # Register this module as a plugin.
-    pm.register(sys.modules['__name__'])
+    pm.register(sys.modules[__name__])
 
 Be aware that:
 
@@ -203,7 +203,7 @@ some context is to register your plugins in a two-stage process:
 
     # Register this module as a plugin.
     # This will only register the top-level 'task_start' hookimpl.
-    pm.register(sys.modules['__name__'])
+    pm.register(sys.modules[__name__])
 
 
 :func:`task_start` and :func:`task_stop` are two standard hooks intended for
