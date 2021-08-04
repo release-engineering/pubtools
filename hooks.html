@@ -163,7 +163,7 @@ names and signatures should match exactly the names of the corresponding hookspe
     <span class="n">powerbank</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
 
 <span class="c1"># Register this module as a plugin.</span>
-<span class="n">pm</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s1">&#39;__name__&#39;</span><span class="p">])</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Be aware that:</p>
@@ -223,7 +223,7 @@ pubtools provides <a class="reference internal" href="#task_start" title="task_s
 
 <span class="c1"># Register this module as a plugin.</span>
 <span class="c1"># This will only register the top-level &#39;task_start&#39; hookimpl.</span>
-<span class="n">pm</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s1">&#39;__name__&#39;</span><span class="p">])</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">])</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="#task_start" title="task_start"><code class="xref py py-func docutils literal notranslate"><span class="pre">task_start()</span></code></a> and <a class="reference internal" href="#task_stop" title="task_stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">task_stop()</span></code></a> are two standard hooks intended for
