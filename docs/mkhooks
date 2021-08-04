@@ -6,9 +6,8 @@
 import os
 import textwrap
 import inspect
-import pkg_resources
 
-from pubtools.pluggy import pm
+from pubtools.pluggy import pm, task_context
 
 BUILD_DIR = os.path.join(os.path.dirname(__file__), "_build")
 HOOKS_OUTPUT = os.path.join(BUILD_DIR, "hooks")
@@ -135,11 +134,6 @@ class SpecWrapper:
 
 
 def all_hookspecs():
-    # Eagerly load all entry points, forcing everything installed to be imported.
-    # This ensures any import-time hookspecs are registered.
-    for ep in pkg_resources.iter_entry_points("console_scripts"):
-        ep.resolve()
-
     hooknames = [name for name in dir(pm.hook) if not name.startswith("_")]
     hookspecs = []
 
@@ -153,13 +147,15 @@ def all_hookspecs():
 
 
 def main():
-    hookspecs = all_hookspecs()
+    # We run in task context since it ensures all hooks are loaded.
+    with task_context():
+        hookspecs = all_hookspecs()
 
-    os.makedirs(BUILD_DIR, exist_ok=True)
+        os.makedirs(BUILD_DIR, exist_ok=True)
 
-    with open(HOOKS_OUTPUT, "wt") as out:
-        for spec in hookspecs:
-            out.write(spec.doc)
+        with open(HOOKS_OUTPUT, "wt") as out:
+            for spec in hookspecs:
+                out.write(spec.doc)
 
 
 if __name__ == "__main__":
