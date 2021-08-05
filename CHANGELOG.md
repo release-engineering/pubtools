@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- n/a
+- Introduced `pubtools.hooks` entry point group to support hook-only libraries.
 
 ## [1.0.0] - 2021-07-19
 

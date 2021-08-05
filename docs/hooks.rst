@@ -140,6 +140,25 @@ names and signatures should match exactly the names of the corresponding hookspe
     # Register this module as a plugin.
     pm.register(sys.modules[__name__])
 
+Your module must be imported for your hookimpls to take effect.
+
+If you're unsure whether your module will be imported, you may declare entry
+points in the ``pubtools.hooks`` group; pubtools will enforce that all modules
+in this group are imported when ``task_context`` is invoked.
+
+For example, in setup.py, one may declare:
+
+.. code-block:: python
+
+    entry_points={
+      "pubtools.hooks": [
+          # Left-hand side can be anything.
+          # Right-hand side is the name of your module containing a
+          # call to "pm.register".
+          "hooks = pubtools.foo._impl.hooks",
+      ]
+    },
+
 Be aware that:
 
 - Your hookimpl could be invoked by any thread. Blocking the current thread
