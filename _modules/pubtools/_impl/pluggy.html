@@ -34,13 +34,40 @@
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 
+<span class="kn">import</span> <span class="nn">pkg_resources</span>
 <span class="kn">import</span> <span class="nn">pluggy</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;pubtools&quot;</span><span class="p">)</span>
 
 <span class="n">pm</span> <span class="o">=</span> <span class="n">pluggy</span><span class="o">.</span><span class="n">PluginManager</span><span class="p">(</span><span class="s2">&quot;pubtools&quot;</span><span class="p">)</span>
 <span class="n">hookspec</span> <span class="o">=</span> <span class="n">pluggy</span><span class="o">.</span><span class="n">HookspecMarker</span><span class="p">(</span><span class="s2">&quot;pubtools&quot;</span><span class="p">)</span>
 <span class="n">hookimpl</span> <span class="o">=</span> <span class="n">pluggy</span><span class="o">.</span><span class="n">HookimplMarker</span><span class="p">(</span><span class="s2">&quot;pubtools&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">resolve_hooks</span><span class="p">():</span>
+    <span class="c1"># A private helper to ensure all code defining hookspecs/hookimpls has been imported</span>
+    <span class="c1"># before continuing.</span>
+
+    <span class="c1"># 1. Eagerly load any pubtools console_scripts entry points.</span>
+    <span class="c1">#</span>
+    <span class="c1"># This will pick up hookspecs from task libraries such as pubtools-quay.</span>
+    <span class="c1">#</span>
+    <span class="k">for</span> <span class="n">ep</span> <span class="ow">in</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">iter_entry_points</span><span class="p">(</span><span class="s2">&quot;console_scripts&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ep</span><span class="o">.</span><span class="n">module_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;pubtools&quot;</span><span class="p">):</span>
+            <span class="n">ep</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Resolved </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ep</span><span class="p">)</span>
+
+    <span class="c1"># 2. Eagerly load any pubtools.hooks entry points.</span>
+    <span class="c1">#</span>
+    <span class="c1"># This is a group we provide so that any hook-only modules, which might otherwise</span>
+    <span class="c1"># not be imported by anyone, can request themselves to be imported.</span>
+    <span class="c1">#</span>
+    <span class="k">for</span> <span class="n">ep</span> <span class="ow">in</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">iter_entry_points</span><span class="p">(</span><span class="s2">&quot;pubtools.hooks&quot;</span><span class="p">):</span>
+        <span class="n">ep</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Resolved </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ep</span><span class="p">)</span>
 
 
 <span class="nd">@hookspec</span>
@@ -78,9 +105,12 @@
 
 <span class="sd">    The context manager will ensure that:</span>
 
+<span class="sd">    * hookspecs/hookimpls are resolved across all installed libraries.</span>
 <span class="sd">    * :func:`task_start` is invoked when the block is entered.</span>
 <span class="sd">    * :func:`task_stop` is invoked when the block is exited.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">resolve_hooks</span><span class="p">()</span>
+
     <span class="n">pm</span><span class="o">.</span><span class="n">hook</span><span class="o">.</span><span class="n">task_start</span><span class="p">()</span>
 
     <span class="n">failed</span> <span class="o">=</span> <span class="kc">True</span>

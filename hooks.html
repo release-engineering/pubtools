@@ -166,6 +166,21 @@ names and signatures should match exactly the names of the corresponding hookspe
 <span class="n">pm</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">])</span>
 </pre></div>
 </div>
+<p>Your module must be imported for your hookimpls to take effect.</p>
+<p>If you’re unsure whether your module will be imported, you may declare entry
+points in the <code class="docutils literal notranslate"><span class="pre">pubtools.hooks</span></code> group; pubtools will enforce that all modules
+in this group are imported when <code class="docutils literal notranslate"><span class="pre">task_context</span></code> is invoked.</p>
+<p>For example, in setup.py, one may declare:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+  <span class="s2">&quot;pubtools.hooks&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1"># Left-hand side can be anything.</span>
+      <span class="c1"># Right-hand side is the name of your module containing a</span>
+      <span class="c1"># call to &quot;pm.register&quot;.</span>
+      <span class="s2">&quot;hooks = pubtools.foo._impl.hooks&quot;</span><span class="p">,</span>
+  <span class="p">]</span>
+<span class="p">},</span>
+</pre></div>
+</div>
 <p>Be aware that:</p>
 <ul class="simple">
 <li><p>Your hookimpl could be invoked by any thread. Blocking the current thread
@@ -269,6 +284,7 @@ shall be provided. It can be used in a <code class="docutils literal notranslate
 </div>
 <p>The context manager will ensure that:</p>
 <ul class="simple">
+<li><p>hookspecs/hookimpls are resolved across all installed libraries.</p></li>
 <li><p><a class="reference internal" href="#task_start" title="task_start"><code class="xref py py-func docutils literal notranslate"><span class="pre">task_start()</span></code></a> is invoked when the block is entered.</p></li>
 <li><p><a class="reference internal" href="#task_stop" title="task_stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">task_stop()</span></code></a> is invoked when the block is exited.</p></li>
 </ul>
