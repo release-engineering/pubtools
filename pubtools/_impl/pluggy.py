@@ -94,4 +94,23 @@ def task_context():
         pm.hook.task_stop(failed=failed)
 
 
+@hookspec(firstresult=True)
+def get_cert_key_paths(server_url):
+    """Get location of SSL certificates used to authenticate with a given service.
+
+    If there are multiple hook implementations and multiple values are returned, the first
+    non-empty answer is considered canonical. The first answer is returned by the hook
+    implementation which was registered last.
+
+    The certificates are expected to be in PEM format. It's permitted for paths to cert and key
+    to be the same. Callers of this hook should be prepared to receive no result, and should
+    implement a reasonable fallback strategy in that case.
+
+    :param server_url: Service URL.
+    :type server_url: str
+    :return: Paths to SSL certificate and key.
+    :rtype: (str, str)
+    """
+
+
 pm.add_hookspecs(sys.modules[__name__])
