@@ -318,6 +318,29 @@ raising an exception).</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="get_cert_key_paths">
+<span class="sig-name descname"><span class="pre">get_cert_key_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_cert_key_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get location of SSL certificates used to authenticate with a given service.</p>
+<p>If there are multiple hook implementations and multiple values are returned, the first
+non-empty answer is considered canonical. The first answer is returned by the hook
+implementation which was registered last.</p>
+<p>The certificates are expected to be in PEM format. It’s permitted for paths to cert and key
+to be the same. Callers of this hook should be prepared to receive no result, and should
+implement a reasonable fallback strategy in that case.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>server_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Service URL.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Paths to SSL certificate and key.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pulp_repository_published">
 <span class="sig-name descname"><span class="pre">pulp_repository_published</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repository</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pulp_repository_published" title="Permalink to this definition">¶</a></dt>
 <dd><p>Invoked after a Pulp repository has been successfully published.</p>

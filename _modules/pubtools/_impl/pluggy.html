@@ -127,6 +127,25 @@
         <span class="n">pm</span><span class="o">.</span><span class="n">hook</span><span class="o">.</span><span class="n">task_stop</span><span class="p">(</span><span class="n">failed</span><span class="o">=</span><span class="n">failed</span><span class="p">)</span></div>
 
 
+<span class="nd">@hookspec</span><span class="p">(</span><span class="n">firstresult</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_cert_key_paths</span><span class="p">(</span><span class="n">server_url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get location of SSL certificates used to authenticate with a given service.</span>
+
+<span class="sd">    If there are multiple hook implementations and multiple values are returned, the first</span>
+<span class="sd">    non-empty answer is considered canonical. The first answer is returned by the hook</span>
+<span class="sd">    implementation which was registered last.</span>
+
+<span class="sd">    The certificates are expected to be in PEM format. It&#39;s permitted for paths to cert and key</span>
+<span class="sd">    to be the same. Callers of this hook should be prepared to receive no result, and should</span>
+<span class="sd">    implement a reasonable fallback strategy in that case.</span>
+
+<span class="sd">    :param server_url: Service URL.</span>
+<span class="sd">    :type server_url: str</span>
+<span class="sd">    :return: Paths to SSL certificate and key.</span>
+<span class="sd">    :rtype: (str, str)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
 <span class="n">pm</span><span class="o">.</span><span class="n">add_hookspecs</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">])</span>
 </pre></div>
 
