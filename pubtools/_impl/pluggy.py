@@ -24,7 +24,8 @@ def resolve_hooks():
     #
     for ep in pkg_resources.iter_entry_points("console_scripts"):
         if ep.module_name.startswith("pubtools"):
-            ep.resolve()
+            # Method resolve() was introduced in setuptools 11.3 to replace load()
+            ep.resolve() if hasattr(ep, "resolve") else ep.load(require=False)
             LOG.debug("Resolved %s", ep)
 
     # 2. Eagerly load any pubtools.hooks entry points.
@@ -33,7 +34,7 @@ def resolve_hooks():
     # not be imported by anyone, can request themselves to be imported.
     #
     for ep in pkg_resources.iter_entry_points("pubtools.hooks"):
-        ep.resolve()
+        ep.resolve() if hasattr(ep, "resolve") else ep.load(require=False)
         LOG.debug("Resolved %s", ep)
 
 
