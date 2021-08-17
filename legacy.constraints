@@ -8,3 +8,5 @@ pluggy==0.5.2
 # will work with the above.
 pytest<3.7
 pytest-cov<2
+
+setuptools==11.2
