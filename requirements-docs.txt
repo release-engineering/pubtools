@@ -111,6 +111,10 @@ decorator==5.0.9 \
     --hash=sha256:6e5c199c16f7a9f0e3a61a4a54b3d27e7dad0dbdde92b944426cb20914376323 \
     --hash=sha256:72ecfba4320a893c53f9706bebb2d55c270c1e51a28789361aa93e4a21319ed5
     # via gssapi
+docker==5.0.0 \
+    --hash=sha256:3e8bc47534e0ca9331d72c32f2881bb13b93ded0bcdeab3c833fb7cf61c0a9a5 \
+    --hash=sha256:fc961d622160e8021c10d1bcabc388c57d55fb1f917175afbe24af442e6879bd
+    # via pubtools-quay
 docutils==0.17.1 \
     --hash=sha256:686577d2e4c32380bb50cbb22f575ed742d58168cee37e99117a854bcd88f125 \
     --hash=sha256:cf316c8370a737a022b72b56874f6602acf974a37a9fba42ec2876387549fc61
@@ -242,6 +246,7 @@ more-executors==2.8.1 \
     #   fastpurge
     #   pubtools-pulp
     #   pubtools-pulplib
+    #   pubtools-pyxis
     #   pushcollector
     #   pushsource
 ndg-httpsclient==0.5.1 \
@@ -261,10 +266,12 @@ pluggy==0.13.1 \
     --hash=sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0 \
     --hash=sha256:966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d
     # via pubtools
-pubtools==1.1.0 \
-    --hash=sha256:8bf9978847a4988c2c6dd77c3e3784b12e47d09e8755f54dabb52db5a735fda0 \
-    --hash=sha256:de960b73ac6d4c5e2c8b49a4055898368ee9f110ec121226e9eb526618f24d13
-    # via pubtools-pulplib
+pubtools==1.2.1 \
+    --hash=sha256:1e882d0bf622617563aa779049cf6513410b599c971240f614415142979c36a8 \
+    --hash=sha256:f630cb91b437c69909bbf8a4c797d2afc9b56ad280b07d912f65e702622f6d60
+    # via
+    #   pubtools-pulplib
+    #   pubtools-quay
 pubtools-iib==0.20.0 \
     --hash=sha256:cb9577d7e65ab1887d7cfae06af4a879b786c6d9572c200a1649e5b54826add4
     # via
@@ -280,15 +287,15 @@ pubtools-pulplib==2.12.1 \
     # via
     #   pubtools-iib
     #   pubtools-pulp
-pubtools-pyxis==1.2.0 \
-    --hash=sha256:97bab7de0a090848f096e80ab210179dd05e31ab7a8b39203eec6974d969d4fe \
-    --hash=sha256:e1a0c6d2aaae98dee9106b182a94e3af5cf8222d9100745da87be2e221514491
+pubtools-pyxis==1.3.1 \
+    --hash=sha256:3cd381806cc254edec2446b93b19c9da1ebf1f170550745d5e16503be952bfd5 \
+    --hash=sha256:b3a079b55d5ce220e61020764fb3950dbc2147fdc40244d4eb27cbfbf3e853fc
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-quay==0.6.0 \
-    --hash=sha256:207fb76b0df9f74162c288b4811ccb25b3e269d7ab15ec91b9a444f9601f6430 \
-    --hash=sha256:b63a8f0037c59c2f918736a899aa41e2cbefbf0271385b4b39d77514a14b4c89
+pubtools-quay==0.7.1 \
+    --hash=sha256:29bc7fdb8ad538935d2464a822436c3758124a59155ff0d5a9b2be6c5cae8c1e \
+    --hash=sha256:eb0081847e917feb0efe4f4d1a7a0541dffae21ffe27c81379f27c039021b749
     # via -r requirements-docs.in
 pushcollector==1.2.0 \
     --hash=sha256:cd53036c7880957577bc9a2a3b1431e81a5aea10f4b4cbcbf98c3ee40c6f2ea3
@@ -377,8 +384,8 @@ python-dateutil==2.8.2 \
     # via
     #   koji
     #   pushsource
-python-qpid-proton==0.34.0 \
-    --hash=sha256:64a983cc51c78dd6c7c206eb610f52da8edc5e1c5cb6c4e9cdc16ee62a9e1b5e
+python-qpid-proton==0.33.0 \
+    --hash=sha256:9535acf706eda58e615705371a2745f1939278be2924d6d61e55a33a44d94fa2
     # via pubtools-quay
 pytz==2021.1 \
     --hash=sha256:83a4a90894bf38e243cf052c8b58f381bfe9a7a483f6a9cab140bc7f702ac4da \
@@ -422,6 +429,7 @@ requests==2.26.0 \
     --hash=sha256:6c1246513ecd5ecd4528a0906f910e8f0f9c6b8ec72030dc9fd154dc1a6efd24 \
     --hash=sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7
     # via
+    #   docker
     #   edgegrid-python
     #   fastpurge
     #   iiblib
@@ -500,6 +508,10 @@ urllib3==1.26.6 \
     # via
     #   edgegrid-python
     #   requests
+websocket-client==1.2.1 \
+    --hash=sha256:0133d2f784858e59959ce82ddac316634229da55b498aac311f1620567a710ec \
+    --hash=sha256:8dfb715d8a992f5712fff8c843adae94e22b22a99b2c5e6b0ec4a1a981cc4e0d
+    # via docker
 
 # WARNING: The following packages were not pinned, but pip requires them to be
 # pinned when the requirements file includes hashes. Consider using the --allow-unsafe flag.
