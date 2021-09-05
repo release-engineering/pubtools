@@ -114,9 +114,9 @@ decorator==5.0.9 \
     --hash=sha256:6e5c199c16f7a9f0e3a61a4a54b3d27e7dad0dbdde92b944426cb20914376323 \
     --hash=sha256:72ecfba4320a893c53f9706bebb2d55c270c1e51a28789361aa93e4a21319ed5
     # via gssapi
-docker==5.0.0 \
-    --hash=sha256:3e8bc47534e0ca9331d72c32f2881bb13b93ded0bcdeab3c833fb7cf61c0a9a5 \
-    --hash=sha256:fc961d622160e8021c10d1bcabc388c57d55fb1f917175afbe24af442e6879bd
+docker==5.0.2 \
+    --hash=sha256:21ec4998e90dff7a7aaaa098ca8d839c7de412b89e6f6c30908372d58fecf663 \
+    --hash=sha256:9b17f0723d83c1f3418d2aa17bf90b24dbe97deda06208dd4262fa30a6ee87eb
     # via pubtools-quay
 docutils==0.17.1 \
     --hash=sha256:686577d2e4c32380bb50cbb22f575ed742d58168cee37e99117a854bcd88f125 \
@@ -285,8 +285,9 @@ pubtools-pulp==1.1.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
-pubtools-pulplib==2.13.0 \
-    --hash=sha256:b546d424baf6c428120fa6bff36515659014281a6045beef246bb2d7723e18d0
+pubtools-pulplib==2.14.0 \
+    --hash=sha256:bd390a61eff16272c42bc7038e722b723fcf0cbce15f5a20bf59a28ccce99db7 \
+    --hash=sha256:f84f5d7a3e05d43d77e073682e457bc2dc5d87fb3baf545cce629ffcc2c46b9d
     # via
     #   pubtools-iib
     #   pubtools-pulp
