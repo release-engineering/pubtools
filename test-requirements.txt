@@ -181,9 +181,9 @@ cryptography==3.4.8 \
     #   paramiko
     #   pyopenssl
     #   requests-kerberos
-decorator==5.0.9 \
-    --hash=sha256:6e5c199c16f7a9f0e3a61a4a54b3d27e7dad0dbdde92b944426cb20914376323 \
-    --hash=sha256:72ecfba4320a893c53f9706bebb2d55c270c1e51a28789361aa93e4a21319ed5
+decorator==5.1.0 \
+    --hash=sha256:7b12e7c3c6ab203a29e157335e9122cb03de9ab7264b137594103fd4a683b374 \
+    --hash=sha256:e59913af105b9860aa2c8d3272d9de5a56a4e608db9a2f167a8480b323d529a7
     # via gssapi
 distlib==0.3.2 \
     --hash=sha256:106fef6dc37dd8c0e2c0a60d3fca3e77460a48907f335fa28420463a6f799736 \
@@ -227,9 +227,9 @@ gssapi==1.6.14 \
     --hash=sha256:d7ddd253c49b27753809401e4136dabff75389d326707899ae616da4abcd3ca6 \
     --hash=sha256:dac4dae90416f89a3c4924ce365f0fdb7adfeaf68a997341d9c74a779837ab39
     # via requests-gssapi
-identify==2.2.13 \
-    --hash=sha256:7199679b5be13a6b40e6e19ea473e789b11b4e3b60986499b1f589ffb03c217c \
-    --hash=sha256:7bc6e829392bd017236531963d2d937d66fc27cadc643ac0aba2ce9f26157c79
+identify==2.2.14 \
+    --hash=sha256:113a76a6ba614d2a3dd408b3504446bcfac0370da5995aa6a17fd7c6dffde02d \
+    --hash=sha256:32f465f3c48083f345ad29a9df8419a4ce0674bf4a8c3245191d65c83634bdbf
     # via pre-commit
 idna==3.2 \
     --hash=sha256:14475042e284991034cb48e06f6851428fb14c4dc953acd9be9a5e95c7b6dd7a \
@@ -393,8 +393,8 @@ pubtools-iib==0.20.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-pulp==1.1.0 \
-    --hash=sha256:7fe812134eb8eee7dd0b1930315f0ea81084252dbb07cb58c00590b252221800
+pubtools-pulp==1.2.0 \
+    --hash=sha256:7704523e090cb13ed45e7c10684acb24266ade2f371d21fcc7f363505e16c31f
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
@@ -410,9 +410,9 @@ pubtools-pyxis==1.3.1 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-quay==0.7.2 \
-    --hash=sha256:022db0e686ee52a20a3792894cf65a0a7034aea854665c3edbad2158e3039378 \
-    --hash=sha256:63aed36d3ff3d007bbdb1f5bab21d62230403d12f9ae5a4583a235f2318ddcf8
+pubtools-quay==0.8.0 \
+    --hash=sha256:09293b77b2fe8cca2e4b54bfb60d56da03b3c3cae9f72ec045c1ccd81af98752 \
+    --hash=sha256:bc4ed6907cd221f7e781f39dfdecd509156cd13beac48faf258bba5ffa2051c1
     # via -r requirements-docs.in
 pushcollector==1.2.0 \
     --hash=sha256:cd53036c7880957577bc9a2a3b1431e81a5aea10f4b4cbcbf98c3ee40c6f2ea3
@@ -650,9 +650,9 @@ snowballstemmer==2.1.0 \
     --hash=sha256:b51b447bea85f9968c13b650126a888aabd4cb4463fca868ec596826325dedc2 \
     --hash=sha256:e997baa4f2e9139951b6f4c631bad912dfd3c792467e2f03d7239464af90e914
     # via sphinx
-sphinx==4.1.2 \
-    --hash=sha256:3092d929cd807926d846018f2ace47ba2f3b671b309c7a89cd3306e80c826b13 \
-    --hash=sha256:46d52c6cee13fec44744b8c01ed692c18a640f6910a725cbb938bc36e8d64544
+sphinx==4.2.0 \
+    --hash=sha256:94078db9184491e15bce0a56d9186e0aec95f16ac20b12d00e06d4e36f1058a6 \
+    --hash=sha256:98a535c62a4fcfcc362528592f69b26f7caec587d32cd55688db580be0287ae0
     # via -r requirements-docs.in
 sphinxcontrib-applehelp==1.0.2 \
     --hash=sha256:806111e5e962be97c29ec4c1e7fe277bfd19e9652fb1a4392105b43e01af885a \
