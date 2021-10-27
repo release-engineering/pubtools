@@ -311,7 +311,7 @@ desired context.</p>
 this hook should be used to unregister them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>failed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – True if the task is failing (i.e. exiting with non-zero exit code, or
+<dd class="field-odd"><p><strong>failed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – True if the task is failing (i.e. exiting with non-zero exit code, or
 raising an exception).</p>
 </dd>
 </dl>
@@ -329,13 +329,13 @@ to be the same. Callers of this hook should be prepared to receive no result, an
 implement a reasonable fallback strategy in that case.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>server_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Service URL.</p>
+<dd class="field-odd"><p><strong>server_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Service URL.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Paths to SSL certificate and key.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -349,6 +349,57 @@ implement a reasonable fallback strategy in that case.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>repository</strong> (<a class="reference external" href="https://release-engineering.github.io/pubtools-pulplib/api/model.html#pubtools.pulplib.Repository" title="(in pubtools-pulplib)"><em>pubtools.pulplib.Repository</em></a>) – the repository which has been published.</p></li>
 <li><p><strong>options</strong> (<a class="reference external" href="https://release-engineering.github.io/pubtools-pulplib/api/model.html#pubtools.pulplib.PublishOptions" title="(in pubtools-pulplib)"><em>pubtools.pulplib.PublishOptions</em></a>) – the options used for this publish.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quay_repositories_cleared">
+<span class="sig-name descname"><span class="pre">quay_repositories_cleared</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repository_ids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quay_repositories_cleared" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked after repositories have been cleared on Quay.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>repository_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>]</em>) – ID of each cleared repository.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quay_repositories_removed">
+<span class="sig-name descname"><span class="pre">quay_repositories_removed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repository_ids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quay_repositories_removed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked after repositories have been removed from Quay.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>repository_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>]</em>) – ID of each removed repository.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quay_images_tagged">
+<span class="sig-name descname"><span class="pre">quay_images_tagged</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_refs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quay_images_tagged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked after tagging image(s) on Quay.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Source image reference.</p></li>
+<li><p><strong>dest_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>]</em>) – Destination image reference(s).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quay_images_untagged">
+<span class="sig-name descname"><span class="pre">quay_images_untagged</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">untag_refs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lost_refs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quay_images_untagged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked after untagging image(s) on Quay.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>untag_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>]</em>) – Image references for which tags were removed.</p></li>
+<li><p><strong>lost_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>]</em>) – Image references (by digest) which are no longer reachable from any
+tag due to the untag operation.</p></li>
 </ul>
 </dd>
 </dl>
@@ -434,7 +485,7 @@ implement a reasonable fallback strategy in that case.</p>
       &copy;2021, Red Hat.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
