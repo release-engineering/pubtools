@@ -145,7 +145,9 @@ frozendict==2.0.7 \
 frozenlist2==1.0.0 \
     --hash=sha256:33f6c6bb2c7d38524ec3c2d6f2d8a3ee2625a9e13096d8bc64db012b516a95e0 \
     --hash=sha256:caffe66813e42de320b10d08b8c0604c7eb3f142a8482ad3130243e084f37a2f
-    # via pushsource
+    # via
+    #   pubtools-pulplib
+    #   pushsource
 gssapi==1.7.2 \
     --hash=sha256:0b02bbdd850c079b1d453546579fc283f0646f56ff4b39cd3b0e27263a6af97e \
     --hash=sha256:145bee55bff2461d2704b958bb6f45f6abf11442efe0f2e7a612f0ab049613f2 \
@@ -291,9 +293,9 @@ ndg-httpsclient==0.5.1 \
     --hash=sha256:d72faed0376ab039736c2ba12e30695e2788c4aa569c9c3e3d72131de2592210 \
     --hash=sha256:dd174c11d971b6244a891f7be2b32ca9853d3797a72edb34fa5d7b07d8fff7d4
     # via edgegrid-python
-packaging==21.0 \
-    --hash=sha256:7dc96269f53a4ccec5c0670940a4281106dd0bb343f47b7471f779df49c2fbe7 \
-    --hash=sha256:c86254f9220d55e31cc94d69bade760f0847da8000def4dfe1c6b872fd14ff14
+packaging==21.2 \
+    --hash=sha256:096d689d78ca690e4cd8a89568ba06d07ca097e3306a4381635073ca91479966 \
+    --hash=sha256:14317396d1e8cdb122989b916fa2c7e9ca8e2be9e8060a6eff75b6b7b4d8a7e0
     # via sphinx
 paramiko==2.8.0 \
     --hash=sha256:def3ec612399bab4e9f5eb66b0ae5983980db9dd9120d9e9c6ea3ff673865d1c \
@@ -319,9 +321,9 @@ pubtools-pulp==1.2.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
-pubtools-pulplib==2.16.0 \
-    --hash=sha256:5abd50f2c35b5abcd73fdea1be396b7d7571a8c09c04dc909f0fbf04dbc79dc1 \
-    --hash=sha256:68876514043a17f9fd899e15f7cc8ab318f32f89acd80c527b3359036c59872b
+pubtools-pulplib==2.17.0 \
+    --hash=sha256:7ae8b16596357d92aaf6f0fd0baa649c3ba5a8c29675cc790bd12a0d32aa7ea8 \
+    --hash=sha256:9ebb60bc32136163159b7d2bd319004f476a0780ef280f85a0f9b57f8caa2f26
     # via
     #   pubtools-iib
     #   pubtools-pulp
@@ -388,9 +390,9 @@ pyopenssl==21.0.0 \
     # via
     #   edgegrid-python
     #   ndg-httpsclient
-pyparsing==3.0.1 \
-    --hash=sha256:84196357aa3566d64ad123d7a3c67b0e597a115c4934b097580e5ce220b91531 \
-    --hash=sha256:fd93fc45c47893c300bd98f5dd1b41c0e783eaeb727e7cea210dcc09d64ce7c3
+pyparsing==2.4.7 \
+    --hash=sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1 \
+    --hash=sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b
     # via packaging
 pyrsistent==0.18.0 \
     --hash=sha256:097b96f129dd36a8c9e33594e7ebb151b1515eb52cceb08474c10a5479e799f2 \
