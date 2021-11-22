@@ -36,7 +36,7 @@ Target platforms
 Projects should aim to be compatible with the following environments:
 
 - Python 2.6 (yes, really)
-- Python 3.8 and later
+- Python 3.9 and later
 - Red Hat flavored operating systems (RHEL, CentOS, Fedora)
 
 The requirement to support Python 2 is likely to be dropped during 2022.
