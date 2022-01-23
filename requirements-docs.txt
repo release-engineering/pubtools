@@ -203,9 +203,9 @@ imagesize==1.3.0 \
     --hash=sha256:1db2f82529e53c3e929e8926a1fa9235aa82d0bd0c580359c67ec31b2fddaa8c \
     --hash=sha256:cd1750d452385ca327479d45b64d9c7729ecf0b3969a58148298c77092261f9d
     # via sphinx
-importlib-metadata==4.10.0 \
-    --hash=sha256:92a8b58ce734b2a4494878e0ecf7d79ccd7a128b5fc6014c401e0b61f006f0f6 \
-    --hash=sha256:b7cf7d3fef75f1e4c80a96ca660efbd51473d7e8f39b5ab9210febc7809012a4
+importlib-metadata==4.10.1 \
+    --hash=sha256:899e2a40a8c4a1aec681feef45733de8a6c58f3f6a0dbed2eb6574b4387a77b6 \
+    --hash=sha256:951f0d8a5b7260e9db5e41d429285b5f451e928479f19d80818878527d36e95e
     # via sphinx
 jinja2==3.0.3 \
     --hash=sha256:077ce6014f7b40d03b47d1f1ca4b0fc8328a692bd284016f806ed0eaca390ad8 \
@@ -351,6 +351,7 @@ pubtools==1.2.1 \
     --hash=sha256:1e882d0bf622617563aa779049cf6513410b599c971240f614415142979c36a8 \
     --hash=sha256:f630cb91b437c69909bbf8a4c797d2afc9b56ad280b07d912f65e702622f6d60
     # via
+    #   pubtools-pulp
     #   pubtools-pulplib
     #   pubtools-quay
 pubtools-iib==0.20.0 \
@@ -358,9 +359,9 @@ pubtools-iib==0.20.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-pulp==1.4.0 \
-    --hash=sha256:0dabf9b1ee8458c5da3a1fce090aa8828f0ed4ab759d677f800e8efe5b82e6fb \
-    --hash=sha256:b4134d41d06c190cff2a83f1b6b6c00cc5b71173efba0f529a4b6ff3dce741f8
+pubtools-pulp==1.5.0 \
+    --hash=sha256:838126a7b6ee7316b57552c293a41231e1021490af73f43b69ccea07fff1ff33 \
+    --hash=sha256:e37f15b42716c2722681d1c6930994469d87a904cb1e627b3f651987e70ecc1c
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
@@ -386,9 +387,9 @@ pushcollector==1.2.0 \
     #   pubtools-pulp
     #   pubtools-quay
     #   pushsource
-pushsource==2.13.3 \
-    --hash=sha256:24a34b782f26d03961189a98f31235dabb0a40167151aa1b1c2f0afdc97a87c3 \
-    --hash=sha256:7f57229e4a850b195d8e502357fa580bfa79965b5b60bd18f6709e36af2c5cab
+pushsource==2.13.4 \
+    --hash=sha256:a90245f8b377ea03e535ea92d5b3811fe54dec6f98792302073b3d5910b20384 \
+    --hash=sha256:ada6a276466da812652e4568602df3789d56981b6f54bec230fa240bc658fa41
     # via pubtools-pulp
 pyasn1==0.4.8 \
     --hash=sha256:39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d \
@@ -422,9 +423,9 @@ pyopenssl==21.0.0 \
     # via
     #   edgegrid-python
     #   ndg-httpsclient
-pyparsing==3.0.6 \
-    --hash=sha256:04ff808a5b90911829c55c4e26f75fa5ca8a2f5f36aa3a51f68e27033341d3e4 \
-    --hash=sha256:d9bdec0013ef1eb5a84ab39a3b3868911598afa494f5faa038647101504e2b81
+pyparsing==3.0.7 \
+    --hash=sha256:18ee9022775d270c55187733956460083db60b37d0d0fb357445f3094eed3eea \
+    --hash=sha256:a6c06a88f252e6c322f65faf8f418b16213b51bdfaece0524c1c1bc30c63c484
     # via packaging
 pyrsistent==0.18.1 \
     --hash=sha256:0e3e1fcc45199df76053026a51cc59ab2ea3fc7c094c6627e93b7b44cdae2c8c \
