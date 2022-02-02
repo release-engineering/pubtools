@@ -341,17 +341,52 @@ implement a reasonable fallback strategy in that case.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pulp_repository_pre_publish">
+<span class="sig-name descname"><span class="pre">pulp_repository_pre_publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repository</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pulp_repository_pre_publish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked as the first step in publishing a Pulp repository.</p>
+<p>If a hookimpl returns a non-None value, that value will be used to replace
+the options for this publish. This can be used to adjust publish options
+from within a hook.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>repository (<a class="reference external" href="https://release-engineering.github.io/pubtools-pulplib/api/pulpcore.html#pubtools.pulplib.Repository" title="(in pubtools-pulplib)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Repository</span></code></a>):</dt><dd><p>The repository to be published.</p>
+</dd>
+<dt>options (<a class="reference external" href="https://release-engineering.github.io/pubtools-pulplib/api/pulpcore.html#pubtools.pulplib.PublishOptions" title="(in pubtools-pulplib)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PublishOptions</span></code></a>):</dt><dd><p>The options to use in publishing.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>options (<a class="reference external" href="https://release-engineering.github.io/pubtools-pulplib/api/pulpcore.html#pubtools.pulplib.PublishOptions" title="(in pubtools-pulplib)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PublishOptions</span></code></a>):</dt><dd><p>The potentially adjusted options used for this publish.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pulp_repository_published">
 <span class="sig-name descname"><span class="pre">pulp_repository_published</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repository</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pulp_repository_published" title="Permalink to this definition">¶</a></dt>
 <dd><p>Invoked after a Pulp repository has been successfully published.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>repository</strong> (<a class="reference external" href="https://release-engineering.github.io/pubtools-pulplib/api/model.html#pubtools.pulplib.Repository" title="(in pubtools-pulplib)"><em>pubtools.pulplib.Repository</em></a>) – the repository which has been published.</p></li>
-<li><p><strong>options</strong> (<a class="reference external" href="https://release-engineering.github.io/pubtools-pulplib/api/model.html#pubtools.pulplib.PublishOptions" title="(in pubtools-pulplib)"><em>pubtools.pulplib.PublishOptions</em></a>) – the options used for this publish.</p></li>
-</ul>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>repository (<a class="reference external" href="https://release-engineering.github.io/pubtools-pulplib/api/pulpcore.html#pubtools.pulplib.Repository" title="(in pubtools-pulplib)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Repository</span></code></a>):</dt><dd><p>The repository which has been published.</p>
+</dd>
+<dt>options (<a class="reference external" href="https://release-engineering.github.io/pubtools-pulplib/api/pulpcore.html#pubtools.pulplib.PublishOptions" title="(in pubtools-pulplib)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PublishOptions</span></code></a>):</dt><dd><p>The options used for this publish.</p>
 </dd>
 </dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="task_pulp_flush">
+<span class="sig-name descname"><span class="pre">task_pulp_flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#task_pulp_flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked during task execution after successful completion of all Pulp
+publishes.</p>
+<p>This hook is invoked a maximum of once per task, to indicate that all Pulp
+content associated with the task is considered fully up-to-date. The
+intended usage is to flush Pulp-derived caches or to notify systems that
+Pulp content may have recently changed.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -485,7 +520,7 @@ tag due to the untag operation.</p></li>
       &copy;2021, Red Hat.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
