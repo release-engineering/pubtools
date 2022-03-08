@@ -319,7 +319,9 @@ kerberos==1.3.1 \
     --hash=sha256:2e03c6a9d201d4aab5f899bfb8150de15335955bfce8ca43bfe9a41d7aae54dc \
     --hash=sha256:98a695c072efef535cb2b5f98e474d00671588859a94ec96c2c1508a113ff3aa \
     --hash=sha256:cdd046142a4e0060f96a00eb13d82a5d9ebc0f2d7934393ed559bac773460a2c
-    # via iiblib
+    # via
+    #   iiblib
+    #   pubtools-quay
 kobo==0.20.2 \
     --hash=sha256:4ba3c507beb843966509aa2229d3b5d7e17a7511750f56e918a609ae774b4532
     # via pushsource
@@ -453,15 +455,15 @@ pubtools-iib==0.20.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-pulp==1.8.0 \
-    --hash=sha256:27b5c01ea64b66e36ac65a53862aee4b3d5f31087db7ef2809960a28aff9b869 \
-    --hash=sha256:e0865b442f86fc281bb00b94f73b12e974598dac7503bef87678bd8efe85cc7c
+pubtools-pulp==1.8.2 \
+    --hash=sha256:8f7839b799ed57edb69ed8946bc8d2cbe71a7198ed82eb133f2048758f2e3126 \
+    --hash=sha256:f2cad3f60d78c65387be78f7fc67e994c9fe850cd892c17f1440c50501578f15
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
-pubtools-pulplib==2.25.0 \
-    --hash=sha256:d996b523188bf1e3a90e7cf30d5dee9c89af3d87bd75d9ae396dcb97e2e50724 \
-    --hash=sha256:fad7eaf456ecf5de1e458786b548392706d938d183571333f8cb2107d98983c8
+pubtools-pulplib==2.25.1 \
+    --hash=sha256:2ea79fa22188d17490dfebd39b2524de3f8e5564b472081218db48ecce113122 \
+    --hash=sha256:7f7886895ca76001bc77a142d00f7dfa391579e5b6632ddea5d10eee59de9ba9
     # via
     #   pubtools-iib
     #   pubtools-pulp
@@ -471,9 +473,9 @@ pubtools-pyxis==1.3.2 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-quay==0.9.1 \
-    --hash=sha256:a2851dee482dc04793c198428ddd31a891e82950de110e5fc974a471351febd7 \
-    --hash=sha256:af20c1519569d4e2f4656beafd88a43edb16a55fa68de6ff836f4fd4bab6ef21
+pubtools-quay==0.9.2 \
+    --hash=sha256:2be78a2073564ec5c8290a4966d0c6f613c790389351f751b1121525fb57815f \
+    --hash=sha256:f4ae1808a5f619da88d7bf42ec7a987f854ee79100a628a0a76908cf0dd825b5
     # via -r requirements-docs.in
 pushcollector==1.2.0 \
     --hash=sha256:cd53036c7880957577bc9a2a3b1431e81a5aea10f4b4cbcbf98c3ee40c6f2ea3
@@ -503,9 +505,6 @@ pygments==2.11.2 \
     --hash=sha256:44238f1b60a76d78fc8ca0528ee429702aae011c265fe6a8dd8b63049ae41c65 \
     --hash=sha256:4e426f72023d88d03b2fa258de560726ce890ff3b630f88c21cbb8b2503b8c6a
     # via sphinx
-pykerberos==1.2.1 \
-    --hash=sha256:4f2dca8df5f84a3be039c026893850d731a8bb38395292e1610ffb0a08ba876c
-    # via pubtools-quay
 pynacl==1.5.0 \
     --hash=sha256:06b8f6fa7f5de8d5d2f7573fe8c863c051225a27b61e6860fd047b1775807858 \
     --hash=sha256:0c84947a22519e013607c9be43706dd42513f9e6ae5d39d3613ca1e142fba44d \
