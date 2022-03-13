@@ -207,9 +207,9 @@ imagesize==1.3.0 \
     --hash=sha256:1db2f82529e53c3e929e8926a1fa9235aa82d0bd0c580359c67ec31b2fddaa8c \
     --hash=sha256:cd1750d452385ca327479d45b64d9c7729ecf0b3969a58148298c77092261f9d
     # via sphinx
-importlib-metadata==4.11.2 \
-    --hash=sha256:b36ffa925fe3139b2f6ff11d6925ffd4fa7bc47870165e3ac260ac7b4f91e6ac \
-    --hash=sha256:d16e8c1deb60de41b8e8ed21c1a7b947b0bc62fab7e1d470bcdf331cea2e6735
+importlib-metadata==4.11.3 \
+    --hash=sha256:1208431ca90a8cca1a6b8af391bb53c1a2db74e5d1cef6ddced95d4b2062edc6 \
+    --hash=sha256:ea4c597ebf37142f827b8f39299579e31685c31d3a438b59f469406afd0f2539
     # via sphinx
 jinja2==3.0.3 \
     --hash=sha256:077ce6014f7b40d03b47d1f1ca4b0fc8328a692bd284016f806ed0eaca390ad8 \
@@ -229,8 +229,8 @@ kerberos==1.3.1 \
     # via
     #   iiblib
     #   pubtools-quay
-kobo==0.20.2 \
-    --hash=sha256:4ba3c507beb843966509aa2229d3b5d7e17a7511750f56e918a609ae774b4532
+kobo==0.20.3 \
+    --hash=sha256:e10486b7092a0ef3513df66db60d5344ee3ff709c3096010ba35ecf1d401dbeb
     # via pushsource
 koji==1.28.0 \
     --hash=sha256:33adbd99cad9354f20e853414ddff482dbc1a5706439db81e123d64570f0abc3 \
@@ -316,9 +316,9 @@ packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
     # via sphinx
-paramiko==2.9.2 \
-    --hash=sha256:04097dbd96871691cdb34c13db1883066b8a13a0df2afd4cb0a92221f51c2603 \
-    --hash=sha256:944a9e5dbdd413ab6c7951ea46b0ab40713235a9c4c5ca81cfe45c6f14fa677b
+paramiko==2.10.1 \
+    --hash=sha256:443f4da23ec24e9a9c0ea54017829c282abdda1d57110bf229360775ccd27a31 \
+    --hash=sha256:f6cbd3e1204abfdbcd40b3ecbc9d32f04027cd3080fe666245e21e7540ccfc1b
     # via pubtools-quay
 pluggy==1.0.0 \
     --hash=sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159 \
@@ -336,15 +336,15 @@ pubtools-iib==0.20.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-pulp==1.8.2 \
-    --hash=sha256:8f7839b799ed57edb69ed8946bc8d2cbe71a7198ed82eb133f2048758f2e3126 \
-    --hash=sha256:f2cad3f60d78c65387be78f7fc67e994c9fe850cd892c17f1440c50501578f15
+pubtools-pulp==1.9.1 \
+    --hash=sha256:4e13e002173c170c1d38c009d176a6577f34bb51e65f83343548932e2f2690f4 \
+    --hash=sha256:620830eae19d2c032a05271079744d9563e70cda6e7da0ddfc889bf8c65efd7b
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
-pubtools-pulplib==2.25.1 \
-    --hash=sha256:2ea79fa22188d17490dfebd39b2524de3f8e5564b472081218db48ecce113122 \
-    --hash=sha256:7f7886895ca76001bc77a142d00f7dfa391579e5b6632ddea5d10eee59de9ba9
+pubtools-pulplib==2.27.0 \
+    --hash=sha256:010aae6e42c76b2f65b4ade977987e646a094b39deae69277b607ce50bef0aac \
+    --hash=sha256:2749817da62a4859a810b0df581cf1e84bb99d07ea322a6494c18a2fca71f0c4
     # via
     #   pubtools-iib
     #   pubtools-pulp
@@ -364,9 +364,9 @@ pushcollector==1.2.0 \
     #   pubtools-pulp
     #   pubtools-quay
     #   pushsource
-pushsource==2.14.0 \
-    --hash=sha256:18a3f18e9ca4e444eb97abf3fced0c3ba58b1ea1e0d1717512df43a097893c41 \
-    --hash=sha256:5619f3039f456794b38abd0564803d4015457ae4fb49a1a97da31a37f8439eaf
+pushsource==2.16.0 \
+    --hash=sha256:ac9774be9cad88480832ac8457b00413d00e54fc6db9a8361baa1290b1ee6a7e \
+    --hash=sha256:c9ca25fb668b6ff77941c16655e707c6334990b3b3a4da1d6bd5b8c07c80b791
     # via pubtools-pulp
 pyasn1==0.4.8 \
     --hash=sha256:39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d \
@@ -531,6 +531,7 @@ six==1.16.0 \
     #   kobo
     #   koji
     #   more-executors
+    #   paramiko
     #   pubtools-pulp
     #   pubtools-pulplib
     #   pubtools-quay
