@@ -11,6 +11,7 @@ from pubtools.pluggy import pm, task_context
 
 BUILD_DIR = os.path.join(os.path.dirname(__file__), "_build")
 HOOKS_OUTPUT = os.path.join(BUILD_DIR, "hooks")
+HOOKS_TABLE_OUTPUT = HOOKS_OUTPUT + "-table"
 
 # Modules may be listed here to influence the order in which hooks show
 # up in the docs. For example, pubtools built-in hooks should always
@@ -96,6 +97,25 @@ class SpecWrapper:
         return public_name
 
     @property
+    def library(self):
+        # Public name of the library providing this hook, i.e. what do
+        # you need to "pip install" in order for this hook to be available.
+        #
+        # Note this relies strongly on naming conventions, e.g. the fact
+        # that python module "pubtools.pulplib" can be found in
+        # "pubtools-pulplib". Projects not obeying the conventions could mess
+        # things up!
+
+        # If the hook's module has more than two components, we only care
+        # about the first two (e.g. pubtools.foo.hooks => pubtools.foo)
+        module_start = ".".join(self.module.split(".", 2)[0:2])
+
+        # And here's where the naming convention comes in.
+        # If the module is pubtools.foo, it should have come from a library
+        # named pubtools-foo. If not, docs will just be wrong.
+        return module_start.replace(".", "-")
+
+    @property
     def sort_index(self):
         # Returns a number used when sorting all the hooks.
         #
@@ -133,6 +153,29 @@ class SpecWrapper:
         return "\n".join(out)
 
 
+def hooks_table(hookspecs):
+    out = []
+
+    out.extend([".. list-table::", ""])
+
+    out.extend(
+        [
+            "    * - **Library**",
+            "      - **Hook**",
+        ]
+    )
+
+    for spec in hookspecs:
+        out.extend(
+            [
+                f"    * - ``{spec.library}``",
+                f"      - :meth:`{spec.hookspec.function.__name__}`",
+            ]
+        )
+
+    return "\n".join(out)
+
+
 def all_hookspecs():
     hooknames = [name for name in dir(pm.hook) if not name.startswith("_")]
     hookspecs = []
@@ -152,6 +195,9 @@ def main():
         hookspecs = all_hookspecs()
 
         os.makedirs(BUILD_DIR, exist_ok=True)
+
+        with open(HOOKS_TABLE_OUTPUT, "wt") as out:
+            out.write(hooks_table(hookspecs))
 
         with open(HOOKS_OUTPUT, "wt") as out:
             for spec in hookspecs:

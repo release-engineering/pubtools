@@ -260,4 +260,6 @@ Hook reference
 This section lists all known hooks defined in the pubtools
 namespace.
 
+.. include:: _build/hooks-table
+
 .. include:: _build/hooks
