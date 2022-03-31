@@ -295,6 +295,47 @@ shall be provided. It can be used in a <code class="docutils literal notranslate
 <h2><a class="toc-backref" href="#id8">Hook reference</a><a class="headerlink" href="#hook-reference" title="Permalink to this headline">¶</a></h2>
 <p>This section lists all known hooks defined in the pubtools
 namespace.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Library</strong></p></td>
+<td><p><strong>Hook</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools</span></code></p></td>
+<td><p><a class="reference internal" href="#task_start" title="task_start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">task_start()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools</span></code></p></td>
+<td><p><a class="reference internal" href="#task_stop" title="task_stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">task_stop()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools</span></code></p></td>
+<td><p><a class="reference internal" href="#get_cert_key_paths" title="get_cert_key_paths"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_cert_key_paths()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulplib</span></code></p></td>
+<td><p><a class="reference internal" href="#pulp_repository_pre_publish" title="pulp_repository_pre_publish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pulp_repository_pre_publish()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulplib</span></code></p></td>
+<td><p><a class="reference internal" href="#pulp_repository_published" title="pulp_repository_published"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pulp_repository_published()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulp</span></code></p></td>
+<td><p><a class="reference internal" href="#task_pulp_flush" title="task_pulp_flush"><code class="xref py py-meth docutils literal notranslate"><span class="pre">task_pulp_flush()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
+<td><p><a class="reference internal" href="#quay_repositories_cleared" title="quay_repositories_cleared"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quay_repositories_cleared()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
+<td><p><a class="reference internal" href="#quay_repositories_removed" title="quay_repositories_removed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quay_repositories_removed()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
+<td><p><a class="reference internal" href="#quay_images_tagged" title="quay_images_tagged"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quay_images_tagged()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
+<td><p><a class="reference internal" href="#quay_images_untagged" title="quay_images_untagged"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quay_images_untagged()</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py function">
 <dt class="sig sig-object py" id="task_start">
 <span class="sig-name descname"><span class="pre">task_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#task_start" title="Permalink to this definition">¶</a></dt>
@@ -520,7 +561,7 @@ tag due to the untag operation.</p></li>
       &copy;2021, Red Hat.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
