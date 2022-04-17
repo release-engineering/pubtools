@@ -327,8 +327,8 @@ kerberos==1.3.1 \
     # via
     #   iiblib
     #   pubtools-quay
-kobo==0.22.0 \
-    --hash=sha256:0ddde47130232758ddd069320ed590e3a4d054732a6ce673ca118220f802e70a
+kobo==0.23.0 \
+    --hash=sha256:7d7c99e74702930edc2d556172caea45dea5d9b5876e178dbb4070d546bc4fa0
     # via pushsource
 koji==1.28.1 \
     --hash=sha256:1e8bb3ada29772971ef526fac41d53c2723e81d9c4f0a8c850bcf6df3d4a1a5a \
@@ -734,9 +734,9 @@ urllib3==1.26.9 \
     # via
     #   edgegrid-python
     #   requests
-virtualenv==20.14.0 \
-    --hash=sha256:1e8588f35e8b42c6ec6841a13c5e88239de1e6e4e4cedfd3916b306dc826ec66 \
-    --hash=sha256:8e5b402037287126e81ccde9432b95a8be5b19d36584f64957060a3488c11ca8
+virtualenv==20.14.1 \
+    --hash=sha256:e617f16e25b42eb4f6e74096b9c9e37713cf10bf30168fb4a739f3fa8f898a3a \
+    --hash=sha256:ef589a79795589aada0c1c5b319486797c03b67ac3984c48c669c0e4f50df3a5
     # via pre-commit
 websocket-client==1.3.2 \
     --hash=sha256:50b21db0058f7a953d67cc0445be4b948d7fc196ecbeb8083d68d94628e4abf6 \
