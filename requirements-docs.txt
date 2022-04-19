@@ -234,8 +234,8 @@ kerberos==1.3.1 \
     # via
     #   iiblib
     #   pubtools-quay
-kobo==0.22.0 \
-    --hash=sha256:0ddde47130232758ddd069320ed590e3a4d054732a6ce673ca118220f802e70a
+kobo==0.23.0 \
+    --hash=sha256:7d7c99e74702930edc2d556172caea45dea5d9b5876e178dbb4070d546bc4fa0
     # via pushsource
 koji==1.28.1 \
     --hash=sha256:1e8bb3ada29772971ef526fac41d53c2723e81d9c4f0a8c850bcf6df3d4a1a5a \
