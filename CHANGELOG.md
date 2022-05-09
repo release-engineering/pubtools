@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - n/a
 
+## [1.3.0] - 2022-05-10
+
+- pubtools now includes a hook for tuning malloc at task start using the
+  [glibc malloc environment variables](https://man7.org/linux/man-pages/man3/mallopt.3.html).
+
 ## [1.2.1] - 2021-08-18
 
 - Fixed compatibility with `setuptools` older than 11.3.
@@ -33,7 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release from release-engineering organization
 
-[Unreleased]: https://github.com/release-engineering/pubtools/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/release-engineering/pubtools/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/release-engineering/pubtools/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/release-engineering/pubtools/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/release-engineering/pubtools/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/release-engineering/pubtools/compare/v1.0.0...v1.1.0

@@ -23,7 +23,7 @@ def get_requirements():
 
 setup(
     name="pubtools",
-    version="1.2.1",
+    version="1.3.0",
     packages=find_packages(exclude=["tests"]),
     url="https://github.com/release-engineering/pubtools",
     license="GNU General Public License",
