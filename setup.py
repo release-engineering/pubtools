@@ -46,4 +46,9 @@ setup(
         "Documentation": "https://release-engineering.github.io/pubtools/",
         "Changelog": "https://github.com/release-engineering/pubtools/blob/master/CHANGELOG.md",
     },
+    entry_points={
+        "pubtools.hooks": [
+            "mallopt = pubtools._impl.mallopt",
+        ]
+    },
 )
