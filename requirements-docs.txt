@@ -34,9 +34,9 @@ bcrypt==3.2.2 \
     --hash=sha256:a2c46100e315c3a5b90fdc53e429c006c5f962529bc27e1dfd656292c20ccc40 \
     --hash=sha256:cd43303d6b8a165c29ec6756afd169faba9396a9472cdff753fe9f19b96ce2fa
     # via paramiko
-certifi==2021.10.8 \
-    --hash=sha256:78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872 \
-    --hash=sha256:d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569
+certifi==2022.5.18.1 \
+    --hash=sha256:9c5705e395cd70084351dd8ad5c41e65655e08ce46f2ec9cf6c2c08390f71eb7 \
+    --hash=sha256:f1d53542ee8cbedbe2118b5686372fb33c297fcd6379b050cca0ef13a597382a
     # via requests
 cffi==1.15.0 \
     --hash=sha256:00c878c90cb53ccfaae6b8bc18ad05d2036553e6d9d1d9dbcf323bbe83854ca3 \
@@ -212,9 +212,9 @@ imagesize==1.3.0 \
     --hash=sha256:1db2f82529e53c3e929e8926a1fa9235aa82d0bd0c580359c67ec31b2fddaa8c \
     --hash=sha256:cd1750d452385ca327479d45b64d9c7729ecf0b3969a58148298c77092261f9d
     # via sphinx
-importlib-metadata==4.11.3 \
-    --hash=sha256:1208431ca90a8cca1a6b8af391bb53c1a2db74e5d1cef6ddced95d4b2062edc6 \
-    --hash=sha256:ea4c597ebf37142f827b8f39299579e31685c31d3a438b59f469406afd0f2539
+importlib-metadata==4.11.4 \
+    --hash=sha256:5d26852efe48c0a32b0509ffbc583fda1a2266545a78d104a6f4aff3db17d700 \
+    --hash=sha256:c58c8eb8a762858f49e18436ff552e83914778e50e9d2f1660535ffb364552ec
     # via sphinx
 iniparse==0.5 \
     --hash=sha256:88ca60473b1637055a937933d48840be1b1b6835f381a6158ef118a532583675 \
@@ -326,9 +326,9 @@ packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
     # via sphinx
-paramiko==2.10.4 \
-    --hash=sha256:3c9ed6084f4b671ab66dc3c729092d32d96c3258f1426071301cb33654b09027 \
-    --hash=sha256:3d2e650b6812ce6d160abff701d6ef4434ec97934b13e95cf1ad3da70ffb5c58
+paramiko==2.11.0 \
+    --hash=sha256:003e6bee7c034c21fbb051bf83dc0a9ee4106204dd3c53054c71452cc4ec3938 \
+    --hash=sha256:655f25dc8baf763277b933dfcea101d636581df8d6b9774d1fb653426b72c270
     # via pubtools-quay
 pluggy==1.0.0 \
     --hash=sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159 \
@@ -341,8 +341,9 @@ pubtools==1.3.0 \
     #   pubtools-pulp
     #   pubtools-pulplib
     #   pubtools-quay
-pubtools-iib==0.20.0 \
-    --hash=sha256:cb9577d7e65ab1887d7cfae06af4a879b786c6d9572c200a1649e5b54826add4
+pubtools-iib==0.21.0 \
+    --hash=sha256:6e44b8b02d663e63f0285f451e1a624f0f0220497ef56869d69353d28d0b1ed9 \
+    --hash=sha256:a33428c5e853f09d82a0aea0e67ab841f52303c6881701a4be674621c94b760e
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
@@ -375,9 +376,9 @@ pushcollector==1.3.0 \
     #   pubtools-pulp
     #   pubtools-quay
     #   pushsource
-pushsource==2.19.0 \
-    --hash=sha256:31a66eaec0c38a9c119e361c662cb3a6a85953f0352047c9729ea6f5f173cb89 \
-    --hash=sha256:f32bfd263b97ae9adb5030823392bf0013d4881b480f9c46efba335fc5022eab
+pushsource==2.20.0 \
+    --hash=sha256:45c94f778ad1f1ed64916dfc522657e47f2501789cbaaee4cfe410b705c83394 \
+    --hash=sha256:51c8344da1faea3fbe40fec96af57cf7d812cc9ac3548ffa24fbf781f1378442
     # via pubtools-pulp
 pyasn1==0.4.8 \
     --hash=sha256:39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d \
