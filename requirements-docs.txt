@@ -17,9 +17,9 @@ attrs==21.4.0 \
     #   jsonschema
     #   pubtools-pulplib
     #   pushsource
-babel==2.10.1 \
-    --hash=sha256:3f349e85ad3154559ac4930c3918247d319f21910d5ce4b25d439ed8693b98d2 \
-    --hash=sha256:98aeaca086133efb3e1e2aad0396987490c8425929ddbcfe0550184fdc54cd13
+babel==2.10.3 \
+    --hash=sha256:7614553711ee97490f732126dc077f8d0ae084ebc6a96e23db1482afabdb2c51 \
+    --hash=sha256:ff56f4892c1c4bf0d814575ea23471c230d544203c7748e8c68f0089478d48eb
     # via sphinx
 bcrypt==3.2.2 \
     --hash=sha256:2b02d6bfc6336d1094276f3f588aa1225a598e27f8e3388f4db9948cb707b521 \
@@ -34,9 +34,9 @@ bcrypt==3.2.2 \
     --hash=sha256:a2c46100e315c3a5b90fdc53e429c006c5f962529bc27e1dfd656292c20ccc40 \
     --hash=sha256:cd43303d6b8a165c29ec6756afd169faba9396a9472cdff753fe9f19b96ce2fa
     # via paramiko
-certifi==2022.5.18.1 \
-    --hash=sha256:9c5705e395cd70084351dd8ad5c41e65655e08ce46f2ec9cf6c2c08390f71eb7 \
-    --hash=sha256:f1d53542ee8cbedbe2118b5686372fb33c297fcd6379b050cca0ef13a597382a
+certifi==2022.6.15 \
+    --hash=sha256:84c85a9078b11105f04f3036a9482ae10e4621616db313fe045dd24743a0820d \
+    --hash=sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412
     # via requests
 cffi==1.15.0 \
     --hash=sha256:00c878c90cb53ccfaae6b8bc18ad05d2036553e6d9d1d9dbcf323bbe83854ca3 \
@@ -195,9 +195,9 @@ gssapi==1.7.3 \
     # via
     #   pyspnego
     #   requests-gssapi
-humanize==4.1.0 \
-    --hash=sha256:3a119b242ec872c029d8b7bf8435a61a5798f124b244a08013aec5617302f80e \
-    --hash=sha256:953b393f5bd67e19d47a4c0fd20c3a3537853967b307e49729c4755d3551753c
+humanize==4.2.0 \
+    --hash=sha256:b79797c101f274a19ed7b5f0cd3aa65e1aa379868b974692a9d3129ccc311be2 \
+    --hash=sha256:f5f34d4a1112b5e3ce9a2cc674e606e3e1fc07a1a0f185444a1e5fe826264b01
     # via pubtools-pulplib
 idna==3.3 \
     --hash=sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff \
@@ -239,8 +239,8 @@ kerberos==1.3.1 \
     # via
     #   iiblib
     #   pubtools-quay
-kobo==0.24.0 \
-    --hash=sha256:d08f3f67441676a9fb297e12205ebd04ce59509bae8e50aaec2b2ffd86c4dabd
+kobo==0.24.1 \
+    --hash=sha256:d5a30cc20c323f3e9d9b4b2e511650c4b98929b88859bd8cf57463876686e407
     # via pushsource
 koji==1.29.0 \
     --hash=sha256:7a24bc9e9c7508ded2e174f243780c57562422b8c7320714cff839b841b79b7a \
@@ -347,9 +347,9 @@ pubtools-iib==0.21.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-pulp==1.16.0 \
-    --hash=sha256:0453ec60f63aab1d08e8205cd2a201a971b99d621fd962c234c66e6ba9b3ec25 \
-    --hash=sha256:7d78415f4708c4c8bfd7acb448f5b2ec3c22fb0a9bbdf223fbf4a4593006312f
+pubtools-pulp==1.17.0 \
+    --hash=sha256:19adac649aa63c40bbb85f1407a8277535bcc0ca7c5b6622b31bd159cc89a1f6 \
+    --hash=sha256:8e055c60c783a708ab1f5584039b743b6871935a02816368381ac560b814b30a
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
@@ -365,9 +365,9 @@ pubtools-pyxis==1.3.2 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-quay==0.10.0 \
-    --hash=sha256:1207f3e252d459da4582900a8941c10b821ac37d4bce1cee67118e8ea47a936e \
-    --hash=sha256:a8f9db3ec4bb9c8c94ffc035c7da3412f3ba1adbc55178d91d848c3454bc1f22
+pubtools-quay==0.10.1 \
+    --hash=sha256:2c19f448298057744a498c67864927e02915e4dfad0182e9fc53d7812da35cb5 \
+    --hash=sha256:fe6c3666d6804d584a021b159839ad143d3a82ba61057ca7c39459d020cee0b5
     # via -r requirements-docs.in
 pushcollector==1.3.0 \
     --hash=sha256:18281fcd4247ca8b668c25348bbc2f9cc032912cecc7037824a74ad8adcbb1c3 \
@@ -556,9 +556,9 @@ snowballstemmer==2.2.0 \
     --hash=sha256:09b16deb8547d3412ad7b590689584cd0fe25ec8db3be37788be3810cbf19cb1 \
     --hash=sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a
     # via sphinx
-sphinx==5.0.1 \
-    --hash=sha256:36aa2a3c2f6d5230be94585bc5d74badd5f9ed8f3388b8eedc1726fe45b1ad30 \
-    --hash=sha256:f4da1187785a5bc7312cc271b0e867a93946c319d106363e102936a3d9857306
+sphinx==5.0.2 \
+    --hash=sha256:b18e978ea7565720f26019c702cd85c84376e948370f1cd43d60265010e1c7b0 \
+    --hash=sha256:d3e57663eed1d7c5c50895d191fdeda0b54ded6f44d5621b50709466c338d1e8
     # via -r requirements-docs.in
 sphinxcontrib-applehelp==1.0.2 \
     --hash=sha256:806111e5e962be97c29ec4c1e7fe277bfd19e9652fb1a4392105b43e01af885a \
