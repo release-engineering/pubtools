@@ -45,9 +45,9 @@ filelock==3.7.1 \
     --hash=sha256:37def7b658813cda163b56fc564cdc75e86d338246458c4c28ae84cabefa2404 \
     --hash=sha256:3a0fd85166ad9dbab54c9aec96737b744106dc5f15c0b09a6744a445299fcf04
     # via virtualenv
-identify==2.5.2 \
-    --hash=sha256:a3d4c096b384d50d5e6dc5bc8b9bc44f1f61cefebd750a7b3e9f939b53fb214d \
-    --hash=sha256:feaa9db2dc0ce333b453ce171c0cf1247bbfde2c55fc6bb785022d411a1b78b5
+identify==2.5.3 \
+    --hash=sha256:25851c8c1370effb22aaa3c987b30449e9ff0cece408f810ae6ce408fdd20893 \
+    --hash=sha256:887e7b91a1be152b0d46bbf072130235a8117392b9f1828446079a816a05ef44
     # via pre-commit
 mypy-extensions==0.4.3 \
     --hash=sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d \
@@ -118,9 +118,9 @@ typing-extensions==4.3.0 \
     --hash=sha256:25642c956049920a5aa49edcdd6ab1e06d7e5d467fc00e0506c44ac86fbfca02 \
     --hash=sha256:e6d2677a32f47fc7eb2795db1dd15c1f34eff616bcaf2cfb5e997f854fa1c4a6
     # via black
-virtualenv==20.16.2 \
-    --hash=sha256:0ef5be6d07181946891f5abc8047fda8bc2f0b4b9bf222c64e6e8963baee76db \
-    --hash=sha256:635b272a8e2f77cb051946f46c60a54ace3cb5e25568228bd6b57fc70eca9ff3
+virtualenv==20.16.3 \
+    --hash=sha256:4193b7bc8a6cd23e4eb251ac64f29b4398ab2c233531e66e40b19a6b7b0d30c1 \
+    --hash=sha256:d86ea0bb50e06252d79e6c241507cb904fcd66090c3271381372d6221a3970f9
     # via pre-commit
 
 # WARNING: The following packages were not pinned, but pip requires them to be
