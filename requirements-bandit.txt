@@ -16,9 +16,9 @@ gitpython==3.1.27 \
     --hash=sha256:1c885ce809e8ba2d88a29befeb385fcea06338d3640712b59ca623c220bb5704 \
     --hash=sha256:5b68b000463593e05ff2b261acff0ff0972df8ab1b70d3cdbd41b546c8b8fc3d
     # via bandit
-pbr==5.9.0 \
-    --hash=sha256:e547125940bcc052856ded43be8e101f63828c2d94239ffbe2b327ba3d5ccf0a \
-    --hash=sha256:e8dca2f4b43560edef58813969f52a56cef023146cbb8931626db80e6c1c4308
+pbr==5.10.0 \
+    --hash=sha256:cfcc4ff8e698256fc17ea3ff796478b050852585aa5bae79ecd05b2ab7b39b9a \
+    --hash=sha256:da3e18aac0a3c003e9eea1a81bd23e5a3a75d745670dcf736317b7d966887fdf
     # via stevedore
 pyyaml==6.0 \
     --hash=sha256:0283c35a6a9fbf047493e3a0ce8d79ef5030852c51e9d911a27badfde0605293 \
