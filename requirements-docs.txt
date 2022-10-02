@@ -228,9 +228,9 @@ imagesize==1.4.1 \
     --hash=sha256:0d8d18d08f840c19d0ee7ca1fd82490fdc3729b7ac93f49870406ddde8ef8d8b \
     --hash=sha256:69150444affb9cb0d5cc5a92b3676f0b2fb7cd9ae39e947a5e11a36b4497cd4a
     # via sphinx
-importlib-metadata==4.12.0 \
-    --hash=sha256:637245b8bab2b6502fcbc752cc4b7a6f6243bb02b31c5c26156ad103d3d45670 \
-    --hash=sha256:7401a975809ea1fdc658c3aa4f78cc2195a0e019c5cbc4c06122884e9ae80c23
+importlib-metadata==5.0.0 \
+    --hash=sha256:da31db32b304314d044d3c12c79bd59e307889b287ad12ff387b3500835fc2ab \
+    --hash=sha256:ddb0e35065e8938f867ed4928d0ae5bf2a53b7773871bfe6bcc7e4fcdc7dea43
     # via sphinx
 iniparse==0.5 \
     --hash=sha256:88ca60473b1637055a937933d48840be1b1b6835f381a6158ef118a532583675 \
@@ -364,9 +364,9 @@ pubtools-iib==0.21.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-pulp==1.20.0 \
-    --hash=sha256:cc0d4cb8393879900027ce60c5ace58f41d061a6984653a8cd5a9c00ae2e4260 \
-    --hash=sha256:f5f78c5c321f42c4d9ac8a72fc1d0b3991f6e30c002f5b2f312fb6698ff9e47c
+pubtools-pulp==1.20.1 \
+    --hash=sha256:66378ec62713ba35b04ae28dd5bc042467658b812cd586484afff410860cef34 \
+    --hash=sha256:b50ff03abc3296937e26e59d2357df12bb354bd3358d7d77040585365af613e9
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
@@ -479,9 +479,9 @@ python-dateutil==2.8.2 \
 python-qpid-proton==0.37.0 \
     --hash=sha256:592fadf5219b040b96c2f99673ee005edaf25468ae3daab290b065c91a6144b6
     # via pubtools-quay
-pytz==2022.2.1 \
-    --hash=sha256:220f481bdafa09c3955dfbdddb7b57780e9a94f5127e35456a48589b9e0c0197 \
-    --hash=sha256:cea221417204f2d1a2aa03ddae3e867921971d0d76f14d87abb4414415bbdcf5
+pytz==2022.4 \
+    --hash=sha256:2c0784747071402c6e99f0bafdb7da0fa22645f06554c7ae06bf6358897e9c91 \
+    --hash=sha256:48ce799d83b6f8aab2020e369b627446696619e79645419610b9facd909b3174
     # via babel
 pyyaml==6.0 \
     --hash=sha256:01b45c0191e6d66c470b6cf1b9531a771a83c1c4208272ead47a3ae4f2f603bf \
@@ -583,9 +583,9 @@ snowballstemmer==2.2.0 \
     --hash=sha256:09b16deb8547d3412ad7b590689584cd0fe25ec8db3be37788be3810cbf19cb1 \
     --hash=sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a
     # via sphinx
-sphinx==5.2.0.post0 \
-    --hash=sha256:68e7833263a961521f45302fa87285f9395ecf385f1eefd85cd61ddff0b15bc1 \
-    --hash=sha256:db93dc52cc90d12ef38c9f506eab9171813041204d8270e30ffad2be511e7ced
+sphinx==5.2.3 \
+    --hash=sha256:5b10cb1022dac8c035f75767799c39217a05fc0fe2d6fe5597560d38e44f0363 \
+    --hash=sha256:7abf6fabd7b58d0727b7317d5e2650ef68765bbe0ccb63c8795fa8683477eaa2
     # via -r requirements-docs.in
 sphinxcontrib-applehelp==1.0.2 \
     --hash=sha256:806111e5e962be97c29ec4c1e7fe277bfd19e9652fb1a4392105b43e01af885a \
