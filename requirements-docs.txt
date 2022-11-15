@@ -391,9 +391,9 @@ pubtools-pulplib==2.34.2 \
     # via
     #   pubtools-iib
     #   pubtools-pulp
-pubtools-pyxis==1.3.2 \
-    --hash=sha256:0fe88e988f40cd5c9c4030d06b1614d4198abd413b1390762fdbcb142eb1a206 \
-    --hash=sha256:f7391451f64c6c42b66c67ba575999ec2ff21a4cb938a21597100386742c54ee
+pubtools-pyxis==1.3.3 \
+    --hash=sha256:20bf28f2ecbf72fbe3031e9a4d8e6c01700169bd63b0e2154d51c31a15bc3254 \
+    --hash=sha256:305a0ed3fb20d93893f6f914b6b107387a373c47f3ef6bf2c79ab4dbabc782ce
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
