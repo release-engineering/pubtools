@@ -494,8 +494,8 @@ python-dateutil==2.8.2 \
     # via
     #   koji
     #   pushsource
-python-qpid-proton==0.37.0 \
-    --hash=sha256:592fadf5219b040b96c2f99673ee005edaf25468ae3daab290b065c91a6144b6
+python-qpid-proton==0.38.0 \
+    --hash=sha256:e39c6a19ceac0e721b7e2b29543b241c43378caf666b2911271611e88cabee4b
     # via pubtools-quay
 pytz==2022.6 \
     --hash=sha256:222439474e9c98fced559f1709d89e6c9cbf8d79c794ff3eb9f8800064291427 \
