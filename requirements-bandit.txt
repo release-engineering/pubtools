@@ -8,9 +8,9 @@ bandit==1.7.4 \
     --hash=sha256:2d63a8c573417bae338962d4b9b06fbc6080f74ecd955a092849e1e65c717bd2 \
     --hash=sha256:412d3f259dab4077d0e7f0c11f50f650cc7d10db905d98f6520a95a18049658a
     # via -r requirements-bandit.in
-gitdb==4.0.9 \
-    --hash=sha256:8033ad4e853066ba6ca92050b9df2f89301b8fc8bf7e9324d412a63f8bf1a8fd \
-    --hash=sha256:bac2fd45c0a1c9cf619e63a90d62bdc63892ef92387424b855792a6cabe789aa
+gitdb==4.0.10 \
+    --hash=sha256:6eb990b69df4e15bad899ea868dc46572c3f75339735663b81de79b06f17eb9a \
+    --hash=sha256:c286cf298426064079ed96a9e4a9d39e7f3e9bf15ba60701e95f5492f28415c7
     # via gitpython
 gitpython==3.1.29 \
     --hash=sha256:41eea0deec2deea139b459ac03656f0dd28fc4a3387240ec1d3c259a2c47850f \
