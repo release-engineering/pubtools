@@ -44,9 +44,9 @@ bcrypt==4.0.1 \
     --hash=sha256:e9a51bbfe7e9802b5f3508687758b564069ba937748ad7b9e890086290d2f79e \
     --hash=sha256:fbdaec13c5105f0c4e5c52614d04f0bca5f5af007910daa8b6b12095edaa67b3
     # via paramiko
-certifi==2022.9.24 \
-    --hash=sha256:0d9c601124e5a6ba9712dbc60d9c53c21e34f5f641fe83002317394311bdce14 \
-    --hash=sha256:90c1a32f1d68f940488354e36370f6cca89f0f106db09518524c88d6ed83f382
+certifi==2022.12.7 \
+    --hash=sha256:35824b4c3a97115964b408844d64aa14db1cc518f6562e8d7261699d1350a9e3 \
+    --hash=sha256:4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18
     # via requests
 cffi==1.15.1 \
     --hash=sha256:00a9ed42e88df81ffae7a8ab6d9356b371399b91dbdf0c3cb1e84c03a13aceb5 \
@@ -168,9 +168,9 @@ edgegrid-python==1.3.1 \
     --hash=sha256:480ad3e8e4586ba3190f176ae2c2e5a3ab66e47834a01812826d01e1c2b6439a \
     --hash=sha256:c7dbfd66b4ea8e386fe5391005b2cb9bf8556f4f04ab2fad53fe27554b553b7d
     # via fastpurge
-fastpurge==1.0.3 \
-    --hash=sha256:178098cf6d39b2887a4c656fc7014cc13f1f64fc353d98324ceb55141b7849ee \
-    --hash=sha256:d82a9ae11eec67ca81207f295b2bd8ddbb1e42f97c1c0b12a3b7295277a695ca
+fastpurge==1.0.4 \
+    --hash=sha256:1593fe3cf96f7cce685cc181b67ed5361a23f01a00156c37e8043a16a32975ae \
+    --hash=sha256:94babd520815d3a0316374f076fee88f6abe2861080b9c0e3422ecda667e11fb
     # via pubtools-pulp
 frozendict==2.3.4 \
     --hash=sha256:15b4b18346259392b0d27598f240e9390fafbff882137a9c48a1e0104fb17f78 \
@@ -333,13 +333,10 @@ markupsafe==2.1.1 \
 monotonic==1.6 \
     --hash=sha256:3a55207bcfed53ddd5c5bae174524062935efed17792e9de2ad0205ce9ad63f7 \
     --hash=sha256:68687e19a14f11f26d140dd5c86f3dba4bf5df58003000ed467e0e2a69bca96c
-    # via
-    #   fastpurge
-    #   more-executors
-    #   pubtools-quay
-more-executors==2.11.1 \
-    --hash=sha256:06ca3b3ae1b07b2581441589296d486098ebe8740f859f5c7a2e0a687b12628d \
-    --hash=sha256:a5a7c9344168974d17dc0e89fb68c045b516cc74fe9bb1a4f76016dac4d25be5
+    # via pubtools-quay
+more-executors==2.11.2 \
+    --hash=sha256:95d17e790cfd20007b39e35cf0aed2d3b7857cf82827818dd5b6f3a7a6f5fb10 \
+    --hash=sha256:b98fba2739018150420b4435d0a9f937b149bf36410f0ee7000f40d48bb23615
     # via
     #   fastpurge
     #   pubtools-pulp
@@ -352,9 +349,9 @@ ndg-httpsclient==0.5.1 \
     --hash=sha256:d72faed0376ab039736c2ba12e30695e2788c4aa569c9c3e3d72131de2592210 \
     --hash=sha256:dd174c11d971b6244a891f7be2b32ca9853d3797a72edb34fa5d7b07d8fff7d4
     # via edgegrid-python
-packaging==21.3 \
-    --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
-    --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
+packaging==22.0 \
+    --hash=sha256:2198ec20bd4c017b8f9717e00f0c8714076fc2fd93816750ab48e2c41de2cfd3 \
+    --hash=sha256:957e2148ba0e1a3b282772e791ef1d8083648bc131c8ab0c1feba110ce1146c3
     # via
     #   docker
     #   sphinx
@@ -385,9 +382,9 @@ pubtools-pulp==1.20.2 \
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
-pubtools-pulplib==2.34.2 \
-    --hash=sha256:456a8d5fc7b083d793d9cfcd8c683d71d5f10dfdb9c7a2106222484164516da6 \
-    --hash=sha256:65c76dd6fb055cf86c86dcc32d0872cd66d8835b7c7b979e9720939ea09a2cb6
+pubtools-pulplib==2.34.3 \
+    --hash=sha256:8c436939e228d833308df1a14c03f1f47b846ebd4a90bed62736f57af7f2b561 \
+    --hash=sha256:97503dbc7642ebe1a00d98c0b0e647e73398d22c2bab7bd4478ee446291e384d
     # via
     #   pubtools-iib
     #   pubtools-pulp
@@ -408,9 +405,9 @@ pushcollector==1.3.0 \
     #   pubtools-pulp
     #   pubtools-quay
     #   pushsource
-pushsource==2.23.3 \
-    --hash=sha256:03de416d7900298e9b8025dbc5e73c54c70d4f1626c882958cf29d1899a00b8c \
-    --hash=sha256:915b794bbda40606b42ac1eb25976e4d32bf4c99db04a1025e7076a82d9a0c5b
+pushsource==2.23.4 \
+    --hash=sha256:2ed6b3522bfab37ef0230335da5214ad95ea86b24c5b89d4e7b4c7596bebc455 \
+    --hash=sha256:99d4808efc5fd90756efc19b3fbfd1e74e4742d7e51ea221d671f697544e8645
     # via pubtools-pulp
 pyasn1==0.4.8 \
     --hash=sha256:39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d \
@@ -444,10 +441,6 @@ pyopenssl==22.1.0 \
     # via
     #   edgegrid-python
     #   ndg-httpsclient
-pyparsing==3.0.9 \
-    --hash=sha256:2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb \
-    --hash=sha256:5026bae9a10eeaefb61dab2f09052b9f4307d44aee4eda64b309723d8d206bbc
-    # via packaging
 pyrsistent==0.19.2 \
     --hash=sha256:055ab45d5911d7cae397dc418808d8802fb95262751872c841c170b0dbf51eed \
     --hash=sha256:111156137b2e71f3a9936baf27cb322e8024dac3dc54ec7fb9f0bcf3249e68bb \
