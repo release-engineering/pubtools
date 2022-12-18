@@ -314,9 +314,9 @@ humanize==4.4.0 \
     --hash=sha256:8830ebf2d65d0395c1bd4c79189ad71e023f277c2c7ae00f263124432e6f2ffa \
     --hash=sha256:efb2584565cc86b7ea87a977a15066de34cdedaf341b11c851cfcfd2b964779c
     # via pubtools-pulplib
-identify==2.5.9 \
-    --hash=sha256:906036344ca769539610436e40a684e170c3648b552194980bb7b617a8daeb9f \
-    --hash=sha256:a390fb696e164dbddb047a0db26e57972ae52fbd037ae68797e5ae2f4492485d
+identify==2.5.10 \
+    --hash=sha256:dce9e31fee7dbc45fea36a9e855c316b8fbf807e65a862f160840bb5a2bf5dfd \
+    --hash=sha256:fb7c2feaeca6976a3ffa31ec3236a6911fbc51aec9acc111de2aed99f244ade2
     # via pre-commit
 idna==3.4 \
     --hash=sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4 \
@@ -429,9 +429,9 @@ monotonic==1.6 \
     --hash=sha256:3a55207bcfed53ddd5c5bae174524062935efed17792e9de2ad0205ce9ad63f7 \
     --hash=sha256:68687e19a14f11f26d140dd5c86f3dba4bf5df58003000ed467e0e2a69bca96c
     # via pubtools-quay
-more-executors==2.11.2 \
-    --hash=sha256:95d17e790cfd20007b39e35cf0aed2d3b7857cf82827818dd5b6f3a7a6f5fb10 \
-    --hash=sha256:b98fba2739018150420b4435d0a9f937b149bf36410f0ee7000f40d48bb23615
+more-executors==2.11.3 \
+    --hash=sha256:13b55a9ee053ae91ecaa8f327adbf9fec55ad4b434a6123e996f09acffaecaf2 \
+    --hash=sha256:859e7881efee83409fbb2d5a2d7d39d4a3dd1b981d0657e3d00148d1e6303396
     # via
     #   fastpurge
     #   pubtools-pulp
@@ -620,9 +620,9 @@ python-dateutil==2.8.2 \
 python-qpid-proton==0.38.0 \
     --hash=sha256:e39c6a19ceac0e721b7e2b29543b241c43378caf666b2911271611e88cabee4b
     # via pubtools-quay
-pytz==2022.6 \
-    --hash=sha256:222439474e9c98fced559f1709d89e6c9cbf8d79c794ff3eb9f8800064291427 \
-    --hash=sha256:e89512406b793ca39f5971bc999cc538ce125c0e51c27941bef4568b460095e2
+pytz==2022.7 \
+    --hash=sha256:7ccfae7b4b2c067464a6733c6261673fdb8fd1be905460396b97a073e9fa683a \
+    --hash=sha256:93007def75ae22f7cd991c84e02d434876818661f8df9ad5df9e950ff4e52cfd
     # via babel
 pyyaml==6.0 \
     --hash=sha256:01b45c0191e6d66c470b6cf1b9531a771a83c1c4208272ead47a3ae4f2f603bf \
