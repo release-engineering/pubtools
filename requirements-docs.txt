@@ -10,9 +10,9 @@ alabaster==0.7.12 \
     # via
     #   -r requirements-docs.in
     #   sphinx
-attrs==22.1.0 \
-    --hash=sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6 \
-    --hash=sha256:86efa402f67bf2df34f51a335487cf46b1ec130d02b8d39fd248abfd30da551c
+attrs==22.2.0 \
+    --hash=sha256:29e95c7f6778868dbd49170f98f8818f78f3dc5e0e37c0b1f474e3561b240836 \
+    --hash=sha256:c9227bfc2f01993c03f68db37d1d15c9690188323c067c641f1a35ca58185f99
     # via
     #   jsonschema
     #   pubtools-pulplib
@@ -241,9 +241,9 @@ imagesize==1.4.1 \
     --hash=sha256:0d8d18d08f840c19d0ee7ca1fd82490fdc3729b7ac93f49870406ddde8ef8d8b \
     --hash=sha256:69150444affb9cb0d5cc5a92b3676f0b2fb7cd9ae39e947a5e11a36b4497cd4a
     # via sphinx
-importlib-metadata==5.1.0 \
-    --hash=sha256:d5059f9f1e8e41f80e9c56c2ee58811450c31984dfa625329ffd7c0dad88a73b \
-    --hash=sha256:d84d17e21670ec07990e1044a99efe8d615d860fd176fc29ef5c306068fda313
+importlib-metadata==5.2.0 \
+    --hash=sha256:0eafa39ba42bf225fc00e67f701d71f85aead9f878569caf13c3724f704b970f \
+    --hash=sha256:404d48d62bba0b7a77ff9d405efd91501bef2e67ff4ace0bed40a0cf28c3c7cd
     # via sphinx
 iniparse==0.5 \
     --hash=sha256:88ca60473b1637055a937933d48840be1b1b6835f381a6158ef118a532583675 \
@@ -376,9 +376,9 @@ pubtools-iib==0.21.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-pulp==1.20.2 \
-    --hash=sha256:00d84deb4cfefd94de9dad6d9ef376d151d82e835e6a7fb5adaec84b62b8e71c \
-    --hash=sha256:c9c453bc7ce4dea7962aacf8c7e4db5b8db7b0505769bba607d4a916af348619
+pubtools-pulp==1.20.3 \
+    --hash=sha256:12e9f6a06b060dba53c8d2bb52693bf5b9236c2ab7909d6fcfa7f0f16e8cf7ec \
+    --hash=sha256:f7c373f6173114827ced8aa5d01143de5c29984124ff9b29f2f5ed93f4c27c40
     # via
     #   -r requirements-docs.in
     #   pubtools-iib
@@ -467,19 +467,19 @@ pyrsistent==0.19.2 \
     # via
     #   jsonschema
     #   pubtools-quay
-pyspnego[kerberos]==0.6.3 \
-    --hash=sha256:0467587438002274790af754fdabf5f4023529444181ef40aa05a9808c35a222 \
-    --hash=sha256:097f57f0826e43e1062bf2b1ef019fdc0921a78cf231baa55a545ffe486fa757 \
-    --hash=sha256:4e81a004ec14bb2c05a5006c789d2c394b4f4296e60ed06a14904110ee2bb30c \
-    --hash=sha256:6060a0e683171090adcf92c9d319ddd334f15117fa199a703d8c9bd094d9f6c0 \
-    --hash=sha256:74a1122dda12fbd08c670d37f64183d97cb1479ea866472b28dcf86d3aa3f375 \
-    --hash=sha256:952e00690c1bbae94b6b3a27edcdd18d68a25e4f7164e026da173b1827860262 \
-    --hash=sha256:ac883b4a15a0a9a5a4189f64ddec2f81b6b0024eec949dd37bdd2110c49e04bd \
-    --hash=sha256:c37a540ba386ee2e3eabe5ea0a8d8087f94f30ddf78a1dcb8121c37414ebb23d \
-    --hash=sha256:c899f1217f1793d4dc90a39eed4144cffd1c144defeccf362f7d854923a8f8c2 \
-    --hash=sha256:cf19490c20215da0a00563741566b1a5efc36fa4cdfeac15edf2fe7529d5bff5 \
-    --hash=sha256:dac7325615ac4e3fafa0fd756f6b7dc38c07e5f86cf99af70e2a6abd2238ddcc \
-    --hash=sha256:f8ec0cf43eab661c326a5bb2b62a8f9172eb412877cc00ad0e025b1e78c9881f
+pyspnego[kerberos]==0.7.0 \
+    --hash=sha256:0f43048a26a0c2c9edd8f3906f519022fcc5ae2baac1d2a65cdf9434ce0b761a \
+    --hash=sha256:247e2d6ad6a6eaeaa6c9239a167ccf8d8c3b3322c684c90c03e6e18504c61d3a \
+    --hash=sha256:5eb034dc30eba0ec85e9ba02ef7b7d26df8804027ea95e5280838919b5ceecdd \
+    --hash=sha256:64c665f1e88a07cc25b680a475755a393df2b6b2bb62b75b2e79d7059b056109 \
+    --hash=sha256:65705b3763dc696358a5d6f9c74398afe37824a739e110b2b61ab731d617ff75 \
+    --hash=sha256:6cc0bab3737f1323dc9ebc0ca49b48ded6a09009643424f471a909083d298dbf \
+    --hash=sha256:99c8fb4f4b859ae297c2f6cfed1511e46df574974a556c98a15c004251be0bec \
+    --hash=sha256:a35976b59e226e6166a69398240edee688ad40c96d5afdc0e07ac1f09fcc5830 \
+    --hash=sha256:da78096fd7c9f40e716f6fbe3e30d913103d75fd676f839f98fc3a6fee92fbe3 \
+    --hash=sha256:e6e9664123d5521ecd21c32322f8ceb1575c8282b2f838beb33484ebaf2e66f9 \
+    --hash=sha256:e7dfcc0c780de04273655a9c3f62ea09e24cd5cd401fe0039eac553b0732e362 \
+    --hash=sha256:f951ad694b4cc166932736be2756fa84c4dfbda9c4b30733d9fb62464f898f29
     # via requests-kerberos
 python-dateutil==2.8.2 \
     --hash=sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86 \
