@@ -34,9 +34,9 @@ filelock==3.9.0 \
     --hash=sha256:7b319f24340b51f55a2bf7a12ac0755a9b03e718311dac567a0f4f7fabd2f5de \
     --hash=sha256:f58d535af89bb9ad5cd4df046f741f8553a418c01a7856bf0d173bbc9f6bd16d
     # via virtualenv
-identify==2.5.12 \
-    --hash=sha256:0bc96b09c838310b6fcfcc61f78a981ea07f94836ef6ef553da5bb5d4745d662 \
-    --hash=sha256:e8a400c3062d980243d27ce10455a52832205649bbcaf27ffddb3dfaaf477bad
+identify==2.5.13 \
+    --hash=sha256:8aa48ce56e38c28b6faa9f261075dea0a942dfbb42b341b4e711896cbb40f3f7 \
+    --hash=sha256:abb546bca6f470228785338a01b539de8a85bbf46491250ae03363956d8ebb10
     # via pre-commit
 mypy-extensions==0.4.3 \
     --hash=sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d \
