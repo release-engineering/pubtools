@@ -9,9 +9,6 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -33,9 +30,7 @@
           <div class="body" role="main">
             
   <h1>Source code for pubtools._impl.pluggy</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
-
-<span class="kn">import</span> <span class="nn">sys</span>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 
@@ -75,7 +70,7 @@
 
 <span class="nd">@hookspec</span>
 <span class="k">def</span> <span class="nf">task_start</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Called when a task starts.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Called when a task starts.</span>
 
 <span class="sd">    This hook can be used to register additional hook implementations with</span>
 <span class="sd">    desired context.</span>
@@ -84,7 +79,7 @@
 
 <span class="nd">@hookspec</span>
 <span class="k">def</span> <span class="nf">task_stop</span><span class="p">(</span><span class="n">failed</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Called when a task ends.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Called when a task ends.</span>
 
 <span class="sd">    If :func:`task_start` was used to register additional hook implementations,</span>
 <span class="sd">    this hook should be used to unregister them.</span>
@@ -97,7 +92,7 @@
 
 <div class="viewcode-block" id="task_context"><a class="viewcode-back" href="../../../hooks.html#pubtools.pluggy.task_context">[docs]</a><span class="nd">@contextmanager</span>
 <span class="k">def</span> <span class="nf">task_context</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Run a block of code within a task context, ensuring task lifecycle hooks are invoked</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a block of code within a task context, ensuring task lifecycle hooks are invoked</span>
 <span class="sd">    when appropriate.</span>
 
 <span class="sd">    This is a context manager for use within pubtools task libraries where hooks</span>
@@ -132,7 +127,7 @@
 
 <span class="nd">@hookspec</span><span class="p">(</span><span class="n">firstresult</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">get_cert_key_paths</span><span class="p">(</span><span class="n">server_url</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get location of SSL certificates used to authenticate with a given service.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get location of SSL certificates used to authenticate with a given service.</span>
 
 <span class="sd">    If there are multiple hook implementations and multiple values are returned, the first</span>
 <span class="sd">    non-empty answer is considered canonical. The first answer is returned by the hook</span>
@@ -224,8 +219,8 @@
       &copy;2021, Red Hat.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
     </div>
 
