@@ -306,9 +306,9 @@ gssapi==1.8.2 \
     # via
     #   pyspnego
     #   requests-gssapi
-humanize==4.5.0 \
-    --hash=sha256:127e333677183070b82e90e0faef9440f9a16dab92143e52f4523afb08ca9290 \
-    --hash=sha256:d6ed00ed4dc59a66df71012e3d69cf655d7d21b02112d435871998969e8aedc8
+humanize==4.6.0 \
+    --hash=sha256:401201aca462749773f02920139f302450cb548b70489b9b4b92be39fe3c3c50 \
+    --hash=sha256:5f1f22bc65911eb1a6ffe7659bd6598e33dcfeeb904eb16ee1e705a09bf75916
     # via pubtools-pulplib
 idna==3.4 \
     --hash=sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4 \
@@ -427,9 +427,9 @@ monotonic==1.6 \
     --hash=sha256:3a55207bcfed53ddd5c5bae174524062935efed17792e9de2ad0205ce9ad63f7 \
     --hash=sha256:68687e19a14f11f26d140dd5c86f3dba4bf5df58003000ed467e0e2a69bca96c
     # via pubtools-quay
-more-executors==2.11.3 \
-    --hash=sha256:13b55a9ee053ae91ecaa8f327adbf9fec55ad4b434a6123e996f09acffaecaf2 \
-    --hash=sha256:859e7881efee83409fbb2d5a2d7d39d4a3dd1b981d0657e3d00148d1e6303396
+more-executors==2.11.4 \
+    --hash=sha256:a304139c6bece5be18aed7dcff4c48440412cb7cbe90f64ba4572772fcb0407f \
+    --hash=sha256:f1b21d72c4c15069e891d9b96bca05f9abde149e3c11ca54630c5a1a5ee8f4b5
     # via
     #   fastpurge
     #   pubtools-pulp
@@ -703,9 +703,9 @@ sphinxcontrib-devhelp==1.0.2 \
     --hash=sha256:8165223f9a335cc1af7ffe1ed31d2871f325254c0423bc0c4c7cd1c1e4734a2e \
     --hash=sha256:ff7f1afa7b9642e7060379360a67e9c41e8f3121f2ce9164266f61b9f4b338e4
     # via sphinx
-sphinxcontrib-htmlhelp==2.0.0 \
-    --hash=sha256:d412243dfb797ae3ec2b59eca0e52dac12e75a241bf0e4eb861e450d06c6ed07 \
-    --hash=sha256:f5f8bb2d0d629f398bf47d0d69c07bc13b65f75a81ad9e2f71a63d4b7a2f6db2
+sphinxcontrib-htmlhelp==2.0.1 \
+    --hash=sha256:0cbdd302815330058422b98a113195c9249825d681e18f11e8b1f78a2f11efff \
+    --hash=sha256:c38cb46dccf316c79de6e5515e1770414b797162b23cd3d06e67020e1d2a6903
     # via sphinx
 sphinxcontrib-jsmath==1.0.1 \
     --hash=sha256:2ec2eaebfb78f3f2078e73666b1415417a116cc848b72e5172e596c871103178 \
@@ -726,13 +726,13 @@ urllib3==1.26.14 \
     #   docker
     #   edgegrid-python
     #   requests
-websocket-client==1.5.0 \
-    --hash=sha256:561ca949e5bbb5d33409a37235db55c279235c78ee407802f1d2314fff8a8536 \
-    --hash=sha256:fb5d81b95d350f3a54838ebcb4c68a5353bbd1412ae8f068b1e5280faeb13074
+websocket-client==1.5.1 \
+    --hash=sha256:3f09e6d8230892547132177f575a4e3e73cfdf06526e20cc02aa1c3b47184d40 \
+    --hash=sha256:cdf5877568b7e83aa7cf2244ab56a3213de587bbe0ce9d8b9600fc77b455d89e
     # via docker
-zipp==3.12.0 \
-    --hash=sha256:73efd63936398aac78fd92b6f4865190119d6c91b531532e798977ea8dd402eb \
-    --hash=sha256:9eb0a4c5feab9b08871db0d672745b53450d7f26992fd1e4653aa43345e97b86
+zipp==3.12.1 \
+    --hash=sha256:6c4fe274b8f85ec73c37a8e4e3fa00df9fb9335da96fb789e3b96b318e5097b3 \
+    --hash=sha256:a3cac813d40993596b39ea9e93a18e8a2076d5c378b8bc88ec32ab264e04ad02
     # via importlib-metadata
 
 # WARNING: The following packages were not pinned, but pip requires them to be
