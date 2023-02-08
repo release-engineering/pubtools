@@ -1,8 +1,8 @@
 import sys
+
 import pytest
 
-
-from pubtools.pluggy import pm, hookimpl, task_context
+from pubtools.pluggy import hookimpl, pm, task_context
 
 
 class EventSpy(object):
