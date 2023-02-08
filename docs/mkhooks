@@ -3,9 +3,9 @@
 # A helper invoked during doc build to generate an index of all hooks
 # into hooks.rst.
 #
+import inspect
 import os
 import textwrap
-import inspect
 
 from pubtools.pluggy import pm, task_context
 
@@ -46,7 +46,6 @@ def dedent(docstr):
     # the rest.
 
     try:
-
         if not docstr.startswith("\n") and not docstr.startswith(" "):
             idx = docstr.index("\n ") + 1
 

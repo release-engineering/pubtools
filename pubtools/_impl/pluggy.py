@@ -1,5 +1,5 @@
-import sys
 import logging
+import sys
 from contextlib import contextmanager
 
 import pkg_resources

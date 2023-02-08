@@ -1,5 +1,5 @@
-import os
 import ctypes
+import os
 
 import pytest
 

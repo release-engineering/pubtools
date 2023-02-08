@@ -27,10 +27,10 @@ possible for the env vars to be used as documented.
 
 import logging
 import sys
-from os import environ
 from ctypes import cdll
+from os import environ
 
-from pubtools.pluggy import pm, hookimpl
+from pubtools.pluggy import hookimpl, pm
 
 LOG = logging.getLogger("pubtools")
 
@@ -64,7 +64,7 @@ def set_mallopt_tunables():
     # Set malloc options via mallopt() for all defined tunables.
     # Raises an exception on any type of error.
     libc = cdll.LoadLibrary("libc.so.6")
-    for (varname, flag) in TUNABLES.items():
+    for varname, flag in TUNABLES.items():
         if varname in environ:
             value = int(environ[varname])
             if libc.mallopt(flag, value) != 1:
