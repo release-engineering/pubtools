@@ -1,6 +1,6 @@
 import sys
 
-from pkg_resources import get_distribution, EntryPoint
+from pkg_resources import EntryPoint, get_distribution
 
 from pubtools.pluggy import task_context
 
