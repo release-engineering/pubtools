@@ -3,7 +3,7 @@ alabaster
 
 # RPM bindings are needed below but this is not directly in the
 # dependency tree.
-rpm-py-installer
+rpmdyn
 
 # Here we depend on any project which defines (or may in the future)
 # any hooks in pubtools namespace. This enables the hooks to appear in the
