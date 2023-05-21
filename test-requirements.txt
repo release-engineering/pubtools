@@ -116,6 +116,7 @@ cffi==1.15.1 \
     # via
     #   cryptography
     #   pynacl
+    #   rpmdyn
 cfgv==3.3.1 \
     --hash=sha256:c6a0883f3917a037485059700b9e75da2464e6c27051014ad85ba6aaa5884426 \
     --hash=sha256:f5a830efb9ce7a445376bb66ec94c638a9787422f96264c98edc6bdeed8ab736
@@ -772,8 +773,9 @@ requests-toolbelt==1.0.0 \
 rhsm==1.19.2 \
     --hash=sha256:156525483560d821dd858194af9692803d339b379f7a378c382a3782d0902329
     # via pubtools-pulp
-rpm-py-installer==1.2.0 \
-    --hash=sha256:88fcb3b4ecb77113a2f7d344ca64f20bceb587fde018d87f3ecf25c532958da6
+rpmdyn==2023.5.9 \
+    --hash=sha256:9d9857f536a8aa7486e8721c41e638a003512f60132eb1906248ecd8b88da966 \
+    --hash=sha256:bcad7dbea07483ce89b76464c3e79c7c153fc8b2d2b78657bd9983b12513a650
     # via -r requirements-docs.in
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
