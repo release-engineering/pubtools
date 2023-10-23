@@ -349,7 +349,7 @@ desired context.</p>
 this hook should be used to unregister them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>failed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – True if the task is failing (i.e. exiting with non-zero exit code, or
+<dd class="field-odd"><p><strong>failed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – True if the task is failing (i.e. exiting with non-zero exit code, or
 raising an exception).</p>
 </dd>
 </dl>
@@ -367,13 +367,13 @@ to be the same. Callers of this hook should be prepared to receive no result, an
 implement a reasonable fallback strategy in that case.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>server_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Service URL.</p>
+<dd class="field-odd"><p><strong>server_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Service URL.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Paths to SSL certificate and key.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -452,7 +452,7 @@ and may only contain a subset of the Pulp fields.</p>
 <dd><p>Invoked after repositories have been cleared on Quay.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>repository_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – ID of each cleared repository.</p>
+<dd class="field-odd"><p><strong>repository_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>) – ID of each cleared repository.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -463,7 +463,7 @@ and may only contain a subset of the Pulp fields.</p>
 <dd><p>Invoked after repositories have been removed from Quay.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>repository_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – ID of each removed repository.</p>
+<dd class="field-odd"><p><strong>repository_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>) – ID of each removed repository.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -475,8 +475,8 @@ and may only contain a subset of the Pulp fields.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Source image reference.</p></li>
-<li><p><strong>dest_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – Destination image reference(s).</p></li>
+<li><p><strong>source_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Source image reference.</p></li>
+<li><p><strong>dest_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>) – Destination image reference(s).</p></li>
 </ul>
 </dd>
 </dl>
@@ -489,8 +489,8 @@ and may only contain a subset of the Pulp fields.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>untag_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – Image references for which tags were removed.</p></li>
-<li><p><strong>lost_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – Image references (by digest) which are no longer reachable from any
+<li><p><strong>untag_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>) – Image references for which tags were removed.</p></li>
+<li><p><strong>lost_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>) – Image references (by digest) which are no longer reachable from any
 tag due to the untag operation.</p></li>
 </ul>
 </dd>
@@ -577,7 +577,7 @@ tag due to the untag operation.</p></li>
       &copy;2021, Red Hat.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
