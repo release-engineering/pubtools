@@ -1,4 +1,5 @@
 import os
+from unittest import mock
 from unittest.mock import Mock
 
 import pytest
@@ -8,12 +9,10 @@ from opentelemetry.exporter.otlp.proto.http.trace_exporter import \
 from pubtools.tracing import TracingWrapper, instrument_func
 
 
-def test_instrument_func():
-    os.environ["PUB_OTEL_TRACING"] = "true"
-    os.environ[
-        "traceparent"
-    ] = "00-cefb2b8db35d5f3c0dfdf79d5aab1451-1f2bb7927f140744-01"
-
+@mock.patch.dict(
+    os.environ, {"PUB_OTEL_TRACING": "true", "traceparent": "00-xxxx-xxx-01"}
+)
+def test_instrument_func_enabled():
     mock_export = Mock()
     OTLPSpanExporter.export = mock_export
 
@@ -34,9 +33,8 @@ def test_instrument_func():
     mock_export.assert_called()
 
 
-def test_not_enable_tracing():
-    os.environ["PUB_OTEL_TRACING"] = ""
-
+@mock.patch.dict(os.environ, {"PUB_OTEL_TRACING": "false"})
+def test_instrument_func_disabled():
     mock_export = Mock()
     OTLPSpanExporter.export = mock_export
 
