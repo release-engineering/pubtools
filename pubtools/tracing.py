@@ -6,24 +6,22 @@ Usage:
           pass
 
 """
-import os
 import functools
 import logging
+import os
 import threading
 
-from opentelemetry import trace, context
-from opentelemetry.trace import Status, StatusCode
-from opentelemetry.sdk.resources import Resource, SERVICE_NAME
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import (
-    BatchSpanProcessor,
-)
-from opentelemetry.propagate import set_global_textmap
-from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
-from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
-from opentelemetry import baggage
+from opentelemetry import baggage, context, trace
 from opentelemetry.baggage.propagation import W3CBaggagePropagator
-
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import \
+    OTLPSpanExporter
+from opentelemetry.propagate import set_global_textmap
+from opentelemetry.sdk.resources import SERVICE_NAME, Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.trace import Status, StatusCode
+from opentelemetry.trace.propagation.tracecontext import \
+    TraceContextTextMapPropagator
 
 propagator = TraceContextTextMapPropagator()
 baggage_propagator = W3CBaggagePropagator()
@@ -82,7 +80,9 @@ def instrument_func(span_name=None, args_to_attr=False):
             # Try to extract trace context from environment variables.
             if not context.get_current():
                 trace_ctx = propagator.extract(carrier=os.environ)
-                trace_ctx = baggage_propagator.extract(carrier=os.environ, context=trace_ctx)
+                trace_ctx = baggage_propagator.extract(
+                    carrier=os.environ, context=trace_ctx
+                )
 
             if trace_ctx:
                 token = context.attach(trace_ctx)
@@ -92,7 +92,9 @@ def instrument_func(span_name=None, args_to_attr=False):
             }
             if args_to_attr:
                 attributes["args"] = ", ".join(map(str, args))
-                attributes["kwargs"] = ", ".join("{}={}".format(k, v) for k, v in kwargs.items())
+                attributes["kwargs"] = ", ".join(
+                    "{}={}".format(k, v) for k, v in kwargs.items()
+                )
 
             with tracer.start_as_current_span(
                 name=span_name or func.__qualname__,

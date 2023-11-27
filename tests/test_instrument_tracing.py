@@ -1,15 +1,18 @@
 import os
-
-from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
-from pubtools.tracing import instrument_func, TracingWrapper
-
 from unittest.mock import Mock
+
 import pytest
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import \
+    OTLPSpanExporter
+
+from pubtools.tracing import TracingWrapper, instrument_func
 
 
 def test_instrument_func():
     os.environ["PUB_OTEL_TRACING"] = "true"
-    os.environ["traceparent"] = "00-cefb2b8db35d5f3c0dfdf79d5aab1451-1f2bb7927f140744-01"
+    os.environ[
+        "traceparent"
+    ] = "00-cefb2b8db35d5f3c0dfdf79d5aab1451-1f2bb7927f140744-01"
 
     mock_export = Mock()
     OTLPSpanExporter.export = mock_export
