@@ -32,3 +32,18 @@ def test_instrument_func():
 
     TracingWrapper.processor.force_flush()
     mock_export.assert_called()
+
+
+def test_not_enable_tracing():
+    os.environ["PUB_OTEL_TRACING"] = ""
+
+    mock_export = Mock()
+    OTLPSpanExporter.export = mock_export
+
+    @instrument_func()
+    def func_normal():
+        return 1
+
+    assert not TracingWrapper()
+    assert func_normal() == 1
+    mock_export.assert_not_called()
