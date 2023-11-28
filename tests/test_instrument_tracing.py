@@ -2,20 +2,28 @@ import os
 from collections import deque
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from unittest import mock
+import pytest
 
 from opentelemetry.sdk.trace.export import SpanExportResult
+from opentelemetry.trace.status import StatusCode
 
 from pubtools.tracing import TracingWrapper, instrument_func
 
 
-def test_instrument_func_multiple_threads():
-    trace_id = "cefb2b8db35d5f3c0dfdf79d5aab1451"
-    span_id = "1f2bb7927f140744"
-    os.environ["PUB_OTEL_TRACING"] = "true"
-    os.environ["traceparent"] = f"00-{trace_id}-{span_id}-01"
-    os.environ["OTEL_SERVICE_NAME"] = "local-test"
-    os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"] = "http://mock"
+root_trace_id = "cefb2b8db35d5f3c0dfdf79d5aab1451"
+root_span_id = "1f2bb7927f140744"
 
+
+@mock.patch.dict(
+    os.environ,
+    {
+        "PUB_OTEL_TRACING": "true",
+        "traceparent": f"00-{root_trace_id}-{root_span_id}-01",
+        "OTEL_SERVICE_NAME": "local-test",
+        "OTEL_EXPORTER_OTLP_ENDPOINT": "http://mock",
+    },
+)
+def test_instrument_func_multiple_threads():
     # save spans
     queue = deque()
 
@@ -58,13 +66,15 @@ def test_instrument_func_multiple_threads():
     assert sub_thread_span
 
     # Both are in the same trace
-    assert sub_thread_span.context.trace_id == main_thread_span.context.trace_id
+    assert (
+        sub_thread_span.context.trace_id
+        == main_thread_span.context.trace_id
+        == int(root_trace_id, 16)
+    )
 
-    # The span's parent in sub-thread is the span in main thread.
+    # Verify span parent and child relation
     assert sub_thread_span.parent.span_id == main_thread_span.context.span_id
-
-    # The parent of the span in main thread
-    assert str(hex(main_thread_span.parent.span_id)) == f"0x{span_id}"
+    assert main_thread_span.parent.span_id == int(root_span_id, 16)
 
     # Assert function parameters in span attributes
     assert (
@@ -75,6 +85,46 @@ def test_instrument_func_multiple_threads():
         "kwargs" in main_thread_span.attributes
         and main_thread_span.attributes["kwargs"] == "param2=p2"
     )
+
+
+@mock.patch.dict(
+    os.environ,
+    {
+        "PUB_OTEL_TRACING": "true",
+        "OTEL_SERVICE_NAME": "local-test",
+        "OTEL_EXPORTER_OTLP_ENDPOINT": "http://mock",
+    },
+)
+def test_instrument_func_exception():
+    # save spans
+    queue = deque()
+    # mock OTLPSpanExporter.export()
+    def mock_export(spans):
+        for span in spans:
+            queue.append(span)
+        return SpanExportResult.SUCCESS
+
+    otlp_exporter = TracingWrapper().processor.span_exporter
+    otlp_exporter.export = mock_export
+
+    @instrument_func(span_name="func_with_exception")
+    def func_with_exception():
+        raise Exception("failed with exception")
+
+    assert TracingWrapper()
+    with pytest.raises(Exception):
+        func_with_exception()
+
+    TracingWrapper.processor.force_flush()
+    out_spans = list(queue)
+
+    assert len(out_spans) == 1
+
+    span = out_spans[0]
+    assert span.name == "func_with_exception"
+    assert span.status.status_code == StatusCode.ERROR
+    assert len(span.events) >= 1
+    assert span.events[0].attributes["exception.message"] == "failed with exception"
 
 
 @mock.patch.dict(os.environ, {"PUB_OTEL_TRACING": "false"})
