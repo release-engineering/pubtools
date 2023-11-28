@@ -2,13 +2,12 @@ import os
 from collections import deque
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from unittest import mock
-import pytest
 
+import pytest
 from opentelemetry.sdk.trace.export import SpanExportResult
 from opentelemetry.trace.status import StatusCode
 
 from pubtools.tracing import TracingWrapper, instrument_func
-
 
 root_trace_id = "cefb2b8db35d5f3c0dfdf79d5aab1451"
 root_span_id = "1f2bb7927f140744"
@@ -98,6 +97,7 @@ def test_instrument_func_multiple_threads():
 def test_instrument_func_exception():
     # save spans
     queue = deque()
+
     # mock OTLPSpanExporter.export()
     def mock_export(spans):
         for span in spans:
