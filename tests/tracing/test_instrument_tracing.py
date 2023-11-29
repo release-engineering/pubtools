@@ -1,8 +1,8 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import pytest
-from opentelemetry.trace.status import StatusCode
 from opentelemetry import trace
+from opentelemetry.trace.status import StatusCode
 
 from pubtools._impl.tracing import TracingWrapper, instrument_func
 
