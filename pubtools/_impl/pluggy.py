@@ -112,4 +112,16 @@ def get_cert_key_paths(server_url):
     """
 
 
+@hookspec(firstresult=True)
+def otel_exporter():
+    """Return an OTEL exporter, used by OTEL instrumentation.
+
+    If OTEL tracing is enabled and this hook is not implemented, a default
+    `ConsoleSpanExporter` will be used.
+
+    :return: Instance of SpanExporter.
+    :rtype: SpanExporter
+    """
+
+
 pm.add_hookspecs(sys.modules[__name__])
