@@ -30,7 +30,7 @@ log = logging.getLogger(__name__)
 
 
 class TracingWrapper:
-    """Wrapper class that will wrap all methods of calls with the instrument_tracing decorator."""
+    """Wrapper class to initialize opentelemetry instrumentation"""
 
     __instance = None
 
@@ -61,14 +61,15 @@ def instrument_func(span_name=None, carrier=None, args_to_attr=False):
 
     Args:
         span_name: str
-            Span name. The name of the function will be assigned to span name by default.
+            Span name. It's assigned with the function's name by default if it's omitted.
         carrier: dict
-            A dictionary which holds trace context.
+            A dictionary which holds trace context. Trace context will be extracted from it if
+            if it's provided.
         args_to_attr: boolean
-            Add function parameters into span attributes.
+            Add function parameters into span attributes or not.
 
     Returns:
-        The decorated function or class
+        The decorated function
     """
     tracer = trace.get_tracer(__name__)
 

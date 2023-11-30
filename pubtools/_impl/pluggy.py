@@ -120,7 +120,7 @@ def otel_exporter():
     `ConsoleSpanExporter` will be used.
 
     :return: Instance of SpanExporter.
-    :rtype: SpanExporter
+    :rtype: opentelemetry.sdk.trace.export.SpanExporter
     """
 
 
