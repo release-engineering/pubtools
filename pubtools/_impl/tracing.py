@@ -42,9 +42,11 @@ class TracingWrapper:
         if TracingWrapper.__instance is None:
             log.info("Creating TracingWrapper instance")
             cls.__instance = super().__new__(cls)
-            exporter = pm.hook.otel_exporter()
-            if not exporter:
-                exporter = ConsoleSpanExporter()
+            exporter = (
+                pm.hook.otel_exporter()
+                if pm.hook.otel_exporter()
+                else ConsoleSpanExporter()
+            )
             cls.provider = TracerProvider(
                 resource=Resource.create({SERVICE_NAME: os.getenv("OTEL_SERVICE_NAME")})
             )

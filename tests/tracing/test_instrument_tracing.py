@@ -4,7 +4,7 @@ import pytest
 from opentelemetry import trace
 from opentelemetry.trace.status import StatusCode
 
-from pubtools._impl.tracing import TracingWrapper, instrument_func
+from pubtools.tracing import TracingWrapper, instrument_func
 
 
 def test_instrument_func_in_context(monkeypatch, fake_span_exporter):
