@@ -116,8 +116,6 @@ def test_instrument_func_multiple_threads(monkeypatch, fake_span_exporter):
         and main_thread_span.attributes["kwargs"] == "param2=p2"
     )
 
-    del tracing_wrapper
-
 
 def test_instrument_func_exception(monkeypatch, fake_span_exporter):
     monkeypatch.setenv("OTEL_TRACING", "true")

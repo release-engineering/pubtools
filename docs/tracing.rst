@@ -30,14 +30,14 @@ OTEL Exporter
 ~~~~~~~~~~~~~~
 
 In order to visualize and analyze telemetry, an exporter is required to export tracing data to
-a backend. As part of OpenTelemetry Python you will find many exporters being available. Which exporter
-should be used depends on usage scenarios, e.g:
+a backend, e.g: `jaeger <https://www.jaegertracing.io/>`_. As part of OpenTelemetry Python you
+will find many exporters being available. Which exporter should be used depends on usage scenarios, e.g:
 `ConsoleSpanExporter <https://opentelemetry.io/docs/instrumentation/python/exporters/#console-exporter/>`_
 is useful for development and debugging tasks, while
 `OTLPSpanExporter <https://opentelemetry.io/docs/instrumentation/python/exporters/#otlp-endpoint-or-collector/>`_
-can be more suitable on production environment. So choosing different exporters for different scenarios is intended
+can be more suitable on production environment. So choosing different exporters for different scenarios is expected.
 
-In order to have a exporter you expected, the hook :meth:`otel_exporter` is required to implemented,
+In order to have a exporter you expected, the hook :meth:`otel_exporter` is needed to be implemented,
 otherwise `ConsoleSpanExporter <https://opentelemetry.io/docs/instrumentation/python/exporters/#console-exporter/>`_
 will be used.
 
@@ -45,8 +45,7 @@ Instrument tracing for functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before instrument tracing for functions, :class:`TracingWrapper` should be called once in the service, which
-initialize trace provider, batch span processor and exporter (:meth:`otel_exporter` if it does not
-return null, otherwise using ConsoleSpanExporter).
+initializes trace provider, batch span processor and exporter.
 
 .. code-block:: python
 
