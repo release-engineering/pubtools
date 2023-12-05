@@ -14,7 +14,7 @@ It provides an instrument tracing wrapper function to use to instrument function
 
 
 Usage
-.....................
+.....
 
 Set environment variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -27,7 +27,7 @@ Following environment variables are used in the module:
 
 
 OTEL Exporter
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 In order to visualize and analyze telemetry, an exporter is required to export tracing data to
 a backend, e.g: `jaeger <https://www.jaegertracing.io/>`_. As part of OpenTelemetry Python you
@@ -44,27 +44,17 @@ will be used.
 Instrument tracing for functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before instrument tracing for functions, :class:`TracingWrapper` should be called once in the service, which
-initializes trace provider, batch span processor and exporter.
-
-.. code-block:: python
-
-     from pubtools.tracing import TracingWrapper
-
-     # Initialize a trace provider, batch span processor and exporter.
-     tracing_wrapper = TracingWrapper()
-
 **Basic instrument tracing for a function**
 
 .. code-block:: python
 
-     from pubtools.tracing import instrument_func, TracingWrapper
+     from pubtools.tracing import get_trace_wrapper
 
      # Initialize a trace provider, batch span processor and exporter.
-     tracing_wrapper = TracingWrapper()
+     tw = get_trace_wrapper()
 
      # Create a span for the function foo.
-     @instrument_func(span_name="foo_span", args_to_attr=True)
+     @tw.instrument_func(span_name="foo_span", args_to_attr=True)
      def foo(p1="p1"):
          pass
      ...
@@ -85,11 +75,13 @@ The wrapper function is able to extract trace context from the carrier if it's p
 
 .. code-block:: python
 
-     from pubtools.tracing import instrument_func
+     from pubtools.tracing import get_trace_wrapper
 
      # carrier={'traceparent': '00-355989206d66228f21ff34634b77ae1a-97efa33ebed5d06c-01',...}
-
-     @instrument_func(carrier=carrier):
+     
+     tw = get_trace_wrapper()
+     
+     @tw.instrument_func(carrier=carrier):
      def foo():
          pass
      ...
@@ -103,12 +95,14 @@ Trace context can be extracted from environment variables.
 
 .. code-block:: python
 
-     from pubtools.tracing import instrument_func
+     from pubtools.tracing import get_trace_wrapper
 
      # 'traceparent' environment variable is set.
      # os.environ["traceparent"] = "00-355989206d66228f21ff34634b77ae1a-97efa33ebed5d06c-01"
-
-     @instrument_func():
+     
+     tw = get_trace_wrapper()
+     
+     @tw.instrument_func():
      def foo():
          pass
      ...
@@ -122,13 +116,15 @@ for example:
 
 .. code-block:: python
 
-     from pubtools.tracing import instrument_func
+     from pubtools.tracing import get_trace_wrapper
 
-     @instrument_func(span_name="sub_thread_span")
+     tw = get_trace_wrapper()
+
+     @tw.instrument_func(span_name="sub_thread_span")
      def sub_thread():
          return 1
 
-     @instrument_func(span_name="main_thread_span")
+     @tw.instrument_func(span_name="main_thread_span")
      def main_thread(param1, param2):
          with ThreadPoolExecutor(max_workers=2) as executor:
              future_res = [executor.submit(sub_thread) for i in range(1, 3)]
@@ -141,4 +137,6 @@ is the child of ``main_thread_span`` span.
 API reference
 -------------
 
-.. autofunction:: pubtools.tracing.instrument_func
+.. autofunction:: pubtools.tracing.get_trace_wrapper
+
+.. autofunction:: pubtools._impl.tracing.TracingWrapper.instrument_func

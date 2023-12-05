@@ -1,3 +1,3 @@
-from pubtools._impl.tracing import TracingWrapper, instrument_func
+from pubtools._impl.tracing import get_trace_wrapper
 
-__all__ = ["instrument_func", "TracingWrapper"]
+__all__ = ["get_trace_wrapper"]
