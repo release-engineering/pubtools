@@ -16,9 +16,11 @@ from opentelemetry.baggage.propagation import W3CBaggagePropagator
 from opentelemetry.propagate import set_global_textmap
 from opentelemetry.sdk.resources import SERVICE_NAME, Resource
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
+from opentelemetry.sdk.trace.export import (BatchSpanProcessor,
+                                            ConsoleSpanExporter)
 from opentelemetry.trace import Status, StatusCode
-from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
+from opentelemetry.trace.propagation.tracecontext import \
+    TraceContextTextMapPropagator
 
 from pubtools.pluggy import pm
 
@@ -39,7 +41,10 @@ class TracingWrapper:
     __instance = None
 
     def __new__(cls):
-        if TracingWrapper.__instance is None and os.getenv("OTEL_TRACING", "").lower() == "true":
+        if (
+            TracingWrapper.__instance is None
+            and os.getenv("OTEL_TRACING", "").lower() == "true"
+        ):
             log.info("Creating TracingWrapper instance")
             cls.__instance = super().__new__(cls)
             exporter = pm.hook.otel_exporter()
@@ -93,7 +98,9 @@ class TracingWrapper:
                     # Extract trace context from carrier.
                     if carrier:
                         trace_ctx = propagator.extract(carrier=carrier)
-                        trace_ctx = baggage_propagator.extract(carrier=carrier, context=trace_ctx)
+                        trace_ctx = baggage_propagator.extract(
+                            carrier=carrier, context=trace_ctx
+                        )
                     else:
                         # Try to extract trace context from environment variables.
                         trace_ctx = propagator.extract(carrier=os.environ)
