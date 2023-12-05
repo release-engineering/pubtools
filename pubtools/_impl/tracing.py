@@ -38,11 +38,9 @@ class TracingWrapper:
     """Wrapper class to initialize opentelemetry instrumentation and provide a helper function
     for instrumenting a function"""
 
-    __instance = None
-
     def __new__(cls):
-        if TracingWrapper.__instance is None:
-            cls.__instance = super().__new__(cls)
+        if not hasattr(TracingWrapper, "instance"):
+            cls.instance = super().__new__(cls)
             if os.getenv("OTEL_TRACING", "").lower() == "true":
                 log.info("Creating TracingWrapper instance")
                 exporter = pm.hook.otel_exporter() or ConsoleSpanExporter()
@@ -56,7 +54,7 @@ class TracingWrapper:
                 trace.set_tracer_provider(cls.provider)
                 set_global_textmap(propagator)
                 cls.tracer = trace.get_tracer(__name__)
-        return cls.__instance
+        return cls.instance
 
     def instrument_func(self, span_name=None, carrier=None, args_to_attr=False):
         """Instrument tracing for a function.
