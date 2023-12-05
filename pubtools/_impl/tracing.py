@@ -47,7 +47,9 @@ class TracingWrapper:
                 log.info("Creating TracingWrapper instance")
                 exporter = pm.hook.otel_exporter() or ConsoleSpanExporter()
                 cls.provider = TracerProvider(
-                    resource=Resource.create({SERVICE_NAME: os.getenv("OTEL_SERVICE_NAME")})
+                    resource=Resource.create(
+                        {SERVICE_NAME: os.getenv("OTEL_SERVICE_NAME")}
+                    )
                 )
                 cls.processor = BatchSpanProcessor(exporter)
                 cls.provider.add_span_processor(cls.processor)
@@ -135,5 +137,5 @@ class TracingWrapper:
 
     def force_flush(self):
         """Flush trace data into OTEL collectors"""
-        if hasattr(self, 'processor'):
+        if hasattr(self, "processor"):
             self.processor.force_flush()
