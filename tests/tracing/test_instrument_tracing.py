@@ -4,8 +4,8 @@ import pytest
 from opentelemetry import trace
 from opentelemetry.trace.status import StatusCode
 
-from pubtools.tracing import get_trace_wrapper
 from pubtools._impl.tracing import TracingWrapper
+from pubtools.tracing import get_trace_wrapper
 
 
 def test_instrument_func_in_context(monkeypatch, fake_span_exporter):
@@ -142,11 +142,11 @@ def test_instrument_func_exception(monkeypatch, fake_span_exporter):
 
 def test_instrument_func_disabled(monkeypatch):
     # Wipe exist TracingWrapper instance
-    if hasattr(TracingWrapper, 'provider'):
+    if hasattr(TracingWrapper, "provider"):
         del TracingWrapper.provider
         del TracingWrapper.processor
         del TracingWrapper.tracer
-    if hasattr(TracingWrapper, 'instance'):
+    if hasattr(TracingWrapper, "instance"):
         del TracingWrapper.instance
 
     monkeypatch.setenv("OTEL_TRACING", "false")
