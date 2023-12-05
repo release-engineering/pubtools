@@ -41,23 +41,19 @@ class TracingWrapper:
     __instance = None
 
     def __new__(cls):
-        if (
-            TracingWrapper.__instance is None
-            and os.getenv("OTEL_TRACING", "").lower() == "true"
-        ):
-            log.info("Creating TracingWrapper instance")
+        if TracingWrapper.__instance is None:
             cls.__instance = super().__new__(cls)
-            exporter = pm.hook.otel_exporter()
-            if not exporter:
-                exporter = ConsoleSpanExporter()
-            cls.provider = TracerProvider(
-                resource=Resource.create({SERVICE_NAME: os.getenv("OTEL_SERVICE_NAME")})
-            )
-            cls.processor = BatchSpanProcessor(exporter)
-            cls.provider.add_span_processor(cls.processor)
-            trace.set_tracer_provider(cls.provider)
-            set_global_textmap(propagator)
-            cls.tracer = trace.get_tracer(__name__)
+            if os.getenv("OTEL_TRACING", "").lower() == "true":
+                log.info("Creating TracingWrapper instance")
+                exporter = pm.hook.otel_exporter() or ConsoleSpanExporter()
+                cls.provider = TracerProvider(
+                    resource=Resource.create({SERVICE_NAME: os.getenv("OTEL_SERVICE_NAME")})
+                )
+                cls.processor = BatchSpanProcessor(exporter)
+                cls.provider.add_span_processor(cls.processor)
+                trace.set_tracer_provider(cls.provider)
+                set_global_textmap(propagator)
+                cls.tracer = trace.get_tracer(__name__)
         return cls.__instance
 
     def instrument_func(self, span_name=None, carrier=None, args_to_attr=False):
@@ -136,3 +132,8 @@ class TracingWrapper:
             return wrap
 
         return _instrument_func
+
+    def force_flush(self):
+        """Flush trace data into OTEL collectors"""
+        if hasattr(self, 'processor'):
+            self.processor.force_flush()

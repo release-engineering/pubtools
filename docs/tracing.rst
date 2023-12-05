@@ -140,3 +140,5 @@ API reference
 .. autofunction:: pubtools.tracing.get_trace_wrapper
 
 .. autofunction:: pubtools._impl.tracing.TracingWrapper.instrument_func
+
+.. autofunction:: pubtools._impl.tracing.TracingWrapper.force_flush

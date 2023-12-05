@@ -12,7 +12,6 @@ def test_instrument_func_in_context(monkeypatch, fake_span_exporter):
     monkeypatch.setenv("OTEL_SERVICE_NAME", "local-test2")
 
     tw = get_trace_wrapper()
-    assert tw
 
     @tw.instrument_func(span_name="child_span")
     def foo():
@@ -21,7 +20,7 @@ def test_instrument_func_in_context(monkeypatch, fake_span_exporter):
     with trace.get_tracer(__name__).start_as_current_span(name="parent_span"):
         foo()
 
-    tw.processor.force_flush()
+    tw.force_flush()
     out_spans = tw.processor.span_exporter.get_spans()
     assert len(out_spans) == 2
     if out_spans[0].name == "parent_span":
@@ -44,7 +43,6 @@ def test_instrument_func_carrier(monkeypatch, fake_span_exporter):
     carrier = {"traceparent": f"00-{root_trace_id}-{root_span_id}-01"}
 
     tw = get_trace_wrapper()
-    assert tw
 
     @tw.instrument_func(span_name="func_with_carrier", carrier=carrier)
     def foo():
@@ -52,7 +50,7 @@ def test_instrument_func_carrier(monkeypatch, fake_span_exporter):
 
     foo()
 
-    tw.processor.force_flush()
+    tw.force_flush()
     out_spans = tw.processor.span_exporter.get_spans()
     assert len(out_spans) == 1
     span = out_spans[0]
@@ -82,7 +80,7 @@ def test_instrument_func_multiple_threads(monkeypatch, fake_span_exporter):
             as_completed(future_res)
 
     main_thread("p1", param2="p2")
-    tw.processor.force_flush()
+    tw.force_flush()
 
     main_thread_span = None
     sub_thread_span = None
@@ -127,11 +125,10 @@ def test_instrument_func_exception(monkeypatch, fake_span_exporter):
     def func_with_exception():
         raise Exception("failed with exception")
 
-    assert tw
     with pytest.raises(Exception):
         func_with_exception()
 
-    tw.processor.force_flush()
+    tw.force_flush()
     out_spans = tw.processor.span_exporter.get_spans()
 
     assert len(out_spans) == 1
