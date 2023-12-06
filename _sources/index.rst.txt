@@ -11,6 +11,7 @@ Publishing tools project family.
    projects
    devguide
    hooks
+   tracing
 
 Introduction
 ------------

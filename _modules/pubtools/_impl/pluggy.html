@@ -146,6 +146,18 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 
+<span class="nd">@hookspec</span><span class="p">(</span><span class="n">firstresult</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">otel_exporter</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return an OTEL exporter, used by OTEL instrumentation.</span>
+
+<span class="sd">    If OTEL tracing is enabled and this hook is not implemented, a default</span>
+<span class="sd">    `ConsoleSpanExporter` will be used.</span>
+
+<span class="sd">    :return: Instance of SpanExporter.</span>
+<span class="sd">    :rtype: opentelemetry.sdk.trace.export.SpanExporter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
 <span class="n">pm</span><span class="o">.</span><span class="n">add_hookspecs</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">])</span>
 </pre></div>
 
@@ -173,6 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../projects.html">Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../devguide.html">Developer Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tracing.html">Tracing</a></li>
 </ul>
 
 

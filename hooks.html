@@ -13,6 +13,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tracing" href="tracing.html" />
     <link rel="prev" title="Developer Guide" href="devguide.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -307,28 +308,31 @@ namespace.</p>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools</span></code></p></td>
 <td><p><a class="reference internal" href="#get_cert_key_paths" title="get_cert_key_paths"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_cert_key_paths()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulplib</span></code></p></td>
-<td><p><a class="reference internal" href="#pulp_repository_pre_publish" title="pulp_repository_pre_publish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pulp_repository_pre_publish()</span></code></a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools</span></code></p></td>
+<td><p><a class="reference internal" href="#otel_exporter" title="otel_exporter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">otel_exporter()</span></code></a></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulplib</span></code></p></td>
+<td><p><a class="reference internal" href="#pulp_repository_pre_publish" title="pulp_repository_pre_publish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pulp_repository_pre_publish()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulplib</span></code></p></td>
 <td><p><a class="reference internal" href="#pulp_repository_published" title="pulp_repository_published"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pulp_repository_published()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulp</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulp</span></code></p></td>
 <td><p><a class="reference internal" href="#task_pulp_flush" title="task_pulp_flush"><code class="xref py py-meth docutils literal notranslate"><span class="pre">task_pulp_flush()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulp</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-pulp</span></code></p></td>
 <td><p><a class="reference internal" href="#pulp_item_push_finished" title="pulp_item_push_finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pulp_item_push_finished()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
 <td><p><a class="reference internal" href="#quay_repositories_cleared" title="quay_repositories_cleared"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quay_repositories_cleared()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
 <td><p><a class="reference internal" href="#quay_repositories_removed" title="quay_repositories_removed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quay_repositories_removed()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
 <td><p><a class="reference internal" href="#quay_images_tagged" title="quay_images_tagged"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quay_images_tagged()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pubtools-quay</span></code></p></td>
 <td><p><a class="reference internal" href="#quay_images_untagged" title="quay_images_untagged"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quay_images_untagged()</span></code></a></p></td>
 </tr>
 </tbody>
@@ -374,6 +378,22 @@ implement a reasonable fallback strategy in that case.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="otel_exporter">
+<span class="sig-name descname"><span class="pre">otel_exporter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#otel_exporter" title="Link to this definition">¶</a></dt>
+<dd><p>Return an OTEL exporter, used by OTEL instrumentation.</p>
+<p>If OTEL tracing is enabled and this hook is not implemented, a default
+<cite>ConsoleSpanExporter</cite> will be used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Instance of SpanExporter.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>opentelemetry.sdk.trace.export.SpanExporter</p>
 </dd>
 </dl>
 </dd></dl>
@@ -530,6 +550,7 @@ tag due to the untag operation.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="#hook-reference">Hook reference</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a></li>
 </ul>
 
 
@@ -548,6 +569,7 @@ tag due to the untag operation.</p></li>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="devguide.html" title="previous chapter">Developer Guide</a></li>
+      <li>Next: <a href="tracing.html" title="next chapter">Tracing</a></li>
   </ul></li>
 </ul>
 </div>

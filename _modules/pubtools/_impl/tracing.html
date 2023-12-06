@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pubtools._impl.tracing &#8212; pubtools  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=1fc5d657" />
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pubtools._impl.tracing</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Instrument functions.</span>
+
+<span class="sd">Usage:</span>
+<span class="sd">    @instrument_func()</span>
+<span class="sd">      def func():</span>
+<span class="sd">          pass</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">baggage</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.baggage.propagation</span> <span class="kn">import</span> <span class="n">W3CBaggagePropagator</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.propagate</span> <span class="kn">import</span> <span class="n">set_global_textmap</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.resources</span> <span class="kn">import</span> <span class="n">SERVICE_NAME</span><span class="p">,</span> <span class="n">Resource</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">BatchSpanProcessor</span><span class="p">,</span> <span class="n">ConsoleSpanExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.trace</span> <span class="kn">import</span> <span class="n">Status</span><span class="p">,</span> <span class="n">StatusCode</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.trace.propagation.tracecontext</span> <span class="kn">import</span> <span class="n">TraceContextTextMapPropagator</span>
+
+<span class="kn">from</span> <span class="nn">pubtools.pluggy</span> <span class="kn">import</span> <span class="n">pm</span>
+
+<span class="n">propagator</span> <span class="o">=</span> <span class="n">TraceContextTextMapPropagator</span><span class="p">()</span>
+<span class="n">baggage_propagator</span> <span class="o">=</span> <span class="n">W3CBaggagePropagator</span><span class="p">()</span>
+<span class="n">TRACE_WRAPPER</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_trace_wrapper">
+<a class="viewcode-back" href="../../../tracing.html#pubtools.tracing.get_trace_wrapper">[docs]</a>
+<span class="k">def</span> <span class="nf">get_trace_wrapper</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;return a global trace wrapper instance&quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">TRACE_WRAPPER</span>
+    <span class="k">if</span> <span class="n">TRACE_WRAPPER</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">TRACE_WRAPPER</span> <span class="o">=</span> <span class="n">TracingWrapper</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">TRACE_WRAPPER</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">TracingWrapper</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper class to initialize opentelemetry instrumentation and provide a helper function</span>
+<span class="sd">    for instrumenting a function&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_processor</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_provider</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_trace</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OTEL_TRACING&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_trace</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Creating TracingWrapper instance&quot;</span><span class="p">)</span>
+            <span class="n">exporter</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">hook</span><span class="o">.</span><span class="n">otel_exporter</span><span class="p">()</span> <span class="ow">or</span> <span class="n">ConsoleSpanExporter</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_processor</span> <span class="o">=</span> <span class="n">BatchSpanProcessor</span><span class="p">(</span><span class="n">exporter</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_provider</span> <span class="o">=</span> <span class="n">TracerProvider</span><span class="p">(</span>
+                <span class="n">resource</span><span class="o">=</span><span class="n">Resource</span><span class="o">.</span><span class="n">create</span><span class="p">({</span><span class="n">SERVICE_NAME</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OTEL_SERVICE_NAME&quot;</span><span class="p">)})</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_provider</span><span class="o">.</span><span class="n">add_span_processor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_processor</span><span class="p">)</span>
+            <span class="n">trace</span><span class="o">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_provider</span><span class="p">)</span>
+            <span class="n">set_global_textmap</span><span class="p">(</span><span class="n">propagator</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">instrument_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">carrier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args_to_attr</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instrument tracing for a function.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            span_name: str</span>
+<span class="sd">                Span name. It&#39;s assigned with the function&#39;s name by default if it&#39;s omitted.</span>
+<span class="sd">            carrier: dict</span>
+<span class="sd">                A dictionary which holds trace context. Trace context will be extracted from it if</span>
+<span class="sd">                if it&#39;s provided.</span>
+<span class="sd">            args_to_attr: boolean</span>
+<span class="sd">                Add function parameters into span attributes or not.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The decorated function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">_instrument_func</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+            <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">attributes</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;function_name&quot;</span><span class="p">:</span> <span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="n">args_to_attr</span><span class="p">:</span>
+                    <span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;args&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
+                    <span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;kwargs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="p">)</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_trace</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+                <span class="n">trace_ctx</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">token</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">context</span><span class="o">.</span><span class="n">get_current</span><span class="p">():</span>
+                    <span class="c1"># Extract trace context from carrier.</span>
+                    <span class="k">if</span> <span class="n">carrier</span><span class="p">:</span>
+                        <span class="n">trace_ctx</span> <span class="o">=</span> <span class="n">propagator</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">carrier</span><span class="o">=</span><span class="n">carrier</span><span class="p">)</span>
+                        <span class="n">trace_ctx</span> <span class="o">=</span> <span class="n">baggage_propagator</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span>
+                            <span class="n">carrier</span><span class="o">=</span><span class="n">carrier</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">trace_ctx</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># Try to extract trace context from environment variables.</span>
+                        <span class="n">trace_ctx</span> <span class="o">=</span> <span class="n">propagator</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">carrier</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">)</span>
+                        <span class="n">trace_ctx</span> <span class="o">=</span> <span class="n">baggage_propagator</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span>
+                            <span class="n">carrier</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">trace_ctx</span>
+                        <span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">trace_ctx</span><span class="p">:</span>
+                    <span class="n">token</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">trace_ctx</span><span class="p">)</span>
+
+                <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">span_name</span> <span class="ow">or</span> <span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span>
+                    <span class="n">attributes</span><span class="o">=</span><span class="n">attributes</span><span class="p">,</span>
+                <span class="p">)</span> <span class="k">as</span> <span class="n">span</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="c1"># Put trace context in environment variables in the main thread.</span>
+                        <span class="k">if</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span> <span class="ow">is</span> <span class="n">threading</span><span class="o">.</span><span class="n">main_thread</span><span class="p">():</span>
+                            <span class="n">propagator</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">)</span>
+                            <span class="n">baggage_propagator</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">)</span>
+
+                        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                        <span class="n">span</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="n">Status</span><span class="p">(</span><span class="n">StatusCode</span><span class="o">.</span><span class="n">ERROR</span><span class="p">))</span>
+                        <span class="n">span</span><span class="o">.</span><span class="n">record_exception</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+                        <span class="k">raise</span>
+                    <span class="k">finally</span><span class="p">:</span>
+                        <span class="c1"># Add baggage data into span attributes</span>
+                        <span class="n">span</span><span class="o">.</span><span class="n">set_attributes</span><span class="p">(</span><span class="n">baggage</span><span class="o">.</span><span class="n">get_all</span><span class="p">())</span>
+                        <span class="k">if</span> <span class="n">token</span><span class="p">:</span>
+                            <span class="n">context</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">result</span>
+
+            <span class="k">return</span> <span class="n">wrap</span>
+
+        <span class="k">return</span> <span class="n">_instrument_func</span>
+
+    <span class="k">def</span> <span class="nf">force_flush</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Flush trace data into OTEL collectors&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_processor</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_processor</span><span class="o">.</span><span class="n">force_flush</span><span class="p">()</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Flush trace data into OTEL collectors&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">provider</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Trace provider&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_provider</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">pubtools</a></h1>
+
+
+
+<p class="blurb">Publishing tools project family</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devguide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tracing.html">Tracing</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/release-engineering/pubtools">Source</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/pubtools">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="genindex.html">Index</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Red Hat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/release-engineering/pubtools" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
