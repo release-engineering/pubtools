@@ -1,2 +1,4 @@
 pluggy
 setuptools
+opentelemetry-api
+opentelemetry-sdk
