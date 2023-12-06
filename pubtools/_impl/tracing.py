@@ -94,7 +94,9 @@ class TracingWrapper:
                     # Extract trace context from carrier.
                     if carrier:
                         trace_ctx = propagator.extract(carrier=carrier)
-                        trace_ctx = baggage_propagator.extract(carrier=carrier, context=trace_ctx)
+                        trace_ctx = baggage_propagator.extract(
+                            carrier=carrier, context=trace_ctx
+                        )
                     else:
                         # Try to extract trace context from environment variables.
                         trace_ctx = propagator.extract(carrier=os.environ)
