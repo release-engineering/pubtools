@@ -45,7 +45,8 @@ class TracingWrapper:
     def __init__(self):
         self._processor = None
         self._provider = None
-        if os.getenv("OTEL_TRACING", "").lower() == "true":
+        self._enabled_trace = os.getenv("OTEL_TRACING", "").lower() == "true"
+        if self._enabled_trace:
             log.info("Creating TracingWrapper instance")
             exporter = pm.hook.otel_exporter() or ConsoleSpanExporter()
             self._processor = BatchSpanProcessor(exporter)
@@ -85,7 +86,7 @@ class TracingWrapper:
                         "{}={}".format(k, v) for k, v in kwargs.items()
                     )
 
-                if not os.getenv("OTEL_TRACING", "").lower() == "true":
+                if not self._enabled_trace:
                     return func(*args, **kwargs)
 
                 trace_ctx = None
