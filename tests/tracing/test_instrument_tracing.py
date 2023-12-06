@@ -22,7 +22,7 @@ def test_instrument_func_in_context(monkeypatch, fake_span_exporter):
         foo()
 
     tw.force_flush()
-    out_spans = tw.processor.span_exporter.get_spans()
+    out_spans = tw._processor.span_exporter.get_spans()
     assert len(out_spans) == 2
     if out_spans[0].name == "parent_span":
         parent_span = out_spans[0]
@@ -52,7 +52,7 @@ def test_instrument_func_carrier(monkeypatch, fake_span_exporter):
     foo()
 
     tw.force_flush()
-    out_spans = tw.processor.span_exporter.get_spans()
+    out_spans = tw._processor.span_exporter.get_spans()
     assert len(out_spans) == 1
     span = out_spans[0]
     assert span.name == "func_with_carrier"
@@ -85,7 +85,7 @@ def test_instrument_func_multiple_threads(monkeypatch, fake_span_exporter):
 
     main_thread_span = None
     sub_thread_span = None
-    for span in tw.processor.span_exporter.get_spans():
+    for span in tw._processor.span_exporter.get_spans():
         if span.name == "main_thread_span":
             main_thread_span = span
         if span.name == "sub_thread_span":
@@ -119,7 +119,6 @@ def test_instrument_func_multiple_threads(monkeypatch, fake_span_exporter):
 def test_instrument_func_exception(monkeypatch, fake_span_exporter):
     monkeypatch.setenv("OTEL_TRACING", "true")
     monkeypatch.setenv("OTEL_SERVICE_NAME", "local-test3")
-
     tw = get_trace_wrapper()
 
     @tw.instrument_func(span_name="func_with_exception")
@@ -130,7 +129,7 @@ def test_instrument_func_exception(monkeypatch, fake_span_exporter):
         func_with_exception()
 
     tw.force_flush()
-    out_spans = tw.processor.span_exporter.get_spans()
+    out_spans = tw._processor.span_exporter.get_spans()
 
     assert len(out_spans) == 1
     span = out_spans[0]
@@ -141,23 +140,13 @@ def test_instrument_func_exception(monkeypatch, fake_span_exporter):
 
 
 def test_instrument_func_disabled(monkeypatch):
-    # Wipe exist TracingWrapper instance
-    if hasattr(TracingWrapper, "provider"):
-        del TracingWrapper.provider
-        del TracingWrapper.processor
-        del TracingWrapper.tracer
-    if hasattr(TracingWrapper, "instance"):
-        del TracingWrapper.instance
-
     monkeypatch.setenv("OTEL_TRACING", "false")
-
-    tw = get_trace_wrapper()
+    # Recreate an instance of TracingWrapper
+    tw = TracingWrapper()
 
     @tw.instrument_func()
     def foo():
         return 1
 
     assert foo() == 1
-    assert not hasattr(tw, "provider")
-    assert not hasattr(tw, "processor")
-    assert not hasattr(tw, "tracer")
+    assert tw.provider is None

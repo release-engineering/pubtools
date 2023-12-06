@@ -26,35 +26,35 @@ from pubtools.pluggy import pm
 
 propagator = TraceContextTextMapPropagator()
 baggage_propagator = W3CBaggagePropagator()
+TRACE_WRAPPER = None
 log = logging.getLogger(__name__)
 
 
 def get_trace_wrapper():
     """return a global trace wrapper instance"""
-    return TracingWrapper()
+    global TRACE_WRAPPER
+    if TRACE_WRAPPER is None:
+        TRACE_WRAPPER = TracingWrapper()
+    return TRACE_WRAPPER
 
 
 class TracingWrapper:
     """Wrapper class to initialize opentelemetry instrumentation and provide a helper function
     for instrumenting a function"""
 
-    def __new__(cls):
-        if not hasattr(TracingWrapper, "instance"):
-            cls.instance = super().__new__(cls)
-            if os.getenv("OTEL_TRACING", "").lower() == "true":
-                log.info("Creating TracingWrapper instance")
-                exporter = pm.hook.otel_exporter() or ConsoleSpanExporter()
-                cls.provider = TracerProvider(
-                    resource=Resource.create(
-                        {SERVICE_NAME: os.getenv("OTEL_SERVICE_NAME")}
-                    )
-                )
-                cls.processor = BatchSpanProcessor(exporter)
-                cls.provider.add_span_processor(cls.processor)
-                trace.set_tracer_provider(cls.provider)
-                set_global_textmap(propagator)
-                cls.tracer = trace.get_tracer(__name__)
-        return cls.instance
+    def __init__(self):
+        self._processor = None
+        self._provider = None
+        if os.getenv("OTEL_TRACING", "").lower() == "true":
+            log.info("Creating TracingWrapper instance")
+            exporter = pm.hook.otel_exporter() or ConsoleSpanExporter()
+            self._processor = BatchSpanProcessor(exporter)
+            self._provider = TracerProvider(
+                resource=Resource.create({SERVICE_NAME: os.getenv("OTEL_SERVICE_NAME")})
+            )
+            self._provider.add_span_processor(self._processor)
+            trace.set_tracer_provider(self._provider)
+            set_global_textmap(propagator)
 
     def instrument_func(self, span_name=None, carrier=None, args_to_attr=False):
         """Instrument tracing for a function.
@@ -94,9 +94,7 @@ class TracingWrapper:
                     # Extract trace context from carrier.
                     if carrier:
                         trace_ctx = propagator.extract(carrier=carrier)
-                        trace_ctx = baggage_propagator.extract(
-                            carrier=carrier, context=trace_ctx
-                        )
+                        trace_ctx = baggage_propagator.extract(carrier=carrier, context=trace_ctx)
                     else:
                         # Try to extract trace context from environment variables.
                         trace_ctx = propagator.extract(carrier=os.environ)
@@ -135,5 +133,11 @@ class TracingWrapper:
 
     def force_flush(self):
         """Flush trace data into OTEL collectors"""
-        if hasattr(self, "processor"):
-            self.processor.force_flush()
+        if self._processor:
+            self._processor.force_flush()
+        log.info("Flush trace data into OTEL collectors")
+
+    @property
+    def provider(self):
+        """Trace provider"""
+        return self._provider
