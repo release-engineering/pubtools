@@ -384,9 +384,9 @@ kerberos==1.3.1 \
     # via
     #   iiblib
     #   pubtools-quay
-kobo==0.35.0 \
-    --hash=sha256:5f886ab03ef74cf5edef907f401a1b1b23070f4ff51b60d19a062009672e5c08 \
-    --hash=sha256:9f86d79be6e825bcb6af2facb2730eb38e48e871a57631f3acf012e56bcee544
+kobo==0.35.1 \
+    --hash=sha256:0820cb659672690e2a404b149763c676b0b04e21e71abd8d1808cc422b9a420a \
+    --hash=sha256:bbdff14eb23a3eeff12b0984e64703e70432443fcab3d9aad74b304c238f3a46
     # via pushsource
 koji==1.33.1 \
     --hash=sha256:16493a182e7194f7a5be3426a48dafb5982a450ad4cf79d14f36eb5c8a2c863d \
@@ -508,9 +508,9 @@ packaging==23.2 \
     # via
     #   docker
     #   sphinx
-paramiko==3.3.1 \
-    --hash=sha256:6a3777a961ac86dbef375c5f5b8d50014a1a96d0fd7f054a43bc880134b0ff77 \
-    --hash=sha256:b7bc5340a43de4287bbe22fe6de728aa2c22468b2a849615498dd944c2f275eb
+paramiko==3.4.0 \
+    --hash=sha256:43f0b51115a896f9c00f59618023484cb3a14b98bbceab43394a39c6739b7ee7 \
+    --hash=sha256:aac08f26a31dc4dffd92821527d1682d99d52f9ef6851968114a8728f3c274d3
     # via pubtools-quay
 pluggy==1.3.0 \
     --hash=sha256:cf61ae8f126ac6f7c451172cf30e3e43d3ca77615509771b3a984a0730651e12 \
