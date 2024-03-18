@@ -44,8 +44,24 @@ class TracingWrapper:
     def __init__(self):
         self._processor = None
         self._provider = None
+        self._enabled_trace = None
+        self._reset()
+
+    def _reset(self):
+        # Construct the needed resources, if and only if OTEL_TRACING is enabled
+        # and the resources were not already constructed.
+        #
+        # This method is intended only for use during tests to make sure that the current
+        # TracingWrapper has tracing enabled, even if __init__ was already called while
+        # OTEL_TRACING was set to false.
+        #
+        # Actually flipping the TracingWrapper between enabled/disabled/enabled and back
+        # at runtime is NOT supported due to limitations in opentelemetry, e.g. the
+        # trace.set_tracer_provider global singleton set below can *never* be set up
+        # more than once in a single process.
+
         self._enabled_trace = os.getenv("OTEL_TRACING", "").lower() == "true"
-        if self._enabled_trace:
+        if self._enabled_trace and not self._processor:
             log.info("Creating TracingWrapper instance")
             exporter = pm.hook.otel_exporter() or ConsoleSpanExporter()
             self._processor = BatchSpanProcessor(exporter)

@@ -13,6 +13,7 @@ def test_instrument_func_in_context(monkeypatch, fake_span_exporter):
     monkeypatch.setenv("OTEL_SERVICE_NAME", "local-test2")
 
     tw = get_trace_wrapper()
+    tw._reset()
 
     @tw.instrument_func(span_name="child_span")
     def foo():
@@ -44,6 +45,7 @@ def test_instrument_func_carrier(monkeypatch, fake_span_exporter):
     carrier = {"traceparent": f"00-{root_trace_id}-{root_span_id}-01"}
 
     tw = get_trace_wrapper()
+    tw._reset()
 
     @tw.instrument_func(span_name="func_with_carrier", carrier=carrier)
     def foo():
@@ -69,6 +71,7 @@ def test_instrument_func_multiple_threads(monkeypatch, fake_span_exporter):
     monkeypatch.setenv("traceparent", f"00-{root_trace_id}-{root_span_id}-01")
 
     tw = get_trace_wrapper()
+    tw._reset()
 
     @tw.instrument_func(span_name="sub_thread_span")
     def sub_thread():
@@ -120,6 +123,7 @@ def test_instrument_func_exception(monkeypatch, fake_span_exporter):
     monkeypatch.setenv("OTEL_TRACING", "true")
     monkeypatch.setenv("OTEL_SERVICE_NAME", "local-test3")
     tw = get_trace_wrapper()
+    tw._reset()
 
     @tw.instrument_func(span_name="func_with_exception")
     def func_with_exception():
