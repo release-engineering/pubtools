@@ -79,8 +79,24 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_processor</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_provider</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_trace</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Construct the needed resources, if and only if OTEL_TRACING is enabled</span>
+        <span class="c1"># and the resources were not already constructed.</span>
+        <span class="c1">#</span>
+        <span class="c1"># This method is intended only for use during tests to make sure that the current</span>
+        <span class="c1"># TracingWrapper has tracing enabled, even if __init__ was already called while</span>
+        <span class="c1"># OTEL_TRACING was set to false.</span>
+        <span class="c1">#</span>
+        <span class="c1"># Actually flipping the TracingWrapper between enabled/disabled/enabled and back</span>
+        <span class="c1"># at runtime is NOT supported due to limitations in opentelemetry, e.g. the</span>
+        <span class="c1"># trace.set_tracer_provider global singleton set below can *never* be set up</span>
+        <span class="c1"># more than once in a single process.</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_trace</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OTEL_TRACING&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_trace</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_trace</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_processor</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Creating TracingWrapper instance&quot;</span><span class="p">)</span>
             <span class="n">exporter</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">hook</span><span class="o">.</span><span class="n">otel_exporter</span><span class="p">()</span> <span class="ow">or</span> <span class="n">ConsoleSpanExporter</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_processor</span> <span class="o">=</span> <span class="n">BatchSpanProcessor</span><span class="p">(</span><span class="n">exporter</span><span class="p">)</span>
