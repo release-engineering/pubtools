@@ -468,9 +468,9 @@ kerberos==1.3.1 \
     # via
     #   iiblib
     #   pubtools-quay
-kobo==0.35.1 \
-    --hash=sha256:0820cb659672690e2a404b149763c676b0b04e21e71abd8d1808cc422b9a420a \
-    --hash=sha256:bbdff14eb23a3eeff12b0984e64703e70432443fcab3d9aad74b304c238f3a46
+kobo==0.36.0 \
+    --hash=sha256:bee50de7b683472e7cfb1e54def79243cec5cc72f80966596619473a1b1bf901 \
+    --hash=sha256:c23458f5dd9b46cdac4b5d21b9a469ae188681608d12572a37ab8a11eeb7df44
     # via pushsource
 koji==1.34.0 \
     --hash=sha256:2067a72109b2a936b0a22cdf3a7a54f743da77904e353a34af2ad2b3dd5c148b \
@@ -642,9 +642,9 @@ pubtools-pyxis==1.3.5 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-quay==0.17.0 \
-    --hash=sha256:7458c8d94c37810ed90967c840a8b3f4bfce693d2abdacc89b7edb15627475f2 \
-    --hash=sha256:95d9e04c2fa3ccdb0de5490f3131f45a0e2983a30d86974ab0cbda03204721e1
+pubtools-quay==0.18.0 \
+    --hash=sha256:0c035c586335290ad7d69ef3bd551c9b8ad6def5389ef9f37a474cd9c1d1bf9d \
+    --hash=sha256:1005d4e76ce9cfe79e29328ac114950238cd956012b8e5abf6f362454f11b779
     # via -r requirements-docs.in
 pushcollector==1.3.0 \
     --hash=sha256:18281fcd4247ca8b668c25348bbc2f9cc032912cecc7037824a74ad8adcbb1c3 \
