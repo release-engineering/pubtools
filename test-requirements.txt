@@ -406,9 +406,9 @@ frozenlist2==1.0.0 \
     # via
     #   pubtools-pulplib
     #   pushsource
-googleapis-common-protos==1.63.1 \
-    --hash=sha256:0e1c2cdfcbc354b76e4a211a35ea35d6926a835cba1377073c4861db904a1877 \
-    --hash=sha256:c6442f7a0a6b2a80369457d79e6672bb7dcbaab88e0848302497e3ec80780a6a
+googleapis-common-protos==1.63.2 \
+    --hash=sha256:27a2499c7e8aff199665b22741997e485eccc8645aa9176c7c988e6fae507945 \
+    --hash=sha256:27c5abdffc4911f28101e635de1533fb4cfd2c37fbaa9174587c799fac90aa87
     # via
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
@@ -777,13 +777,13 @@ pubtools-pyxis==1.3.5 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-quay==0.24.0 \
-    --hash=sha256:3647659242086e62b333dfaedf26746f2f1c850b229581a32b9ca4d26d401778 \
-    --hash=sha256:8d9f6809c7159c292c42c17058acc16d8e3d58e198d4c95cc6de66280efa71f5
+pubtools-quay==0.25.0 \
+    --hash=sha256:556820602075e2c0b6982eff7c88902f7c3681f14e5f8938092ebe4d0ecb1534 \
+    --hash=sha256:cb79ac4144d0b43dd658418014b709325e702f99fff027d7d66bd80e6a360487
     # via -r requirements-docs.in
-pubtools-sign==0.0.7 \
-    --hash=sha256:11b496d8daa8a6eb57d31e918514da249be64ede1da9dcbf9ac215d8c89c8323 \
-    --hash=sha256:2fd39074111a9ee157cee6bcf4a73e5d47f26d32eb661386f1832ee8d285534e
+pubtools-sign==0.0.8 \
+    --hash=sha256:36f9d622b94578cf5523dc444a5ca3f059ea2d1dfebc966fabc3cf6d46d78e06 \
+    --hash=sha256:80330efc4b4ecb0b3a202803a2e799d6d78b7c530bf114267f7d651094c3d4d7
     # via pubtools-quay
 pushcollector==1.3.0 \
     --hash=sha256:18281fcd4247ca8b668c25348bbc2f9cc032912cecc7037824a74ad8adcbb1c3 \
@@ -1143,9 +1143,9 @@ sphinxcontrib-serializinghtml==1.1.10 \
     --hash=sha256:326369b8df80a7d2d8d7f99aa5ac577f51ea51556ed974e7716cfd4fca3f6cb7 \
     --hash=sha256:93f3f5dc458b91b192fe10c397e324f262cf163d79f3282c158e8436a2c4511f
     # via sphinx
-tenacity==8.4.1 \
-    --hash=sha256:28522e692eda3e1b8f5e99c51464efcc0b9fc86933da92415168bc1c4e2308fa \
-    --hash=sha256:54b1412b878ddf7e1f1577cd49527bad8cdef32421bd599beac0c6c3f10582fd
+tenacity==8.4.2 \
+    --hash=sha256:9e6f7cf7da729125c7437222f8a522279751cdfbe6b67bfe64f75d3a348661b2 \
+    --hash=sha256:cd80a53a79336edba8489e767f729e4f391c896956b57140b5d7511a64bbd3ef
     # via iiblib
 tomli==2.0.1 \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \
