@@ -62,9 +62,9 @@ bcrypt==4.1.3 \
     --hash=sha256:f44a97780677e7ac0ca393bd7982b19dbbd8d7228c1afe10b128fd9550eef5f1 \
     --hash=sha256:f5698ce5292a4e4b9e5861f7e53b1d89242ad39d54c3da451a93cac17b61921a
     # via paramiko
-certifi==2024.6.2 \
-    --hash=sha256:3cd43f1c6fa7dedc5899d69d3ad0398fd018ad1a17fba83ddaf78aa46c747516 \
-    --hash=sha256:ddc6c8ce995e6987e7faf5e3f1b02b302836a0e5d98ece18392cb1a36c72ad56
+certifi==2024.7.4 \
+    --hash=sha256:5a1e7645bc0ec61a09e26c36f6106dd4cf40c6db3a1fb6352b0244e7fb057c7b \
+    --hash=sha256:c198e21b1289c2ab85ee4e67bb4b4ef3ead0892059901a8d5b622f24a1101e90
     # via requests
 cffi==1.16.0 \
     --hash=sha256:0c9ef6ff37e974b73c25eecc13952c55bceed9112be2d9d938ded8e856138bcc \
@@ -347,18 +347,10 @@ docutils==0.21.2 \
     --hash=sha256:3a6b18732edf182daa3cd12775bbb338cf5691468f91eeeb109deff6ebfa986f \
     --hash=sha256:dafca5b9e384f0e419294eb4d2ff9fa826435bf15f15b7bd45723e8ad76811b2
     # via sphinx
-edgegrid-python==1.3.1 \
-    --hash=sha256:480ad3e8e4586ba3190f176ae2c2e5a3ab66e47834a01812826d01e1c2b6439a \
-    --hash=sha256:c7dbfd66b4ea8e386fe5391005b2cb9bf8556f4f04ab2fad53fe27554b553b7d
-    # via fastpurge
 exceptiongroup==1.2.1 \
     --hash=sha256:5258b9ed329c5bbdd31a309f53cbfb0b155341807f6ff7606a1e801a891b29ad \
     --hash=sha256:a4785e48b045528f5bfe627b6ad554ff32def154f42372786903b7abcfe1aa16
     # via pytest
-fastpurge==1.0.5 \
-    --hash=sha256:0e8c082afca8d4fd289963a59b4ba022704263b271117bac18b7d8bd768b0b9f \
-    --hash=sha256:74499c36be7372ee63bf694d61b0c85b6877d15830be4cfe2918f4baec2a0803
-    # via pubtools-pulp
 filelock==3.15.4 \
     --hash=sha256:2207938cbc1844345cb01a5a95524dae30f0ce089eba5b00378295a17e3e90cb \
     --hash=sha256:6ca1fffae96225dab4c6eaf1c4f4f28cd2568d3ec2a44e15a08520504de468e7
@@ -542,9 +534,9 @@ kerberos==1.3.1 \
     # via
     #   iiblib
     #   pubtools-quay
-kobo==0.36.2 \
-    --hash=sha256:e41aeb5739d2b3578fb411978ee66f5d84a8d47a0f23fe076f905eb94806ec32 \
-    --hash=sha256:e451421280a08df9d794582af9693f03fe2290db5041a08fdbee02a587a51bbf
+kobo==0.37.0 \
+    --hash=sha256:05ee956fb40aff3eaa2abf2cdec931245f5d6fb6ba8ea6c19f6e26c7ea602fb9 \
+    --hash=sha256:3a76e9748a1d218aa91e7ae6ffaed43dcd25984cb09a9c1db19a1f7648665141
     # via pushsource
 koji==1.34.2 \
     --hash=sha256:2965b0a6a680779cdbc8dff5b19b2bdbd0e925bd4f848b40bee18078b00c4c59 \
@@ -643,17 +635,11 @@ more-executors==2.11.4 \
     --hash=sha256:a304139c6bece5be18aed7dcff4c48440412cb7cbe90f64ba4572772fcb0407f \
     --hash=sha256:f1b21d72c4c15069e891d9b96bca05f9abde149e3c11ca54630c5a1a5ee8f4b5
     # via
-    #   fastpurge
     #   pubtools-pulp
     #   pubtools-pulplib
     #   pubtools-pyxis
     #   pushcollector
     #   pushsource
-ndg-httpsclient==0.5.1 \
-    --hash=sha256:d2c7225f6a1c6cf698af4ebc962da70178a99bcde24ee6d1961c4f3338130d57 \
-    --hash=sha256:d72faed0376ab039736c2ba12e30695e2788c4aa569c9c3e3d72131de2592210 \
-    --hash=sha256:dd174c11d971b6244a891f7be2b32ca9853d3797a72edb34fa5d7b07d8fff7d4
-    # via edgegrid-python
 nodeenv==1.9.1 \
     --hash=sha256:6ec12890a2dab7946721edbfbcd91f3319c6ccc9aec47be7c7e6b7011ee6645f \
     --hash=sha256:ba11c9782d29c27c70ffbdda2d7415098754709be8a7056d79a737cd901155c9
@@ -763,9 +749,9 @@ pubtools-iib==0.25.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-pulp==1.30.1 \
-    --hash=sha256:aeda4520a43ab63b7afd1803e5a24456a59ca55f15b1fabbe920a5c10148ca4b \
-    --hash=sha256:b83e1e7291bc8bb6f77d7246cca39107428f44da7ab3abd83670f66a75ace45b
+pubtools-pulp==1.31.0 \
+    --hash=sha256:84c18f5d762d2f2862b18dedec4cad845089c54c18894fc64051bb7f83f03624 \
+    --hash=sha256:94048db02c19e777ca6dc654cac7e89ff131d94f0dd263e7ffbe8f9c30f1c26b
     # via -r requirements-docs.in
 pubtools-pulplib==2.39.1 \
     --hash=sha256:676845b826c946e014715f3980cfce631dac0a7ef9139b76255ffced04208093 \
@@ -800,10 +786,7 @@ pushsource==2.46.0 \
 pyasn1==0.6.0 \
     --hash=sha256:3a35ab2c4b5ef98e17dfdec8ab074046fbda76e281c5a706ccd82328cfc8f64c \
     --hash=sha256:cca4bb0f2df5504f02f6f8a775b6e416ff9b0b3b16f7ee80b5a3153d9b804473
-    # via
-    #   edgegrid-python
-    #   ndg-httpsclient
-    #   pushsource
+    # via pushsource
 pycparser==2.22 \
     --hash=sha256:491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6 \
     --hash=sha256:c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc
@@ -827,10 +810,7 @@ pynacl==1.5.0 \
 pyopenssl==24.1.0 \
     --hash=sha256:17ed5be5936449c5418d1cd269a1a9e9081bc54c17aed272b45856a3d3dc86ad \
     --hash=sha256:cabed4bfaa5df9f1a16c0ef64a0cb65318b5cd077a7eda7d6970131ca2f41a6f
-    # via
-    #   edgegrid-python
-    #   ndg-httpsclient
-    #   pubtools-sign
+    # via pubtools-sign
 pyrsistent==0.20.0 \
     --hash=sha256:0724c506cd8b63c69c7f883cc233aac948c1ea946ea95996ad8b1380c25e1d3f \
     --hash=sha256:09848306523a3aba463c4b49493a760e7a6ca52e4826aa100ee99d8d39b7ad1e \
@@ -962,8 +942,6 @@ requests==2.32.3 \
     --hash=sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6
     # via
     #   docker
-    #   edgegrid-python
-    #   fastpurge
     #   iiblib
     #   koji
     #   opentelemetry-exporter-otlp-proto-http
@@ -975,7 +953,6 @@ requests==2.32.3 \
     #   pushsource
     #   requests-gssapi
     #   requests-kerberos
-    #   requests-toolbelt
     #   sphinx
 requests-gssapi==1.3.0 \
     --hash=sha256:4d52bf8c2aa2a829130efcca85c14943fdd0aa75455aab985b2b8726159c20ca \
@@ -987,10 +964,6 @@ requests-kerberos==0.15.0 \
     # via
     #   iiblib
     #   pubtools-pyxis
-requests-toolbelt==1.0.0 \
-    --hash=sha256:7681a0a3d047012b5bdc0ee37d7f8f07ebe76ab08caeccfc3921ce23c88d5bc6 \
-    --hash=sha256:cccfdd665f0a24fcf4726e690f65639d272bb0637b9b92dfd91a5568ccf6bd06
-    # via edgegrid-python
 resolvelib==1.0.1 \
     --hash=sha256:04ce76cbd63fded2078ce224785da6ecd42b9564b1390793f64ddecbe997b309 \
     --hash=sha256:d2da45d1a8dfee81bdd591647783e340ef3bcb104b54c383f70d422ef5cc7dbf
@@ -1106,7 +1079,6 @@ six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
     # via
-    #   fastpurge
     #   kobo
     #   koji
     #   more-executors
@@ -1143,9 +1115,9 @@ sphinxcontrib-serializinghtml==1.1.10 \
     --hash=sha256:326369b8df80a7d2d8d7f99aa5ac577f51ea51556ed974e7716cfd4fca3f6cb7 \
     --hash=sha256:93f3f5dc458b91b192fe10c397e324f262cf163d79f3282c158e8436a2c4511f
     # via sphinx
-tenacity==8.4.2 \
-    --hash=sha256:9e6f7cf7da729125c7437222f8a522279751cdfbe6b67bfe64f75d3a348661b2 \
-    --hash=sha256:cd80a53a79336edba8489e767f729e4f391c896956b57140b5d7511a64bbd3ef
+tenacity==8.5.0 \
+    --hash=sha256:8bc6c0c8a09b31e6cad13c47afbed1a567518250a9a171418582ed8d9c20ca78 \
+    --hash=sha256:b594c2a5945830c267ce6b79a166228323ed52718f30302c1359836112346687
     # via iiblib
 tomli==2.0.1 \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \
@@ -1165,7 +1137,6 @@ urllib3==1.26.19 \
     --hash=sha256:3e3d753a8618b86d7de333b4223005f68720bcd6a7d2bcb9fbd2229ec7c1e429
     # via
     #   docker
-    #   edgegrid-python
     #   pubtools-quay
     #   requests
 virtualenv==20.26.3 \
