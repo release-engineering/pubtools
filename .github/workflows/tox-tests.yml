@@ -35,13 +35,6 @@ jobs:
         run: pip install tox
       - name: Run Tox
         run: tox -e cov
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        with:
-          fail_ci_if_error: true
-          verbose: true
   bandit-exitzero:
     runs-on: ubuntu-latest
     steps:
