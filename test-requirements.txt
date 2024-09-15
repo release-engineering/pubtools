@@ -10,9 +10,9 @@ alabaster==1.0.0 \
     # via
     #   -r requirements-docs.in
     #   sphinx
-ansible-core==2.17.3 \
-    --hash=sha256:71e5c93729cc5bf09ecdf0cac675685fd345d1571312409029bf842420850f23 \
-    --hash=sha256:917557065339fe36e7078e9bea47eefab6d6877f3bd435fa5f0d766d04c58485
+ansible-core==2.17.4 \
+    --hash=sha256:44a1f30076796536ba2455cad18d36e62870f04e632e3ca2ebe970d7beacf24d \
+    --hash=sha256:a36c9ab8e84d5d51f9fffe389d6ac7e81c8d0df6af8c12429ddbb71e8d69b21e
     # via pubtools-sign
 attrs==24.2.0 \
     --hash=sha256:5cfb1b9148b5b086569baec03f20d7b6bf3bcacc9a42bebf87ffaaca362f6346 \
@@ -514,13 +514,13 @@ humanize==4.10.0 \
     --hash=sha256:06b6eb0293e4b85e8d385397c5868926820db32b9b654b932f57fa41c23c9978 \
     --hash=sha256:39e7ccb96923e732b5c2e27aeaa3b10a8dfeeba3eb965ba7b74a3eb0e30040a6
     # via pubtools-pulplib
-identify==2.6.0 \
-    --hash=sha256:cb171c685bdc31bcc4c1734698736a7d5b6c8bf2e0c15117f4d469c8640ae5cf \
-    --hash=sha256:e79ae4406387a9d300332b5fd366d8994f1525e8414984e1a59e058b2eda2dd0
+identify==2.6.1 \
+    --hash=sha256:53863bcac7caf8d2ed85bd20312ea5dcfc22226800f6d6881f232d861db5a8f0 \
+    --hash=sha256:91478c5fb7c3aac5ff7bf9b4344f803843dc586832d5f110d672b19aa1984c98
     # via pre-commit
-idna==3.8 \
-    --hash=sha256:050b4e5baadcd44d760cedbd2b8e639f2ff89bbc7a5730fcc662954303377aac \
-    --hash=sha256:d838c2c0ed6fced7693d5e8ab8e734d5f8fda53a039c0164afb0b82e771e3603
+idna==3.10 \
+    --hash=sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9 \
+    --hash=sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3
     # via requests
 iiblib==7.4.0 \
     --hash=sha256:020b1ce44b391c31b948de329c3dd3b35bffb2501d25fbc42e83990792d86902 \
@@ -736,9 +736,9 @@ piny==1.1.0 \
     --hash=sha256:18a005aeccb2af6f55790e539698865be4ab546661c27f410ec6871afe10118a \
     --hash=sha256:adc6873192dead13118e588901348cbb94c8163b128a34ed277694a875e05993
     # via pubtools-sign
-platformdirs==4.3.2 \
-    --hash=sha256:9e5e27a08aa095dd127b9f2e764d74254f482fef22b0970773bfba79d091ab8c \
-    --hash=sha256:eb1c8582560b34ed4ba105009a4badf7f6f85768b30126f351328507b2beb617
+platformdirs==4.3.3 \
+    --hash=sha256:50a5450e2e84f44539718293cbb1da0a0885c9d14adf21b77bae4e66fc99d9b5 \
+    --hash=sha256:d4e0b7d8ec176b341fb03cb11ca12d0276faa8c485f9cd218f613840463fc2c0
     # via virtualenv
 pluggy==1.5.0 \
     --hash=sha256:2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1 \
@@ -813,9 +813,9 @@ pushsource==2.47.2 \
     --hash=sha256:1576176bfb8627d96b0d714d0723cc782761d9673ae9667142648621806634e6 \
     --hash=sha256:46ee89a06bde30a9ae9ef98820e22943faa5a548893e084b6ce6d2ff1a821db1
     # via pubtools-pulp
-pyasn1==0.6.0 \
-    --hash=sha256:3a35ab2c4b5ef98e17dfdec8ab074046fbda76e281c5a706ccd82328cfc8f64c \
-    --hash=sha256:cca4bb0f2df5504f02f6f8a775b6e416ff9b0b3b16f7ee80b5a3153d9b804473
+pyasn1==0.6.1 \
+    --hash=sha256:0d632f46f2ba09143da3a8afe9e33fb6f92fa2320ab7e886e2d0f7672af84629 \
+    --hash=sha256:6f580d2bdd84365380830acf45550f2511469f673cb4a5ae3857a3170128b034
     # via pushsource
 pycparser==2.22 \
     --hash=sha256:491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6 \
@@ -879,9 +879,9 @@ pyspnego[kerberos]==0.11.1 \
     --hash=sha256:129a4294f2c4d681d5875240ef87accc6f1d921e8983737fb0b59642b397951e \
     --hash=sha256:e92ed8b0a62765b9d6abbb86a48cf871228ddb97678598dc01c9c39a626823f6
     # via requests-kerberos
-pytest==8.3.2 \
-    --hash=sha256:4ba08f9ae7dcf84ded419494d229b48d0903ea6407b030eaec46df5e6a73bba5 \
-    --hash=sha256:c132345d12ce551242c87269de812483f5bcc87cdbb4722e48487ba194f9fdce
+pytest==8.3.3 \
+    --hash=sha256:70b98107bd648308a7952b06e6ca9a50bc660be218d53c257cc1fc94fda10181 \
+    --hash=sha256:a6853c7375b2663155079443d2e45de913a911a11d669df02a50814944db57b2
     # via
     #   -r test-requirements.in
     #   pytest-cov
@@ -1251,9 +1251,9 @@ wrapt==1.16.0 \
     --hash=sha256:f8212564d49c50eb4565e502814f694e240c55551a5f1bc841d4fcaabb0a9b8a \
     --hash=sha256:ffa565331890b90056c01db69c0fe634a776f8019c143a5ae265f9c6bc4bd6d4
     # via deprecated
-zipp==3.20.1 \
-    --hash=sha256:9960cd8967c8f85a56f920d5d507274e74f9ff813a0ab8889a5b5be2daf44064 \
-    --hash=sha256:c22b14cc4763c5a5b04134207736c107db42e9d3ef2d9779d465f5f1bcba572b
+zipp==3.20.2 \
+    --hash=sha256:a817ac80d6cf4b23bf7f2828b7cabf326f15a001bea8b1f9b49631780ba28350 \
+    --hash=sha256:bc9eb26f4506fda01b81bcde0ca78103b6e62f991b381fec825435c836edbc29
     # via importlib-metadata
 
 # WARNING: The following packages were not pinned, but pip requires them to be
