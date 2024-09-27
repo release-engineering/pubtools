@@ -15,6 +15,7 @@ except ImportError:
 
     find_namespace_packages = PEP420PackageFinder.find
 
+
 def get_description():
     return "Publishing tools project family"
 
