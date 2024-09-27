@@ -1,5 +1,19 @@
-from setuptools import find_namespace_packages, setup
+from setuptools import setup
 
+try:
+    from setuptools import find_namespace_packages
+except ImportError:
+    # Workaround for RHEL-8 RPM packaging that uses setuptools 39.2
+    # find_namespace_packages is supported since setuptools 40.1
+    # Loosely backported from https://github.com/pypa/setuptools/blob/main/setuptools/discovery.py
+    from setuptools import PackageFinder
+
+    class PEP420PackageFinder(PackageFinder):
+        @staticmethod
+        def _looks_like_package(_path):
+            return True
+
+    find_namespace_packages = PEP420PackageFinder.find
 
 def get_description():
     return "Publishing tools project family"
