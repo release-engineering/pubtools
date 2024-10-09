@@ -130,7 +130,7 @@ defined in <code class="docutils literal notranslate"><span class="pre">setup.py
 <ul class="simple">
 <li><dl class="simple">
 <dt>command-line arguments</dt><dd><ul>
-<li><p>read from <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> using any preferred method (e.g. <a class="reference external" href="https://docs.python.org/3/library/argparse.html#module-argparse" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">argparse</span></code></a>)</p></li>
+<li><p>read from <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> using any preferred method (e.g. <a class="reference external" href="https://docs.python.org/3/library/argparse.html#module-argparse" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">argparse</span></code></a>)</p></li>
 <li><p><strong>do not use for secrets</strong></p></li>
 </ul>
 </dd>
@@ -346,12 +346,12 @@ and improvements in future versions of that library.</p>
 </section>
 <section id="logging">
 <span id="id1"></span><h2><a class="toc-backref" href="#id13" role="doc-backlink">Logging</a><a class="headerlink" href="#logging" title="Link to this heading">¶</a></h2>
-<p>Libraries can make use of the standard <a class="reference external" href="https://docs.python.org/3/library/logging.html#module-logging" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">logging</span></code></a> module.
+<p>Libraries can make use of the standard <a class="reference external" href="https://docs.python.org/3/library/logging.html#module-logging" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">logging</span></code></a> module.
 Following the guidelines below will help ensure that your logging works effectively
 in both the <a class="reference internal" href="#hosted"><span class="std std-ref">standalone and hosted execution modes</span></a>.</p>
 <section id="use-loggers-as-primary-output-mechanism">
 <h3><a class="toc-backref" href="#id14" role="doc-backlink">Use loggers as primary output mechanism</a><a class="headerlink" href="#use-loggers-as-primary-output-mechanism" title="Link to this heading">¶</a></h3>
-<p>Use standard <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a> objects for user-oriented output
+<p>Use standard <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a> objects for user-oriented output
 from your task. Don’t write to stdout or stderr.</p>
 <p>(Note: although it’s mentioned earlier that stdout will be redirected to a logger
 within the hosted environment, this is intended as a last resort to avoid losing
@@ -364,7 +364,7 @@ time your task’s entry point is called. In this case, you <strong>must not</st
 overwrite the configuration of the loggers (particularly the root logger).
 Logger configuration is considered to be the responsibility of the hosting service;
 tasks should avoid interfering with it.</p>
-<p>Note that the standard <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.basicConfig" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">logging.basicConfig()</span></code></a> function implements useful behavior:
+<p>Note that the standard <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.basicConfig" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">logging.basicConfig()</span></code></a> function implements useful behavior:
 it installs basic log configuration writing to <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> if and only if the root
 logger is not already configured.</p>
 <p>Therefore, a simple and recommended way to set up loggers correctly for both the
