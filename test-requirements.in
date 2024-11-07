@@ -1,2 +1,4 @@
 pytest
 pytest-cov
+opentelemetry-api
+opentelemetry-sdk

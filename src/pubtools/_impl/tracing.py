@@ -12,14 +12,20 @@ import logging
 import os
 import threading
 
-from opentelemetry import baggage, context, trace
-from opentelemetry.baggage.propagation import W3CBaggagePropagator
-from opentelemetry.propagate import set_global_textmap
-from opentelemetry.sdk.resources import SERVICE_NAME, Resource
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
-from opentelemetry.trace import Status, StatusCode
-from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
+try:
+    from opentelemetry import baggage, context, trace
+    from opentelemetry.baggage.propagation import W3CBaggagePropagator
+    from opentelemetry.propagate import set_global_textmap
+    from opentelemetry.sdk.resources import SERVICE_NAME, Resource
+    from opentelemetry.sdk.trace import TracerProvider
+    from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
+    from opentelemetry.trace import Status, StatusCode
+    from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
+    OPENTELEMETRY_AVAILABLE = True
+except ImportError:  # pragma: no cover
+    # Clients aren't expected to have open-telemetry. This flag will be used in
+    # TracingWrapper to provide pass through functions.
+    OPENTELEMETRY_AVAILABLE = False
 
 from pubtools.pluggy import pm
 
@@ -60,7 +66,11 @@ class TracingWrapper:
         # trace.set_tracer_provider global singleton set below can *never* be set up
         # more than once in a single process.
 
-        self._enabled_trace = os.getenv("OTEL_TRACING", "").lower() == "true"
+        self._enabled_trace = (os.getenv("OTEL_TRACING", "").lower() == "true") \
+                              and OPENTELEMETRY_AVAILABLE
+        if (os.getenv("OTEL_TRACING", "").lower() == "true") and not OPENTELEMETRY_AVAILABLE:
+            log.debug("Tracing is enabled but the open telemetry package is "
+                      "unavailable. Tracing functionality will be disabled.")
         if self._enabled_trace and not self._processor:
             log.info("Creating TracingWrapper instance")
             exporter = pm.hook.otel_exporter() or ConsoleSpanExporter()
@@ -87,8 +97,6 @@ class TracingWrapper:
         Returns:
             The decorated function
         """
-        tracer = trace.get_tracer(__name__)
-
         def _instrument_func(func):
             @functools.wraps(func)
             def wrap(*args, **kwargs):
@@ -104,6 +112,7 @@ class TracingWrapper:
                 if not self._enabled_trace:
                     return func(*args, **kwargs)
 
+                tracer = trace.get_tracer(__name__)
                 trace_ctx = None
                 token = None
                 if not context.get_current():
