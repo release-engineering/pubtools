@@ -1,13 +1,13 @@
+import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import pytest
 from opentelemetry import trace
 from opentelemetry.trace.status import StatusCode
 
-from pubtools._impl.tracing import TracingWrapper
 from pubtools._impl import tracing
+from pubtools._impl.tracing import TracingWrapper
 from pubtools.tracing import get_trace_wrapper
-import logging
 
 
 def test_instrument_func_in_context(monkeypatch, fake_span_exporter):
@@ -157,6 +157,7 @@ def test_instrument_func_disabled(monkeypatch):
     assert foo() == 1
     assert tw.provider is None
 
+
 def test_otel_not_available(caplog, monkeypatch):
     monkeypatch.setenv("OTEL_TRACING", "true")
     monkeypatch.setattr(tracing, "OPENTELEMETRY_AVAILABLE", False)
@@ -171,5 +172,7 @@ def test_otel_not_available(caplog, monkeypatch):
 
     assert foo() == 1
     assert tw.provider is None
-    assert "Tracing is enabled but the open telemetry package is unavailable. " \
-           "Tracing functionality will be disabled." in caplog.text
+    assert (
+        "Tracing is enabled but the open telemetry package is unavailable. "
+        "Tracing functionality will be disabled." in caplog.text
+    )
