@@ -54,6 +54,9 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     install_requires=get_requirements(),
+    extras_require={
+        "tracing": ["opentelemetry-api", "opentelemetry-sdk"],
+    },
     python_requires=">=3.6",
     project_urls={
         "Documentation": "https://release-engineering.github.io/pubtools/",
