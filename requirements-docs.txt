@@ -10,9 +10,9 @@ alabaster==1.0.0 \
     # via
     #   -r requirements-docs.in
     #   sphinx
-ansible-core==2.17.7 \
-    --hash=sha256:3aaab735d6c4e2d6239bc326800dc0ecda2a1490caa8455b41084ec0bc54dacf \
-    --hash=sha256:64d4f0a006687a5621aa80dca54fd0c5ae75145b7aac8c1b8d7f07a1399c4705
+ansible-core==2.17.8 \
+    --hash=sha256:1c7883566acea9e70fd07af76f1fcc6e3eb674a7b77064a18466fdab7c9ae553 \
+    --hash=sha256:39be8a7986a2c7d36069b0d97220bc2f6783c65fea7c6d7e0e2d00d1ac8af877
     # via pubtools-sign
 attrs==25.1.0 \
     --hash=sha256:1c97078a80c814273a76b2a298a932eb681c87415c11dee0a6921de7f1b02c3e \
@@ -22,9 +22,9 @@ attrs==25.1.0 \
     #   pubtools-pulplib
     #   pushsource
     #   referencing
-babel==2.16.0 \
-    --hash=sha256:368b5b98b37c06b7daf6696391c3240c938b37767d4584413e8438c5c435fa8b \
-    --hash=sha256:d1f3554ca26605fe173f3de0c65f750f5a42f924499bf134de6423582298e316
+babel==2.17.0 \
+    --hash=sha256:0c54cffb19f690cdcc52a3b50bcbf71e07a808d1c80d549f2459b9d2cf0afb9d \
+    --hash=sha256:4d0b53093fdfb4b21c92b5213dba5a1b23885afa8383709427046b21c366e5f2
     # via sphinx
 backoff==2.2.1 \
     --hash=sha256:03f829f5bb1923180821643f8753b0502c3b682293992485b0eef2807afa5cba \
@@ -60,9 +60,9 @@ bcrypt==4.2.1 \
     --hash=sha256:e84e0e6f8e40a242b11bce56c313edc2be121cec3e0ec2d76fce01f6af33c07c \
     --hash=sha256:f85b1ffa09240c89aa2e1ae9f3b1c687104f7b2b9d2098da4e923f1b7082d331
     # via paramiko
-certifi==2024.12.14 \
-    --hash=sha256:1275f7a45be9464efc1173084eaa30f866fe2e47d389406136d332ed4967ec56 \
-    --hash=sha256:b650d30f370c2b724812bee08008be0c4163b163ddaec3f2546c1caf65f191db
+certifi==2025.1.31 \
+    --hash=sha256:3d5da6925056f6f18f119200434a4780a94263f10d1c21d032a6f6b2baa20651 \
+    --hash=sha256:ca78db4565a652026a4db2bcdf68f2fb589ea80d0be70e03929ed730746b84fe
     # via requests
 cffi==1.17.1 \
     --hash=sha256:045d61c734659cc045141be4bae381a41d89b741f795af1dd018bfb532fd0df8 \
@@ -280,9 +280,9 @@ defusedxml==0.7.1 \
     --hash=sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69 \
     --hash=sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61
     # via koji
-deprecated==1.2.17 \
-    --hash=sha256:0114a10f0bbb750b90b2c2296c90cf7e9eaeb0abb5cf06c80de2c60138de0a82 \
-    --hash=sha256:69cdc0a751671183f569495e2efb14baee4344b0236342eec29f1fde25d61818
+deprecated==1.2.18 \
+    --hash=sha256:422b6f6d859da6f2ef57857761bfb392480502a64c3028ca9bbe86085d72115d \
+    --hash=sha256:bd5011788200372a32418f888e326a09ff80d0214bd961147cfed01b5c018eec
     # via
     #   opentelemetry-api
     #   opentelemetry-exporter-otlp-proto-grpc
@@ -682,9 +682,9 @@ pubtools-iib==0.26.0 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-pulp==1.32.1 \
-    --hash=sha256:1416586563c3de564d6b589b0919a9ef7ef844a70f1ce5b4b72195ddca896f38 \
-    --hash=sha256:e563bfe407eea579d51e33ff4a12affec5e1a6190fe87d06f64f0ffed74d67b4
+pubtools-pulp==1.32.2 \
+    --hash=sha256:2620b8e669dafd53efcc2af661c32f2454f9f0a4c04cf3b4f9266de5a0c89e10 \
+    --hash=sha256:b4854ba2e6ffa7f845ac7f7a528a1270e18611064465528b1b5f60cd26b150b5
     # via -r requirements-docs.in
 pubtools-pulplib==2.41.0 \
     --hash=sha256:789612c1a7e8e535a43600b406a92d7b5205d2febe541d23a0cee1a1180e071c \
@@ -696,13 +696,13 @@ pubtools-pyxis==1.3.5 \
     # via
     #   -r requirements-docs.in
     #   pubtools-quay
-pubtools-quay==0.31.0 \
-    --hash=sha256:5787d2c0dc8d66956e77a1a41028f16750f414982ec44bbe154aadd5e153e228 \
-    --hash=sha256:6669be1f074a01b38ae78e56bde791e760fd4252421bbb9d160ddf7e71132111
+pubtools-quay==0.32.0 \
+    --hash=sha256:40239857147deaafffc1de82a6c08a848ac9159cd9a81540a2e51669ac3ded60 \
+    --hash=sha256:8a6b02d56fed07f0f19f58470289ece3ccede14b946117d481eb000a507ef4ed
     # via -r requirements-docs.in
-pubtools-sign==0.0.10.1 \
-    --hash=sha256:154bd79fb5f5b2780cbde325f4c2589bc09cf6113b9e2ebc1a7ff142b0e918eb \
-    --hash=sha256:701e941a2c888da287e3178d2b59b8cbd8e5608c0507f4d00252461f00472624
+pubtools-sign==0.0.11 \
+    --hash=sha256:874aaf600df38f2ce382e43ad736366e2928da9946f1eddaad4bfb184387804b \
+    --hash=sha256:e700fbf319cede5e7c52f15ad446579b1b8b42ce5e8baa8550382397fec5ffa7
     # via pubtools-quay
 pushcollector==1.3.0 \
     --hash=sha256:18281fcd4247ca8b668c25348bbc2f9cc032912cecc7037824a74ad8adcbb1c3 \
@@ -712,9 +712,9 @@ pushcollector==1.3.0 \
     #   pubtools-pulp
     #   pubtools-quay
     #   pushsource
-pushsource==2.50.0 \
-    --hash=sha256:324cef39c083d6dfaf5277f38932887c1f9edb13746c23bffa143e398ea28443 \
-    --hash=sha256:db36fa8fb25791e8be451feafd1e04dd34129c6f62d38693d2cd4b5e0cc04c21
+pushsource==2.51.0 \
+    --hash=sha256:7ad58ae20e1df71a269eb7cda6f2d4fdd3582f3dc150a95fc942f4b2d15f371b \
+    --hash=sha256:a7232b5804125dca64153db067fd2c9b9c8b1b9c17f13b27bf5c1df529485679
     # via pubtools-pulp
 pyasn1==0.6.1 \
     --hash=sha256:0d632f46f2ba09143da3a8afe9e33fb6f92fa2320ab7e886e2d0f7672af84629 \
