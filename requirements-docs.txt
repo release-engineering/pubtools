@@ -569,9 +569,9 @@ markupsafe==3.0.2 \
     --hash=sha256:f8b3d067f2e40fe93e1ccdd6b2e1d16c43140e76f02fb1319a05cf2b79d99430 \
     --hash=sha256:fcabf5ff6eea076f859677f5f0b6b5c1a51e70a376b0579e0eadef8db48c6b50
     # via jinja2
-marshmallow==3.26.0 \
-    --hash=sha256:1287bca04e6a5f4094822ac153c03da5e214a0a60bcd557b140f3e66991b8ca1 \
-    --hash=sha256:eb36762a1cc76d7abf831e18a3a1b26d3d481bbc74581b8e532a3d3a8115e1cb
+marshmallow==3.26.1 \
+    --hash=sha256:3350409f20a70a7e4e11a27661187b77cdcaeb20abca41c1454fe33636bea09c \
+    --hash=sha256:e6d8affb6cb61d39d26402096dc0aee12d5a26d490a121f118d2e81dc0719dc6
     # via
     #   pubtools-quay
     #   pubtools-sign
@@ -641,9 +641,9 @@ packaging==24.2 \
     #   ansible-core
     #   marshmallow
     #   sphinx
-paramiko==3.5.0 \
-    --hash=sha256:1fedf06b085359051cd7d0d270cebe19e755a8a921cc2ddbfa647fb0cd7d68f9 \
-    --hash=sha256:ad11e540da4f55cedda52931f1a3f812a8238a7af7f62a60de538cd80bb28124
+paramiko==3.5.1 \
+    --hash=sha256:43b9a0501fc2b5e70680388d9346cf252cfb7d00b0667c39e80eb43a408b8f61 \
+    --hash=sha256:b2c665bc45b2b215bd7d7f039901b14b067da00f3a11e6640995fd58f2664822
     # via pubtools-quay
 piny==1.1.0 \
     --hash=sha256:18a005aeccb2af6f55790e539698865be4ab546661c27f410ec6871afe10118a \
