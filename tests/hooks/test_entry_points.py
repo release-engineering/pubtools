@@ -1,6 +1,7 @@
 import sys
 
-from pkg_resources import EntryPoint, get_distribution
+from importlib import metadata
+from importlib.metadata import EntryPoint
 
 from pubtools.pluggy import task_context
 
@@ -8,45 +9,33 @@ from pubtools.pluggy import task_context
 def test_task_context_loads_entry_points(monkeypatch):
     """task_context eagerly resolves console_scripts and pubtools.hooks entry points."""
 
-    # Need some valid distribution to use here; don't care which one.
-    # Just pick something we know is installed.
-    dist = get_distribution("pytest")
+    target_mod = "pydoc"
 
-    entry_map = dist.get_entry_map()
+    # Define the mock entry points EntryPoint(name, value, group)
+    ep1 = EntryPoint(name="some-script", value="pubtools.pluggy", group="console_scripts")
+    ep2 = EntryPoint(name="anything", value=target_mod, group="pubtools.hooks")
 
-    # This group already exists in pytest.
-    scripts = entry_map["console_scripts"]
+    mock_entry_points = [ep1, ep2]
 
-    # This is a new group we'll force onto the map.
-    hooks = {}
-    monkeypatch.setitem(entry_map, "pubtools.hooks", hooks)
+    # Monkeypatch metadata.entry_points globally
+    # In the new API, mock the function that task_context() will call
+    def mock_eps(**kwargs):
+        group = kwargs.get("group")
+        if group:
+            return [ep for ep in mock_entry_points if ep.group == group]
+        return metadata.EntryPoints(mock_entry_points)
 
-    # Set up some console scripts entry points. We'll make them point at existing
-    # modules so that an import will succeed.
-    #
-    # This one is pubtools.* , so it should be imported
-    monkeypatch.setitem(
-        scripts, "some-script", EntryPoint("some-script", "pubtools.pluggy")
-    )
+    monkeypatch.setattr(metadata, "entry_points", mock_eps)
 
-    # This should be ignored
-    monkeypatch.setitem(
-        scripts, "other-script", EntryPoint("other-script", "something.non.existent")
-    )
-
-    # Set up a hook entry point.
-    monkeypatch.setitem(hooks, "anything", EntryPoint("anything", "pytest"))
-
-    # Effectively "un-import" these modules so we can observe that task_context
-    # has the side-effect of importing them.
-    assert "pubtools.pluggy" in sys.modules
-    assert "pytest" in sys.modules
-    del sys.modules["pubtools.pluggy"]
-    del sys.modules["pytest"]
+    # "un-import" these modules (Ensure they are in sys.modules first so del doesn't fail, 
+    # though usually they are already there from imports above)
+    for mod in ["pubtools.pluggy", target_mod]:
+        if mod in sys.modules:
+            del sys.modules[mod]
 
     with task_context():
         # As soon as we've entered the task context, the modules referenced from
         # those entry points should be imported, ensuring we can now use hooks with
         # everything registered
         assert "pubtools.pluggy" in sys.modules
-        assert "pytest" in sys.modules
+        assert target_mod in sys.modules

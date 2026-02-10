@@ -2,7 +2,7 @@ import logging
 import sys
 from contextlib import contextmanager
 
-import pkg_resources
+from importlib.metadata import entry_points
 import pluggy
 
 LOG = logging.getLogger("pubtools")
@@ -20,10 +20,10 @@ def resolve_hooks():
     #
     # This will pick up hookspecs from task libraries such as pubtools-quay.
     #
-    for ep in pkg_resources.iter_entry_points("console_scripts"):
-        if ep.module_name.startswith("pubtools"):
-            # Method resolve() was introduced in setuptools 11.3 to replace load()
-            ep.resolve() if hasattr(ep, "resolve") else ep.load(require=False)
+    for ep in entry_points(group="console_scripts"):
+        if ep.module.startswith("pubtools"):
+            # importlib.metadata only has load()
+            ep.load()
             LOG.debug("Resolved %s", ep)
 
     # 2. Eagerly load any pubtools.hooks entry points.
@@ -31,8 +31,8 @@ def resolve_hooks():
     # This is a group we provide so that any hook-only modules, which might otherwise
     # not be imported by anyone, can request themselves to be imported.
     #
-    for ep in pkg_resources.iter_entry_points("pubtools.hooks"):
-        ep.resolve() if hasattr(ep, "resolve") else ep.load(require=False)
+    for ep in entry_points(group="pubtools.hooks"):
+        ep.load()
         LOG.debug("Resolved %s", ep)
 
 
