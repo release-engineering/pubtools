@@ -1,8 +1,8 @@
 import logging
 import sys
 from contextlib import contextmanager
-
 from importlib.metadata import entry_points
+
 import pluggy
 
 LOG = logging.getLogger("pubtools")

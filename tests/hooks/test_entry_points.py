@@ -1,5 +1,4 @@
 import sys
-
 from importlib import metadata
 from importlib.metadata import EntryPoint
 
@@ -12,7 +11,9 @@ def test_task_context_loads_entry_points(monkeypatch):
     target_mod = "pydoc"
 
     # Define the mock entry points EntryPoint(name, value, group)
-    ep1 = EntryPoint(name="some-script", value="pubtools.pluggy", group="console_scripts")
+    ep1 = EntryPoint(
+        name="some-script", value="pubtools.pluggy", group="console_scripts"
+    )
     ep2 = EntryPoint(name="anything", value=target_mod, group="pubtools.hooks")
 
     mock_entry_points = [ep1, ep2]
@@ -27,7 +28,7 @@ def test_task_context_loads_entry_points(monkeypatch):
 
     monkeypatch.setattr(metadata, "entry_points", mock_eps)
 
-    # "un-import" these modules (Ensure they are in sys.modules first so del doesn't fail, 
+    # "un-import" these modules (Ensure they are in sys.modules first so del doesn't fail,
     # though usually they are already there from imports above)
     for mod in ["pubtools.pluggy", target_mod]:
         if mod in sys.modules:
