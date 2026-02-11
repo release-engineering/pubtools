@@ -38,7 +38,7 @@ def get_requirements():
 
 setup(
     name="pubtools",
-    version="1.4.3",
+    version="1.4.4",
     packages=find_namespace_packages(where="src"),
     package_dir={"": "src"},
     url="https://github.com/release-engineering/pubtools",

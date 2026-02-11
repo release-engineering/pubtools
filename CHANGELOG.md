@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - n/a
 
+## [1.4.4] - 2026-02-11
+
+- replace `pkg_resources` with `importlib.metadata` due to removal in `setuptools`
+
 ## [1.4.3] - 2024-11-14
 
 - opentelemetry dependencies are now optional and can be requested by
@@ -55,7 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release from release-engineering organization
 
-[Unreleased]: https://github.com/release-engineering/pubtools/compare/v1.4.3...HEAD
+[Unreleased]: https://github.com/release-engineering/pubtools/compare/v1.4.4...HEAD
+[1.4.4]: https://github.com/release-engineering/pubtools/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/release-engineering/pubtools/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/release-engineering/pubtools/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/release-engineering/pubtools/compare/v1.4.0...v1.4.1
