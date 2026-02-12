@@ -1,8 +1,12 @@
 import logging
 import sys
 from contextlib import contextmanager
-from importlib.metadata import entry_points
 
+if sys.version_info >= (3, 10):
+    from importlib.metadata import entry_points
+else:  # pragma: no cover
+    # for older python use non-standard compatible module
+    from importlib_metadata import entry_points
 import pluggy
 
 LOG = logging.getLogger("pubtools")
