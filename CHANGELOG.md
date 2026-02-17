@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - n/a
 
+## [1.4.5] - 2026-02-17
+
+- fix entrypoint loading for py39 and older
+
 ## [1.4.4] - 2026-02-11
 
 - replace `pkg_resources` with `importlib.metadata` due to removal in `setuptools`
@@ -59,7 +63,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release from release-engineering organization
 
-[Unreleased]: https://github.com/release-engineering/pubtools/compare/v1.4.4...HEAD
+[Unreleased]: https://github.com/release-engineering/pubtools/compare/v1.4.5...HEAD
+[1.4.5]: https://github.com/release-engineering/pubtools/compare/v1.4.4...v1.4.5
 [1.4.4]: https://github.com/release-engineering/pubtools/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/release-engineering/pubtools/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/release-engineering/pubtools/compare/v1.4.1...v1.4.2
