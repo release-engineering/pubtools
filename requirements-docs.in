@@ -1,5 +1,6 @@
 sphinx
 alabaster
+setuptools < 82.0.0
 
 # RPM bindings are needed below but this is not directly in the
 # dependency tree.
