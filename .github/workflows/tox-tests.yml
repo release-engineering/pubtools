@@ -21,6 +21,8 @@ jobs:
         run: tox -e docs
   coverage:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python
@@ -35,6 +37,14 @@ jobs:
         run: pip install tox
       - name: Run Tox
         run: tox -e cov
+      - name: Upload coverage to Codecov
+        if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref =='refs/heads/main')
+        uses: codecov/codecov-action@v5
+        with:
+          use_oidc: true
+          flags: unit-tests
+          files: coverage.xml
+          fail_ci_if_error: false
   bandit-exitzero:
     runs-on: ubuntu-latest
     steps:
@@ -83,4 +93,3 @@ jobs:
         run: pip install tox
       - name: Run Tox
         run: tox -e py39
-
